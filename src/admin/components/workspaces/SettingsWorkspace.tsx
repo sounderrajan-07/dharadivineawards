@@ -43,17 +43,9 @@ const compressImage = (base64Str: string, maxWidth = 300, maxHeight = 300): Prom
 };
 
 const getImageUrl = (imagePath: string) => {
-  if (!imagePath) return '/images/default-avatar.png';
+  if (!imagePath) return '';
   if (imagePath.startsWith('data:')) return imagePath;
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
-  
-  const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000'
-    : '';
-  
-  if (imagePath.startsWith('/uploads')) {
-    return `${base}${imagePath}`;
-  }
   return imagePath;
 };
 
@@ -144,6 +136,7 @@ export const SettingsWorkspace: React.FC = () => {
     presidentEmail: 'president@dharafoundations.in',
     trusteeEmail: 'trustee@dharafoundations.in',
     alternativeEmail: 'dharafoundationsindia@gmail.com',
+    otherEventsUrl: 'https://dhara-foundation.vercel.app/',
     facebook: '#',
     instagram: '#',
     youtube: 'https://www.youtube.com/live/qOAbFfB22uI'
@@ -716,6 +709,7 @@ export const SettingsWorkspace: React.FC = () => {
       heroVideoPoster,
       heroImageUrl,
       heroMediaOrder,
+      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dhara-foundation.vercel.app/',
       homeStats,
       aboutStats,
       founders,
@@ -1453,7 +1447,7 @@ export const SettingsWorkspace: React.FC = () => {
                           alt={founder.name} 
                           className="w-12 h-12 rounded-full object-cover border border-[#C9A646]/40 shrink-0"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/images/default-avatar.png';
+                            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80';
                           }}
                         />
                       ) : (
@@ -1683,6 +1677,17 @@ export const SettingsWorkspace: React.FC = () => {
                   value={contactInfo.alternativeEmail || ''}
                   onChange={(e) => setContactInfo(prev => ({ ...prev, alternativeEmail: e.target.value }))}
                   placeholder="e.g. dharafoundationsindia@gmail.com"
+                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#D9762E]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1">Other Events Portal Link URL (Navbar Link)</label>
+                <input
+                  type="text"
+                  value={contactInfo.otherEventsUrl || ''}
+                  onChange={(e) => setContactInfo(prev => ({ ...prev, otherEventsUrl: e.target.value }))}
+                  placeholder="e.g. https://dhara-foundation.vercel.app/"
                   className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#D9762E]"
                 />
               </div>

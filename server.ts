@@ -51,7 +51,10 @@ app.all('/api/upload', (req: any, res: any) => uploadHandler(req, res));
 app.all('/api/razorpay/create-order', (req: any, res: any) => createOrderHandler(req, res));
 app.all('/api/razorpay/verify-payment', (req: any, res: any) => verifyPaymentHandler(req, res));
 
-// Serve compiled static assets from dist/
+// Serve uploads and static assets from public/ and dist/
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Client-side SPA route fallback

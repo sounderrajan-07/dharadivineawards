@@ -1147,6 +1147,7 @@ export default function App() {
           setMobileMenuOpen={setMobileMenuOpen} 
           showInstallBtn={showInstallBtn}
           onInstall={handleInstallClick}
+          siteConfig={siteConfig}
         />
       )}
       {/* Main Content Area */}

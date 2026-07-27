@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Phone, Mail, ChevronDown } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMobileMenuOpen, showInstallBtn, onInstall }) {
+export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMobileMenuOpen, showInstallBtn, onInstall, siteConfig }) {
   const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
   const [aboutOpen, setAboutOpen] = useState(false);
   const [portalsOpen, setPortalsOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobilePortalsOpen, setMobilePortalsOpen] = useState(false);
+
+  const otherEventsUrl = siteConfig?.otherEventsUrl || "https://dhara-foundation.vercel.app/";
 
   return (
     <>
@@ -72,7 +74,7 @@ export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMob
                   <a href="/sponsor" onClick={(e) => { e.preventDefault(); setActiveTab('sponsor'); setPortalsOpen(false); }}>Corporate Sponsors</a>
                   <a href="/csr" onClick={(e) => { e.preventDefault(); setActiveTab('csr'); setPortalsOpen(false); }}>CSR Partnership</a>
                   <a href="/volunteer" onClick={(e) => { e.preventDefault(); setActiveTab('volunteer'); setPortalsOpen(false); }}>Volunteer Seva</a>
-                  <a href="https://dhara-foundation.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setPortalsOpen(false)}>Other Events</a>
+                  <a href={otherEventsUrl} target="_blank" rel="noopener noreferrer" onClick={() => setPortalsOpen(false)}>Other Events</a>
                 </div>
               )}
             </div>
@@ -126,7 +128,7 @@ export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMob
                 <a href="/sponsor" onClick={(e) => { e.preventDefault(); setActiveTab('sponsor'); setMobileMenuOpen(false); }}>Corporate Sponsors</a>
                 <a href="/csr" onClick={(e) => { e.preventDefault(); setActiveTab('csr'); setMobileMenuOpen(false); }}>CSR Partnership</a>
                 <a href="/volunteer" onClick={(e) => { e.preventDefault(); setActiveTab('volunteer'); setMobileMenuOpen(false); }}>Volunteer Seva</a>
-                <a href="https://dhara-foundation.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>Other Events</a>
+                <a href={otherEventsUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>Other Events</a>
               </div>
             )}
 

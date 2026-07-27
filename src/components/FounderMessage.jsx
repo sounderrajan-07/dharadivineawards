@@ -30,14 +30,6 @@ export default function FounderMessage({ siteConfig }) {
     if (!imagePath) return 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80';
     if (imagePath.startsWith('data:')) return imagePath;
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
-    
-    const base = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://localhost:3000'
-      : '';
-    
-    if (imagePath.startsWith('/uploads')) {
-      return `${base}${imagePath}`;
-    }
     return imagePath;
   };
 
