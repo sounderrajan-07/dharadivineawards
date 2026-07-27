@@ -1,0 +1,2861 @@
+{
+  "nominations": [],
+  "donations": [],
+  "delegates": [
+    {
+      "id": "del-1784627610527",
+      "delegate_name": "Soundher S",
+      "email": "soundhersenthil07@gmail.com",
+      "phone": "7397523792",
+      "organization": "AMS",
+      "interest": "Education",
+      "specialNotes": "nothing",
+      "pass_tier": "Patron Pass",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-8316",
+      "checked_in": true,
+      "payment_status": "PAID",
+      "payment_id": "pay_TG6snLUP06QpjW",
+      "order_id": "order_TG6sWiUJ6HhXiO",
+      "amount": 5000,
+      "created_at": "2026-07-21T09:53:30.527Z",
+      "checkin_time": "2026-07-21T09:56:11.809Z"
+    },
+    {
+      "id": "del-1784609882969",
+      "delegate_name": "Soundher S",
+      "email": "soundhersenthil07@gmail.com",
+      "phone": "7397523792",
+      "organization": "Dhara ",
+      "interest": "Social Service",
+      "specialNotes": "nothing",
+      "pass_tier": "Premium Delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-7471",
+      "checked_in": true,
+      "payment_status": "PAID",
+      "payment_id": "pay_TG1qZqQQtmBJ9l",
+      "order_id": "order_TG1q7HCYkdT97N",
+      "amount": 3000,
+      "created_at": "2026-07-21T04:58:02.968Z",
+      "checkin_time": "2026-07-21T09:00:33.880Z"
+    },
+    {
+      "id": "del-1784373962090",
+      "delegate_name": "Mohammed Thalha",
+      "email": "mohammedthalha177@gmail.com",
+      "phone": "+916381265681",
+      "pass_tier": "patron",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-3923",
+      "checked_in": true,
+      "checkin_time": "2026-07-20T06:20:41.388Z",
+      "seat_zone": "Zone B - Seva Row 10"
+    },
+    {
+      "id": "del-1784541884016",
+      "delegate_name": "Soundher S",
+      "email": "soundhersenthil07@gmail.com",
+      "phone": "7397523792",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-4453",
+      "checked_in": true,
+      "checkin_time": "2026-07-20T10:11:13.043Z",
+      "seat_zone": "Zone B - Seva Row 10"
+    },
+    {
+      "id": "del-1784609884378",
+      "delegate_name": "Soundher S",
+      "email": "soundhersenthil07@gmail.com",
+      "phone": "7397523792",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-8138",
+      "checked_in": true,
+      "checkin_time": "2026-07-21T09:00:37.528Z",
+      "seat_zone": "Zone B - Seva Row 10"
+    },
+    {
+      "id": "del-1784627616185",
+      "delegate_name": "Soundher S",
+      "email": "soundhersenthil07@gmail.com",
+      "phone": "7397523792",
+      "pass_tier": "patron",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-7948",
+      "checked_in": true,
+      "checkin_time": "2026-07-21T09:57:13.717Z",
+      "seat_zone": "Zone B - Seva Row 10"
+    },
+    {
+      "id": "del-1785135419455",
+      "delegate_name": "Manasa",
+      "email": "mansarajkumar1423s@gmail.com",
+      "phone": "7894561230",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-2198",
+      "checked_in": false,
+      "checkin_time": null,
+      "seat_zone": "Zone B - Seva Row 10",
+      "payment_status": "PAID",
+      "payment_id": "pay_TIR54XMlyY1xRG",
+      "order_id": "order_TIR4wCpqvgDJSE",
+      "amount": 3000,
+      "created_at": "2026-07-27T06:56:59.453Z"
+    },
+    {
+      "id": "del-1785135419574",
+      "delegate_name": "Manasa",
+      "email": "mansarajkumar1423s@gmail.com",
+      "phone": "7894561230",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-1380",
+      "checked_in": false,
+      "checkin_time": null,
+      "seat_zone": "Zone B - Seva Row 10"
+    },
+    {
+      "id": "del-1785136027718",
+      "delegate_name": "Manasa",
+      "email": "mansarajkumar1423s@gmail.com",
+      "phone": "7894561230",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-4552",
+      "checked_in": false,
+      "checkin_time": null,
+      "seat_zone": "Zone B - Seva Row 10",
+      "payment_status": "PAID",
+      "payment_id": "pay_TIRFjjDAzPTqkw",
+      "order_id": "order_TIRFc3efnCc73g",
+      "amount": 3000,
+      "created_at": "2026-07-27T07:07:07.717Z"
+    },
+    {
+      "id": "del-1785136027819",
+      "delegate_name": "Manasa",
+      "email": "mansarajkumar1423s@gmail.com",
+      "phone": "7894561230",
+      "pass_tier": "premium delegate",
+      "ticket_count": 1,
+      "pass_code": "DDA-2026-6703",
+      "checked_in": false,
+      "checkin_time": null,
+      "seat_zone": "Zone B - Seva Row 10"
+    }
+  ],
+  "volunteers": [],
+  "enquiries": [],
+  "activityLogs": [
+    {
+      "id": "log-1785136027819",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Manasa\" (Pass: DDA-2026-6703)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1785136027718",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Manasa\" (Pass: DDA-2026-4552)",
+      "user": "Razorpay Payment Gateway"
+    },
+    {
+      "id": "log-1785135579383",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated site content and subdomain configurations",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1785135419574",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Manasa\" (Pass: DDA-2026-1380)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1785135419455",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Manasa\" (Pass: DDA-2026-2198)",
+      "user": "Razorpay Payment Gateway"
+    },
+    {
+      "id": "log-1784627833726",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-7948 (Soundher S)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784627771810",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-8316 (Soundher S)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784627616186",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Soundher S\" (Pass: DDA-2026-7948)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1784627610527",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass booked with Razorpay for \"Soundher S\" (Pass: DDA-2026-8316)",
+      "user": "Razorpay Payment Gateway"
+    },
+    {
+      "id": "log-1784624437528",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-8138 (Soundher S)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784624433881",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-7471 (Soundher S)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784609884378",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Soundher S\" (Pass: DDA-2026-8138)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1784609882969",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass booked with Razorpay for \"Soundher S\" (Pass: DDA-2026-7471)",
+      "user": "Razorpay Payment Gateway"
+    },
+    {
+      "id": "log-1784542273045",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-4453 (Soundher S)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784541884016",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Soundher S\" (Pass: DDA-2026-4453)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1784541650526",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated global site configuration",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784528441414",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "Gate check-in success for pass DDA-2026-3923 (Mohammed Thalha)",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784373962090",
+      "timestamp": "Just now",
+      "type": "checkin",
+      "message": "New Delegate pass registered for \"Mohammed Thalha\" (Pass: DDA-2026-3923)",
+      "user": "System Callback"
+    },
+    {
+      "id": "log-1784373900763",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated global site configuration",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784373868384",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated global site configuration",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1784373243635",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated global site configuration",
+      "user": "S. Vinoth Ragavendran"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "home-img-0",
+      "src": "/images/Devine Awards images/devine awrds-57.jpg",
+      "category": "Guest Dignitaries",
+      "caption": "Grand Assembly of Chief Guests & Spiritual Dignitaries",
+      "priority": 100,
+      "featured": true
+    },
+    {
+      "id": "home-img-1",
+      "src": "/images/Home section/Hon'ble Justice Shri T.N Vallinayagam(Rtd).jpg",
+      "category": "Guest Dignitaries",
+      "caption": "Hon'ble Justice Shri T.N. Vallinayagam (Rtd.)",
+      "priority": 99,
+      "featured": true
+    },
+    {
+      "id": "home-img-2",
+      "src": "/images/Home section/Hon'ble justice Shri G.R Swaminathan  Avl..jpg",
+      "category": "Guest Dignitaries",
+      "caption": "Hon'ble Justice Shri G.R. Swaminathan Avl.",
+      "priority": 98,
+      "featured": true
+    },
+    {
+      "id": "home-img-3",
+      "src": "/images/Home section/Shri.N.Gopalaswami IAS(Rtd).jpg",
+      "category": "Guest Dignitaries",
+      "caption": "Shri N. Gopalaswami IAS (Rtd.)",
+      "priority": 97,
+      "featured": true
+    },
+    {
+      "id": "home-img-4",
+      "src": "/images/Home section/Sri Sendalangara Shenbaga Mannar Sampath Kumara Ramanuja Jeeyar Swamigal.jpg",
+      "category": "Spiritual Pillars",
+      "caption": "Sri Sendalangara Shenbaga Mannar Sampath Kumara Ramanuja Jeeyar Swamigal",
+      "priority": 96,
+      "featured": true
+    },
+    {
+      "id": "home-img-5",
+      "src": "/images/Home section/Sri la Sri Thirunavukkarasu Desika Parmacharya Swamigal.jpg",
+      "category": "Spiritual Pillars",
+      "caption": "Sri la Sri Thirunavukkarasu Desika Paramacharya Swamigal",
+      "priority": 95,
+      "featured": true
+    },
+    {
+      "id": "home-img-6",
+      "src": "/images/Home section/Dhara Divine Moment.jpeg",
+      "category": "Guest Dignitaries",
+      "caption": "Shri S. Vinoth Ragavendran M.E. - Founder & President",
+      "priority": 94,
+      "featured": true
+    },
+    {
+      "id": "gal-high-0-58522",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (1).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 0,
+      "featured": true
+    },
+    {
+      "id": "gal-high-1-82489",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (2).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 1,
+      "featured": true
+    },
+    {
+      "id": "gal-high-2-73872",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (3).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 2,
+      "featured": true
+    },
+    {
+      "id": "gal-high-3-79423",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (4).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 3,
+      "featured": true
+    },
+    {
+      "id": "gal-high-4-55737",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (5).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 4,
+      "featured": true
+    },
+    {
+      "id": "gal-high-5-72725",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (6).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 5,
+      "featured": true
+    },
+    {
+      "id": "gal-high-6-32046",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (7).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 6,
+      "featured": true
+    },
+    {
+      "id": "gal-high-7-17445",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (8).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 7,
+      "featured": true
+    },
+    {
+      "id": "gal-high-8-20512",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (9).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 8,
+      "featured": true
+    },
+    {
+      "id": "gal-high-9-61964",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (10).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 9,
+      "featured": false
+    },
+    {
+      "id": "gal-high-10-45025",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (11).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 10,
+      "featured": false
+    },
+    {
+      "id": "gal-high-11-11966",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (12).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 11,
+      "featured": false
+    },
+    {
+      "id": "gal-high-12-58333",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (13).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 12,
+      "featured": false
+    },
+    {
+      "id": "gal-high-13-28999",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (14).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 13,
+      "featured": false
+    },
+    {
+      "id": "gal-high-14-63408",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (15).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 14,
+      "featured": false
+    },
+    {
+      "id": "gal-high-15-92759",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (16).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 15,
+      "featured": false
+    },
+    {
+      "id": "gal-high-16-98296",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (17).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 16,
+      "featured": false
+    },
+    {
+      "id": "gal-high-17-22988",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (18).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 17,
+      "featured": false
+    },
+    {
+      "id": "gal-high-18-47817",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (19).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 18,
+      "featured": false
+    },
+    {
+      "id": "gal-high-19-34406",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (20).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 19,
+      "featured": false
+    },
+    {
+      "id": "gal-high-20-72337",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (21).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 20,
+      "featured": false
+    },
+    {
+      "id": "gal-high-21-73979",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (22).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 21,
+      "featured": false
+    },
+    {
+      "id": "gal-high-22-68169",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (23).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 22,
+      "featured": false
+    },
+    {
+      "id": "gal-high-23-21535",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (24).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 23,
+      "featured": false
+    },
+    {
+      "id": "gal-high-24-23816",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (25).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 24,
+      "featured": false
+    },
+    {
+      "id": "gal-high-25-1484",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (26).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 25,
+      "featured": false
+    },
+    {
+      "id": "gal-high-26-75609",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (27).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 26,
+      "featured": false
+    },
+    {
+      "id": "gal-high-27-98234",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (28).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 27,
+      "featured": false
+    },
+    {
+      "id": "gal-high-28-73985",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (29).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 28,
+      "featured": false
+    },
+    {
+      "id": "gal-high-29-12166",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (30).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 29,
+      "featured": false
+    },
+    {
+      "id": "gal-high-30-13373",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (31).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 30,
+      "featured": false
+    },
+    {
+      "id": "gal-high-31-82483",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (32).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 31,
+      "featured": false
+    },
+    {
+      "id": "gal-high-32-39994",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (33).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 32,
+      "featured": false
+    },
+    {
+      "id": "gal-high-33-87071",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (34).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 33,
+      "featured": false
+    },
+    {
+      "id": "gal-high-34-24641",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (35).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 34,
+      "featured": false
+    },
+    {
+      "id": "gal-high-35-84581",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (36).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 35,
+      "featured": false
+    },
+    {
+      "id": "gal-high-36-16492",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (37).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 36,
+      "featured": false
+    },
+    {
+      "id": "gal-high-37-54918",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (38).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 37,
+      "featured": false
+    },
+    {
+      "id": "gal-high-38-19084",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (39).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 38,
+      "featured": false
+    },
+    {
+      "id": "gal-high-39-23001",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (40).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 39,
+      "featured": false
+    },
+    {
+      "id": "gal-high-40-20322",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (41).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 40,
+      "featured": false
+    },
+    {
+      "id": "gal-high-41-94119",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (42).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 41,
+      "featured": false
+    },
+    {
+      "id": "gal-high-42-30877",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (43).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 42,
+      "featured": false
+    },
+    {
+      "id": "gal-high-43-38419",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (44).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 43,
+      "featured": false
+    },
+    {
+      "id": "gal-high-44-85207",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (45).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 44,
+      "featured": false
+    },
+    {
+      "id": "gal-high-45-61792",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight  (46).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 45,
+      "featured": false
+    },
+    {
+      "id": "gal-high-46-44115",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (1).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 46,
+      "featured": false
+    },
+    {
+      "id": "gal-high-47-66896",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (2).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 47,
+      "featured": false
+    },
+    {
+      "id": "gal-high-48-4884",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (3).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 48,
+      "featured": false
+    },
+    {
+      "id": "gal-high-49-48941",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (4).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 49,
+      "featured": false
+    },
+    {
+      "id": "gal-high-50-87131",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (5).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 50,
+      "featured": false
+    },
+    {
+      "id": "gal-high-51-41716",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (6).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 51,
+      "featured": false
+    },
+    {
+      "id": "gal-high-52-39657",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (7).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 52,
+      "featured": false
+    },
+    {
+      "id": "gal-high-53-16946",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (8).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 53,
+      "featured": false
+    },
+    {
+      "id": "gal-high-54-8519",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (9).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 54,
+      "featured": false
+    },
+    {
+      "id": "gal-high-55-59981",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (10).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 55,
+      "featured": false
+    },
+    {
+      "id": "gal-high-56-25605",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (11).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 56,
+      "featured": false
+    },
+    {
+      "id": "gal-high-57-9108",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (12).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 57,
+      "featured": false
+    },
+    {
+      "id": "gal-high-58-10522",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (13).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 58,
+      "featured": false
+    },
+    {
+      "id": "gal-high-59-72480",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (14).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 59,
+      "featured": false
+    },
+    {
+      "id": "gal-high-60-75006",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (15).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 60,
+      "featured": false
+    },
+    {
+      "id": "gal-high-61-33135",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (16).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 61,
+      "featured": false
+    },
+    {
+      "id": "gal-high-62-48699",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (17).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 62,
+      "featured": false
+    },
+    {
+      "id": "gal-high-63-12519",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (18).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 63,
+      "featured": false
+    },
+    {
+      "id": "gal-high-64-82904",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (19).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 64,
+      "featured": false
+    },
+    {
+      "id": "gal-high-65-2916",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (20).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 65,
+      "featured": false
+    },
+    {
+      "id": "gal-high-66-21766",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (21).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 66,
+      "featured": false
+    },
+    {
+      "id": "gal-high-67-33096",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (22).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 67,
+      "featured": false
+    },
+    {
+      "id": "gal-high-68-90141",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (23).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 68,
+      "featured": false
+    },
+    {
+      "id": "gal-high-69-49725",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (24).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 69,
+      "featured": false
+    },
+    {
+      "id": "gal-high-70-17310",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (25).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 70,
+      "featured": false
+    },
+    {
+      "id": "gal-high-71-17537",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (26).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 71,
+      "featured": false
+    },
+    {
+      "id": "gal-high-72-64549",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (27).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 72,
+      "featured": false
+    },
+    {
+      "id": "gal-high-73-12703",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (28).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 73,
+      "featured": false
+    },
+    {
+      "id": "gal-high-74-88173",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (29).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 74,
+      "featured": false
+    },
+    {
+      "id": "gal-high-75-36761",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (30).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 75,
+      "featured": false
+    },
+    {
+      "id": "gal-high-76-28274",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (31).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 76,
+      "featured": false
+    },
+    {
+      "id": "gal-high-77-60224",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (32).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 77,
+      "featured": false
+    },
+    {
+      "id": "gal-high-78-72582",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (33).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 78,
+      "featured": false
+    },
+    {
+      "id": "gal-high-79-53676",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (34).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 79,
+      "featured": false
+    },
+    {
+      "id": "gal-high-80-68493",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (35).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 80,
+      "featured": false
+    },
+    {
+      "id": "gal-high-81-21849",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (36).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 81,
+      "featured": false
+    },
+    {
+      "id": "gal-high-82-69219",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (37).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 82,
+      "featured": false
+    },
+    {
+      "id": "gal-high-83-84172",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (38).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 83,
+      "featured": false
+    },
+    {
+      "id": "gal-high-84-77869",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (39).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 84,
+      "featured": false
+    },
+    {
+      "id": "gal-high-85-6808",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (40).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 85,
+      "featured": false
+    },
+    {
+      "id": "gal-high-86-61328",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (41).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 86,
+      "featured": false
+    },
+    {
+      "id": "gal-high-87-99208",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (42).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 87,
+      "featured": false
+    },
+    {
+      "id": "gal-high-88-71283",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (43).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 88,
+      "featured": false
+    },
+    {
+      "id": "gal-high-89-70258",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (44).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 89,
+      "featured": false
+    },
+    {
+      "id": "gal-high-90-92719",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (45).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 90,
+      "featured": false
+    },
+    {
+      "id": "gal-high-91-32158",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (46).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 91,
+      "featured": false
+    },
+    {
+      "id": "gal-high-92-27488",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (47).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 92,
+      "featured": false
+    },
+    {
+      "id": "gal-high-93-21586",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (48).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 93,
+      "featured": false
+    },
+    {
+      "id": "gal-high-94-25137",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (49).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 94,
+      "featured": false
+    },
+    {
+      "id": "gal-high-95-29730",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (50).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 95,
+      "featured": false
+    },
+    {
+      "id": "gal-high-96-73123",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (51).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 96,
+      "featured": false
+    },
+    {
+      "id": "gal-high-97-72033",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (52).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 97,
+      "featured": false
+    },
+    {
+      "id": "gal-high-98-96823",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (53).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 98,
+      "featured": false
+    },
+    {
+      "id": "gal-high-99-75578",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (55).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 99,
+      "featured": false
+    },
+    {
+      "id": "gal-high-100-81296",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (56).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 100,
+      "featured": false
+    },
+    {
+      "id": "gal-high-101-3269",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (57).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 101,
+      "featured": false
+    },
+    {
+      "id": "gal-high-102-65773",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (58).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 102,
+      "featured": false
+    },
+    {
+      "id": "gal-high-103-16145",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (59).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 103,
+      "featured": false
+    },
+    {
+      "id": "gal-high-104-88788",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (67).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 104,
+      "featured": false
+    },
+    {
+      "id": "gal-high-105-64055",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (68).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 105,
+      "featured": false
+    },
+    {
+      "id": "gal-high-106-11518",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (69).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 106,
+      "featured": false
+    },
+    {
+      "id": "gal-high-107-64960",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (70).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 107,
+      "featured": false
+    },
+    {
+      "id": "gal-high-108-86388",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (71).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 108,
+      "featured": false
+    },
+    {
+      "id": "gal-high-109-95849",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (72).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 109,
+      "featured": false
+    },
+    {
+      "id": "gal-high-110-31205",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (73).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 110,
+      "featured": false
+    },
+    {
+      "id": "gal-high-111-85025",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (74).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 111,
+      "featured": false
+    },
+    {
+      "id": "gal-high-112-58951",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (76).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 112,
+      "featured": false
+    },
+    {
+      "id": "gal-high-113-70966",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (77).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 113,
+      "featured": false
+    },
+    {
+      "id": "gal-high-114-89414",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (78).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 114,
+      "featured": false
+    },
+    {
+      "id": "gal-high-115-30222",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (79).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 115,
+      "featured": false
+    },
+    {
+      "id": "gal-high-116-88056",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (80).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 116,
+      "featured": false
+    },
+    {
+      "id": "gal-high-117-77762",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (81).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 117,
+      "featured": false
+    },
+    {
+      "id": "gal-high-118-73356",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (82).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 118,
+      "featured": false
+    },
+    {
+      "id": "gal-high-119-98505",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (84).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 119,
+      "featured": false
+    },
+    {
+      "id": "gal-high-120-83873",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (85).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 120,
+      "featured": false
+    },
+    {
+      "id": "gal-high-121-43268",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (86).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 121,
+      "featured": false
+    },
+    {
+      "id": "gal-high-122-97992",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (87).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 122,
+      "featured": false
+    },
+    {
+      "id": "gal-high-123-78567",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (88).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 123,
+      "featured": false
+    },
+    {
+      "id": "gal-high-124-41956",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (89).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 124,
+      "featured": false
+    },
+    {
+      "id": "gal-high-125-29026",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (90).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 125,
+      "featured": false
+    },
+    {
+      "id": "gal-high-126-49504",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (91).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 126,
+      "featured": false
+    },
+    {
+      "id": "gal-high-127-99873",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (92).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 127,
+      "featured": false
+    },
+    {
+      "id": "gal-high-128-65869",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (93).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 128,
+      "featured": false
+    },
+    {
+      "id": "gal-high-129-11375",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (94).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 129,
+      "featured": false
+    },
+    {
+      "id": "gal-high-130-71313",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (95).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 130,
+      "featured": false
+    },
+    {
+      "id": "gal-high-131-26413",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (96).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 131,
+      "featured": false
+    },
+    {
+      "id": "gal-high-132-12424",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (97).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 132,
+      "featured": false
+    },
+    {
+      "id": "gal-high-133-81178",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (98).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 133,
+      "featured": false
+    },
+    {
+      "id": "gal-high-134-97435",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (99).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 134,
+      "featured": false
+    },
+    {
+      "id": "gal-high-135-52855",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (100).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 135,
+      "featured": false
+    },
+    {
+      "id": "gal-high-136-52724",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (101).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 136,
+      "featured": false
+    },
+    {
+      "id": "gal-high-137-81511",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (102).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 137,
+      "featured": false
+    },
+    {
+      "id": "gal-high-138-25729",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (103).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 138,
+      "featured": false
+    },
+    {
+      "id": "gal-high-139-42299",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (104).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 139,
+      "featured": false
+    },
+    {
+      "id": "gal-high-140-7419",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (105).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 140,
+      "featured": false
+    },
+    {
+      "id": "gal-high-141-94542",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (106).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 141,
+      "featured": false
+    },
+    {
+      "id": "gal-high-142-88009",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (107).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 142,
+      "featured": false
+    },
+    {
+      "id": "gal-high-143-31542",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (108).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 143,
+      "featured": false
+    },
+    {
+      "id": "gal-high-144-71197",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (109).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 144,
+      "featured": false
+    },
+    {
+      "id": "gal-high-145-10309",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (110).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 145,
+      "featured": false
+    },
+    {
+      "id": "gal-high-146-3583",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (111).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 146,
+      "featured": false
+    },
+    {
+      "id": "gal-high-147-64088",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (112).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 147,
+      "featured": false
+    },
+    {
+      "id": "gal-high-148-55028",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (113).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 148,
+      "featured": false
+    },
+    {
+      "id": "gal-high-149-23055",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (114).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 149,
+      "featured": false
+    },
+    {
+      "id": "gal-high-150-25565",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (115).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 150,
+      "featured": false
+    },
+    {
+      "id": "gal-high-151-63941",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (116).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 151,
+      "featured": false
+    },
+    {
+      "id": "gal-high-152-89023",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (117).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 152,
+      "featured": false
+    },
+    {
+      "id": "gal-high-153-71036",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (118).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 153,
+      "featured": false
+    },
+    {
+      "id": "gal-high-154-51470",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (119).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 154,
+      "featured": false
+    },
+    {
+      "id": "gal-high-155-19966",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (120).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 155,
+      "featured": false
+    },
+    {
+      "id": "gal-high-156-95762",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (121).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 156,
+      "featured": false
+    },
+    {
+      "id": "gal-high-157-12995",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (122).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 157,
+      "featured": false
+    },
+    {
+      "id": "gal-high-158-14323",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (123).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 158,
+      "featured": false
+    },
+    {
+      "id": "gal-high-159-56645",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (124).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 159,
+      "featured": false
+    },
+    {
+      "id": "gal-high-160-78253",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (125).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 160,
+      "featured": false
+    },
+    {
+      "id": "gal-high-161-34854",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (126).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 161,
+      "featured": false
+    },
+    {
+      "id": "gal-high-162-57806",
+      "src": "/images/Highlights1/Dhara Divine Awards - Highlight (127).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 162,
+      "featured": false
+    },
+    {
+      "id": "gal-high-163-76233",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (43).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 163,
+      "featured": false
+    },
+    {
+      "id": "gal-high-164-58188",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (44).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 164,
+      "featured": false
+    },
+    {
+      "id": "gal-high-165-82970",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (45).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 165,
+      "featured": false
+    },
+    {
+      "id": "gal-high-166-21428",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (46).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 166,
+      "featured": false
+    },
+    {
+      "id": "gal-high-167-10205",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (47).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 167,
+      "featured": false
+    },
+    {
+      "id": "gal-high-168-46631",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (48).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 168,
+      "featured": false
+    },
+    {
+      "id": "gal-high-169-55356",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (49).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 169,
+      "featured": false
+    },
+    {
+      "id": "gal-high-170-83714",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (50).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 170,
+      "featured": false
+    },
+    {
+      "id": "gal-high-171-42636",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (51).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 171,
+      "featured": false
+    },
+    {
+      "id": "gal-high-172-32799",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (52).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 172,
+      "featured": false
+    },
+    {
+      "id": "gal-high-173-25357",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (53).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 173,
+      "featured": false
+    },
+    {
+      "id": "gal-high-174-87895",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (54).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 174,
+      "featured": false
+    },
+    {
+      "id": "gal-high-175-41385",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (55).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 175,
+      "featured": false
+    },
+    {
+      "id": "gal-high-176-62483",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (56).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 176,
+      "featured": false
+    },
+    {
+      "id": "gal-high-177-27337",
+      "src": "/images/Highlights1/E Dhara Divine Awards - Highlight  (57).png",
+      "category": "Highlights",
+      "caption": "Dhara Divine Awards - Moments",
+      "priority": 177,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-178-37188",
+      "src": "/images/Section 1/1.Shri.S. Ravi (Sivachariyar).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "1. Shri.S. Ravi (Sivachariyar)",
+      "priority": 178,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-179-2189",
+      "src": "/images/Section 1/2.Shri.Raju(alias) Lakshmana Bhattar (Bhattachariyar).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "2. Shri.Raju(alias) Lakshmana Bhattar (Bhattachariyar)",
+      "priority": 179,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-180-21785",
+      "src": "/images/Section 1/3.Shri.S.Vasu(Sakthi Worship).png",
+      "category": "1. Spiritual Pillars",
+      "caption": "3. Shri.S.Vasu(Sakthi Worship)",
+      "priority": 180,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-181-28087",
+      "src": "/images/Section 1/4.Shri S Lakshmipathiraja (Maadhvam).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "4. Shri S Lakshmipathiraja (Maadhvam)",
+      "priority": 181,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-182-38144",
+      "src": "/images/Section 1/5.Shri. Siva Sri. Vadhavoor Adigal(Sivanadiyar).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "5. Shri. Siva Sri. Vadhavoor Adigal(Sivanadiyar)",
+      "priority": 182,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-183-98393",
+      "src": "/images/Section 1/6.Shri. Valayapettai Re.Krishnan (Koumaaram).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "6. Shri. Valayapettai Re.Krishnan (Koumaaram)",
+      "priority": 183,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-184-40150",
+      "src": "/images/Section 1/7.Shri. Veeramanidasan(Ayyappa Devote).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "7. Shri. Veeramanidasan(Ayyappa Devote)",
+      "priority": 184,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-185-63092",
+      "src": "/images/Section 1/8. Shri. Krishnan Anand Swami(Siddhar Valzhipadu ).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "8. Shri. Krishnan Anand Swami(Siddhar Valzhipadu )",
+      "priority": 185,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-186-73477",
+      "src": "/images/Section 1/9.Shri.Maaligaiparai M.P Karuppusamy(Karuppusamy Worship).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "9. Shri.Maaligaiparai M.P Karuppusamy(Karuppusamy Worship)",
+      "priority": 186,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-187-29094",
+      "src": "/images/Section 1/10.Shri. Sadhu Janagiraman(Vallalar Sanmaargam).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "10. Shri. Sadhu Janagiraman(Vallalar Sanmaargam)",
+      "priority": 187,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-188-5188",
+      "src": "/images/Section 1/11.Shri. S.Parasuram Guruji(Shridi Sai Devote).png",
+      "category": "1. Spiritual Pillars",
+      "caption": "11. Shri. S.Parasuram Guruji(Shridi Sai Devote)",
+      "priority": 188,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-189-71431",
+      "src": "/images/Section 1/12.Shri.S.Ganesan(Uzhavaarapani).jpg",
+      "category": "1. Spiritual Pillars",
+      "caption": "12. Shri.S.Ganesan(Uzhavaarapani)",
+      "priority": 189,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-190-39930",
+      "src": "/images/Section 1/13.Shri.G.Vijayan (Village Temple poosari).png",
+      "category": "1. Spiritual Pillars",
+      "caption": "13. Shri.G.Vijayan (Village Temple poosari)",
+      "priority": 190,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-191-39412",
+      "src": "/images/Section 2/1.Shri. T Srinivasachariya Swami Ji(Spiritual Books).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "1. Shri. T Srinivasachariya Swami Ji(Spiritual Books)",
+      "priority": 191,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-192-26304",
+      "src": "/images/Section 2/2.Shri.N.Gopalaswami IAS(Rtd)(School Education Institution).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "2. Shri.N.Gopalaswami IAS(Rtd)(School Education Institution)",
+      "priority": 192,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-193-37252",
+      "src": "/images/Section 2/3.Shri.Kannan Ji(Spiritual Article).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "3. Shri.Kannan Ji(Spiritual Article)",
+      "priority": 193,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-194-5928",
+      "src": "/images/Section 2/4.Shri Dr Mohan Rajan(Rajan Eye Care).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "4. Shri Dr Mohan Rajan(Rajan Eye Care)",
+      "priority": 194,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-195-91943",
+      "src": "/images/Section 2/5. Shri.Srivathsan TR(Restaurant).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "5. Shri.Srivathsan TR(Restaurant)",
+      "priority": 195,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-196-1187",
+      "src": "/images/Section 2/6.Shri. S.Senthil Kumar(College Educational Institution).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "6. Shri. S.Senthil Kumar(College Educational Institution)",
+      "priority": 196,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-197-7831",
+      "src": "/images/Section 2/7.Shri. Vallal Illam (Anna Dhan Centre).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "7. Shri. Vallal Illam (Anna Dhan Centre)",
+      "priority": 197,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-198-20663",
+      "src": "/images/Section 2/8.Shri. T.N.Sekar(Industries).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "8. Shri. T.N.Sekar(Industries)",
+      "priority": 198,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-199-83610",
+      "src": "/images/Section 2/9.Smt. Dr.B Thanuja(Women Organisation).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "9. Smt. Dr.B Thanuja(Women Organisation)",
+      "priority": 199,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-200-62254",
+      "src": "/images/Section 2/10.Smt. Anusiya Devi(Waterbody Aarti).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "10. Smt. Anusiya Devi(Waterbody Aarti)",
+      "priority": 200,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-201-9872",
+      "src": "/images/Section 2/11.Shri. Sivasubbaraman Nagarajan(Pooja Products).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "11. Shri. Sivasubbaraman Nagarajan(Pooja Products)",
+      "priority": 201,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-202-21924",
+      "src": "/images/Section 2/12.Shri. Siva Sri Sivakumar(Spiritual Vaadhyam).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "12. Shri. Siva Sri Sivakumar(Spiritual Vaadhyam)",
+      "priority": 202,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-203-94484",
+      "src": "/images/Section 2/13.Shri. Swami Kannan Bhattachariyar(Spiritual Tourism).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "13. Shri. Swami Kannan Bhattachariyar(Spiritual Tourism)",
+      "priority": 203,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-204-48087",
+      "src": "/images/Section 2/14.Smt.S. Aruljothi( Spiritual Media).png",
+      "category": "2. Institutions and Organisations",
+      "caption": "14. Smt.S. Aruljothi( Spiritual Media)",
+      "priority": 204,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-205-42214",
+      "src": "/images/Section 2/15.Shri .Regunathan Parambarai Thennamarakudi Vaidhyasalai(Siddha Hospital).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "15. Shri .Regunathan Parambarai Thennamarakudi Vaidhyasalai(Siddha Hospital)",
+      "priority": 205,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-206-4719",
+      "src": "/images/Section 2/16.Shri .Prakash(Mahalaxmi textiles).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "16. Shri .Prakash(Mahalaxmi textiles)",
+      "priority": 206,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-207-14207",
+      "src": "/images/Section 2/17.Shri.PS Vairakkannu(S.V jewellery).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "17. Shri.PS Vairakkannu(S.V jewellery)",
+      "priority": 207,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-208-85047",
+      "src": "/images/Section 2/18.Shri. Shakthi Saravanan Ulaganathan(Spiritual Meditation Centre).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "18. Shri. Shakthi Saravanan Ulaganathan(Spiritual Meditation Centre)",
+      "priority": 208,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-209-56975",
+      "src": "/images/Section 2/19.Smt. Dr. Dhakshayani Ramachandran(Spiritual Music School).jpg",
+      "category": "2. Institutions and Organisations",
+      "caption": "19. Smt. Dr. Dhakshayani Ramachandran(Spiritual Music School)",
+      "priority": 209,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-210-5244",
+      "src": "/images/Section 3/1.Hon'ble Justice Shri T.N Vallinayagam(Rtd)(Judicial).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "1. Hon'ble Justice Shri T.N Vallinayagam(Rtd)(Judicial)",
+      "priority": 210,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-211-73939",
+      "src": "/images/Section 3/2.Shri.Kanal Kannan(Cinema And Arts).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "2. Shri.Kanal Kannan(Cinema And Arts)",
+      "priority": 211,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-212-69542",
+      "src": "/images/Section 3/3.Shri.S. Balasubramaniam(Entrepreneur).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "3. Shri.S. Balasubramaniam(Entrepreneur)",
+      "priority": 212,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-213-16716",
+      "src": "/images/Section 3/4.Shri. Solar Sai(Spiritual Singer).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "4. Shri. Solar Sai(Spiritual Singer)",
+      "priority": 213,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-214-93279",
+      "src": "/images/Section 3/5.Shri .Thaamal KO Saravanan(Spiritual Speaker).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "5. Shri .Thaamal KO Saravanan(Spiritual Speaker)",
+      "priority": 214,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-215-94506",
+      "src": "/images/Section 3/6.Agasthiyar Jeeva Nadi Shri. M Babu(Astrologer).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "6. Agasthiyar Jeeva Nadi Shri. M Babu(Astrologer)",
+      "priority": 215,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-216-82689",
+      "src": "/images/Section 3/7.Shri. N.Suresh(Advocate).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "7. Shri. N.Suresh(Advocate)",
+      "priority": 216,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-217-71578",
+      "src": "/images/Section 3/8.Shri.Prof.Dr. K.R. Venkatesan(Professor).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "8. Shri.Prof.Dr. K.R. Venkatesan(Professor)",
+      "priority": 217,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-218-2118",
+      "src": "/images/Section 3/9.Shri .CK Ashok Kumar(Social Evangelist).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "9. Shri .CK Ashok Kumar(Social Evangelist)",
+      "priority": 218,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-219-17769",
+      "src": "/images/Section 3/10.Shri .Prabhakaran(Auditor).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "10. Shri .Prabhakaran(Auditor)",
+      "priority": 219,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-220-57293",
+      "src": "/images/Section 3/11. Smt. Dr. Rajeshwari Ramachandran(Doctor).png",
+      "category": "3. Individuals and Professionals",
+      "caption": "11. Smt. Dr. Rajeshwari Ramachandran(Doctor)",
+      "priority": 220,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-221-5481",
+      "src": "/images/Section 3/12.Shri. Vyasai Thangam Ravi Ji(Traditional Sports Trainer).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "12. Shri. Vyasai Thangam Ravi Ji(Traditional Sports Trainer)",
+      "priority": 221,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-222-78837",
+      "src": "/images/Section 3/13.Smt. Charulatha Rajgopal(Temple Rehabilitation Volunteer).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "13. Smt. Charulatha Rajgopal(Temple Rehabilitation Volunteer)",
+      "priority": 222,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-223-54208",
+      "src": "/images/Section 3/14.Shri. K. Ezhilan(Agricultural).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "14. Shri. K. Ezhilan(Agricultural)",
+      "priority": 223,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-224-57958",
+      "src": "/images/Section 3/15. Shri. PSV Kumar(Construction industry).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "15. Shri. PSV Kumar(Construction industry)",
+      "priority": 224,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-225-84521",
+      "src": "/images/Section 3/16. Shri. Anand Megalingam(Scientist).png",
+      "category": "3. Individuals and Professionals",
+      "caption": "16. Shri. Anand Megalingam(Scientist)",
+      "priority": 225,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-226-81759",
+      "src": "/images/Section 3/17.Shri.(late) Indra Soundarrajan(Writer).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "17. Shri.(late) Indra Soundarrajan(Writer)",
+      "priority": 226,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-227-42717",
+      "src": "/images/Section 3/18.Shri.Nannilam Brahma Shri R.Srikrishna Ganabadigal(Vedic Scholar).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "18. Shri.Nannilam Brahma Shri R.Srikrishna Ganabadigal(Vedic Scholar)",
+      "priority": 227,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-228-30121",
+      "src": "/images/Section 3/19.Shri. Yatheeshwar Raja(Spiritual Music Director).jpg",
+      "category": "3. Individuals and Professionals",
+      "caption": "19. Shri. Yatheeshwar Raja(Spiritual Music Director)",
+      "priority": 228,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-229-85542",
+      "src": "/images/Section 4/1.Sivasri. P. Swaminatha Sivachariyar(Veda Padashala).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "1. Sivasri. P. Swaminatha Sivachariyar(Veda Padashala)",
+      "priority": 229,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-230-87624",
+      "src": "/images/Section 4/2.Shri. Kannan Gurukkal(Bakthi Sevaks in Need).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "2. Shri. Kannan Gurukkal(Bakthi Sevaks in Need)",
+      "priority": 230,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-231-11536",
+      "src": "/images/Section 4/3.Shri. S. Shyam Sundar(Gho Shalas).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "3. Shri. S. Shyam Sundar(Gho Shalas)",
+      "priority": 231,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-232-3804",
+      "src": "/images/Section 4/4.Brahma Shri.S. Perumal Sthapathiar(Black Stone Sculptor).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "4. Brahma Shri.S. Perumal Sthapathiar(Black Stone Sculptor)",
+      "priority": 232,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-233-60440",
+      "src": "/images/Section 4/5.Shri.Siva (Arts & Gallery).png",
+      "category": "4. Grass Route Eminents",
+      "caption": "5. Shri.Siva (Arts & Gallery)",
+      "priority": 233,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-234-6405",
+      "src": "/images/Section 4/6.Shri. Appar Lakshmanan(Temple Carpenter).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "6. Shri. Appar Lakshmanan(Temple Carpenter)",
+      "priority": 234,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-235-86034",
+      "src": "/images/Section 4/7.Shri.Artist Padmavasan(Temple Artist).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "7. Shri.Artist Padmavasan(Temple Artist)",
+      "priority": 235,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-236-84521",
+      "src": "/images/Section 4/8.Shri. N. Arunachalam(Madapalli Worker).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "8. Shri. N. Arunachalam(Madapalli Worker)",
+      "priority": 236,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-237-87585",
+      "src": "/images/Section 4/9.Malligai Chakravarthi Srila Sri.Dr.S. Nagarathinam(Flower Decors).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "9. Malligai Chakravarthi Srila Sri.Dr.S. Nagarathinam(Flower Decors)",
+      "priority": 237,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-238-53800",
+      "src": "/images/Section 4/10.Shri. S. Rajagopal(Sacred Elephant keeper).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "10. Shri. S. Rajagopal(Sacred Elephant keeper)",
+      "priority": 238,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-239-97841",
+      "src": "/images/Section 4/11.Shri.M. Sankar(Potters And GoluDoll Maker).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "11. Shri.M. Sankar(Potters And GoluDoll Maker)",
+      "priority": 239,
+      "featured": false
+    },
+    {
+      "id": "gal-sec-240-35313",
+      "src": "/images/Section 4/12.Shri.M.SampathStreet Play Artist Sri.Kannapiran Nadaga Mandram(Street Play Artist).jpg",
+      "category": "4. Grass Route Eminents",
+      "caption": "12. Shri.M.SampathStreet Play Artist Sri.Kannapiran Nadaga Mandram(Street Play Artist)",
+      "priority": 240,
+      "featured": false
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-vid-3",
+      "title": "Hon'ble Justice (Retd.) Thiru T.N. Vallinayagam",
+      "type": "video",
+      "category": "Madras HC Judge",
+      "youtubeId": "J6BvffQ1ZKQ",
+      "featured": true,
+      "priority": 100
+    },
+    {
+      "id": "ev-vid-4",
+      "title": "Yatheeswar Raja - Spiritual Music Director",
+      "type": "video",
+      "category": "Spiritual Music",
+      "youtubeId": "IILqWheG9f4",
+      "featured": true,
+      "priority": 99
+    },
+    {
+      "id": "home-vid-2",
+      "youtubeId": "1T_SGxOs-CY",
+      "title": "Mahout Receiving an Award",
+      "description": "Felicitation ceremony of Temple Mahout recognizing their dedication and service to sacred temple elephants.",
+      "category": "Temple Seva",
+      "type": "video",
+      "priority": 98,
+      "featured": true
+    },
+    {
+      "id": "home-vid-3",
+      "youtubeId": "oEsIdHha5uw",
+      "title": "Dr. Rajeswari Ramachandran",
+      "description": "Keynote address and award presentation honoring Dr. Rajeswari Ramachandran's charitable services.",
+      "category": "Social Welfare",
+      "type": "video",
+      "priority": 97,
+      "featured": true
+    },
+    {
+      "id": "home-vid-4",
+      "youtubeId": "VONlv_X9Aro",
+      "title": "Traditional Sports Coach",
+      "description": "Honoring traditional coaches for reviving and instructing ancient sports and martial arts.",
+      "category": "Heritage Sports",
+      "type": "video",
+      "priority": 96,
+      "featured": true
+    },
+    {
+      "id": "home-vid-5",
+      "youtubeId": "3FQgwocLBnQ",
+      "title": "CA Prabakaran",
+      "description": "Professional governance perspective and felicitation of CA Prabakaran for supporting social trusts.",
+      "category": "Financial Seva",
+      "type": "video",
+      "priority": 95,
+      "featured": true
+    }
+  ],
+  "siteConfig": [
+    {
+      "id": "global-config",
+      "heroVideoUrl": "",
+      "heroVideoPoster": "",
+      "eventYear": "2026",
+      "registrationTickets": [
+        {
+          "id": "delegate",
+          "name": "Delegate Pass",
+          "price": "₹1,500",
+          "description": "Access to main awards ceremony and youth plenary sessions.",
+          "features": [
+            "Seva Pass Entry",
+            "Satvik Dinner",
+            "Preferred Seating",
+            "Delegate Kit",
+            "Networking Access",
+            "Event Souvenir"
+          ]
+        },
+        {
+          "id": "premium",
+          "name": "Premium Delegate",
+          "price": "₹3,000",
+          "description": "Full delegate access to the awards, exhibitions, and networking lounge.",
+          "features": [
+            "Premium Row Seating",
+            "Satvik Dinner",
+            "Souvenir Kit",
+            "Priority Registration",
+            "Recorded Sessions",
+            "Networking Access",
+            "Event Souvenir"
+          ]
+        },
+        {
+          "id": "patron",
+          "name": "Patron Pass",
+          "price": "₹5,000",
+          "description": "Exclusive access to VIP networking, front-row seating, and private dinner.",
+          "features": [
+            "Reserved VIP Seating",
+            "Satvik Dinner",
+            "Meet & Greet with Dignitaries",
+            "Networking Access",
+            "Event Souvenir"
+          ]
+        }
+      ],
+      "homeStats": [
+        {
+          "number": "30",
+          "label": "Founding Trustees"
+        },
+        {
+          "number": "40+",
+          "label": "Community Programs"
+        },
+        {
+          "number": "80G",
+          "label": "Tax Exemption"
+        }
+      ],
+      "heroImageUrl": "",
+      "heroMediaOrder": "video-first",
+      "homeCredentials": [
+        {
+          "prefix": "Indian Trust Act, 1882 — ",
+          "highlight": "Registered"
+        },
+        {
+          "prefix": "80G & 12A — ",
+          "highlight": "Tax Exempt"
+        },
+        {
+          "prefix": "MCA — ",
+          "highlight": "CSR Approved"
+        },
+        {
+          "prefix": "NGO Darpan — ",
+          "highlight": "TN/2024/0473120"
+        }
+      ],
+      "aboutStats": [
+        {
+          "number": "25+",
+          "label": "Completed Projects"
+        },
+        {
+          "number": "10k+",
+          "label": "Lives Touched"
+        },
+        {
+          "number": "80G",
+          "label": "Tax Exemption"
+        }
+      ],
+      "founders": [
+        {
+          "name": "S. Vinoth Ragavendran",
+          "role": "Founder President & Trustee",
+          "bio": "With over two decades of leadership in engineering and construction, Vinoth is actively involved in temple heritage protection, traditional restoration, and legal advocacy for public heritage rights across Tamil Nadu.",
+          "image": "",
+          "order": 1
+        },
+        {
+          "name": "P. Ezhumalai",
+          "role": "Agriculturist, Social Worker & Trustee",
+          "bio": "A dedicated agriculturist and progressive dairy farmer, Ezhumalai has spent his life working in public welfare, guiding local community initiatives, and fostering traditional moral values at the grassroot levels.",
+          "image": "",
+          "order": 2
+        },
+        {
+          "name": "S. Srividhya",
+          "role": "Chartered Accountant, CS & Trustee",
+          "bio": "A dual-qualified professional (CA and CS) with extensive experience in corporate governance, Srividhya oversees the administrative precision, compliance, and strict financial transparency of the non-profit organization's initiatives.",
+          "image": "",
+          "order": 3
+        }
+      ],
+      "eventStats": [],
+      "heroSection": null,
+      "aboutSection": null,
+      "visionMissionSection": null,
+      "founderMessage": null,
+      "donorConfig": null,
+      "eventRegConfig": null,
+      "sponsorshipConfig": {
+        "benefits": [
+          {
+            "title": "Brand Visibility",
+            "desc": "Gain widespread presence across standard, digital, and stage materials.",
+            "items": [
+              "Logo on event banners & backdrops",
+              "Website and social media promotions",
+              "Recognition during the award ceremony",
+              "Branding on event print materials"
+            ]
+          },
+          {
+            "title": "Networking Opportunities",
+            "desc": "Build strategic relations with social ecosystem leaders and delegates.",
+            "items": [
+              "Meet industry & corporate leaders",
+              "Connect with NGOs & social organizations",
+              "Build long-term strategic partnerships",
+              "Interact with government officials & influencers"
+            ]
+          },
+          {
+            "title": "Corporate Recognition",
+            "desc": "Cement corporate social responsibility prestige on a public platform.",
+            "items": [
+              "Sponsor appreciation certificates",
+              "Media and press coverage opportunities",
+              "Stage recognition and vocal mentions",
+              "Featured as a social impact partner"
+            ]
+          }
+        ],
+        "opportunities": [
+          {
+            "title": "Event Sponsorship",
+            "desc": "Support the Divine Awards event directly and gain extensive corporate brand exposure on stage and screens."
+          },
+          {
+            "title": "Program Sponsorship",
+            "desc": "Sponsor specific rural welfare and educational development projects that align with your organizational goals."
+          },
+          {
+            "title": "CSR Collaboration",
+            "desc": "Establish long-term structured MoUs for multi-year community upliftment initiatives."
+          },
+          {
+            "title": "In-Kind Sponsorship",
+            "desc": "Provide essential venue support, refreshments, technology aids, hospitality, printing materials, or gifts for honorees."
+          }
+        ],
+        "previousSponsors": [
+          {
+            "name": "ABC Corporation",
+            "role": "Title Sponsor 2025"
+          },
+          {
+            "name": "XYZ Foundations",
+            "role": "Platinum Sponsor 2025"
+          },
+          {
+            "name": "Zenith Tech",
+            "role": "Gold Partner 2024"
+          },
+          {
+            "name": "Indus Seva Co",
+            "role": "Silver Patron 2024"
+          }
+        ],
+        "testimonial": {
+          "quote": "Partnering with Dhara Foundations allowed us to route section 135 CSR funds into verified grassroots projects that delivered measurable impact. The accountability and transparency was exemplary.",
+          "author": "Shri. R. Ramanathan",
+          "designation": "VP Corporate Relations, ABC Corp"
+        },
+        "faqs": [
+          {
+            "q": "Can sponsorship packages be customized?",
+            "a": "Yes. We can tailor sponsorship packages and benefits specifically according to your organization's business objectives, budget, and geographic preferences."
+          },
+          {
+            "q": "Will sponsors receive branding benefits?",
+            "a": "Yes. Every sponsor level receives corresponding visual and stage recognition, including logo placement, social media mentions, and souvenir advertisement pages."
+          },
+          {
+            "q": "Can we sponsor a specific award category?",
+            "a": "Absolutely. Category sponsorships (e.g. sponsoring the 'Women Leader' or 'Educator' award) are available. Please note your choice in the inquiry form."
+          },
+          {
+            "q": "Do you provide sponsorship agreements and invoices?",
+            "a": "Yes. All formal corporate relationships are documented with signed MoUs, legal sponsorship agreements, and standard GST invoices."
+          }
+        ],
+        "packages": [
+          {
+            "id": "title",
+            "name": "Title Sponsor",
+            "amount": "₹5,00,000+",
+            "description": "Exclusive title branding, keynote speech recognition, and maximum media visibility.",
+            "benefits": [
+              "Exclusive naming rights",
+              "Main backdrop prominence",
+              "Keynote address slot",
+              "10 VIP Event passes"
+            ]
+          },
+          {
+            "id": "platinum",
+            "name": "Platinum Sponsor",
+            "amount": "₹2,50,000+",
+            "description": "Main stage panel branding, extensive social promotions, and prominent logo spots.",
+            "benefits": [
+              "Main stage branding",
+              "AV profile clip slot",
+              "5 VIP Event passes",
+              "Souvenir full-page ad"
+            ]
+          },
+          {
+            "id": "gold",
+            "name": "Gold Sponsor",
+            "amount": "₹1,00,000+",
+            "description": "Logo placement on branding collaterals, event recognition, and delegate passes.",
+            "benefits": [
+              "Logo on standard flyers",
+              "Reception standee slot",
+              "3 VIP Event passes",
+              "Social media mentions"
+            ]
+          },
+          {
+            "id": "silver",
+            "name": "Silver Sponsor",
+            "amount": "₹50,000+",
+            "description": "Branding placement on previous sponsor walls, digital brochures, and websites.",
+            "benefits": [
+              "Logo on website scroll",
+              "Event souvenir mention",
+              "2 Delegate passes",
+              "Appreciation certificate"
+            ]
+          },
+          {
+            "id": "community",
+            "name": "Community Sponsor",
+            "amount": "₹25,000+",
+            "description": "Showcase grassroots community support with appreciation certificate and mention.",
+            "benefits": [
+              "Brochure listing logo",
+              "Appreciation certificate",
+              "1 Delegate pass",
+              "Group mention on stage"
+            ]
+          }
+        ]
+      },
+      "volunteerConfig": null,
+      "csrConfig": {
+        "whyPartner": [
+          {
+            "title": "Trusted Implementation Partner",
+            "desc": "Proven track record of executing grassroot social welfare drives with end-to-end management."
+          },
+          {
+            "title": "Transparent Fund Utilization",
+            "desc": "Rigorous accounting audits, clear visual dashboards, and quarterly progress disclosures."
+          },
+          {
+            "title": "Compliance with CSR Regulations",
+            "desc": "100% compliant with Section 135 rules, holding CSR-1, 12A, and 80G registrations."
+          },
+          {
+            "title": "Experienced Project Management",
+            "desc": "Professional implementation team executing, monitoring, and scaling project milestones."
+          },
+          {
+            "title": "Measurable Social Impact",
+            "desc": "Data-driven results and impact certificates showing clear improvement in community welfare."
+          },
+          {
+            "title": "Regular Progress Reports",
+            "desc": "Timely delivery of compliance utilization certificates, field audit sheets, and media packages."
+          }
+        ],
+        "csrProcess": [
+          "Consultation",
+          "Requirement Analysis",
+          "Project Planning",
+          "Implementation",
+          "Monitoring & Evaluation",
+          "Impact Reporting"
+        ],
+        "partnershipModels": [
+          {
+            "title": "Project-Based Partnership",
+            "desc": "Fund a specific social initiative or infrastructure development project matching your geographical goals."
+          },
+          {
+            "title": "Long-Term Strategic Partnership",
+            "desc": "Form multi-year CSR collaborations to adopt schools, care facilities, or villages for continuous upliftment."
+          },
+          {
+            "title": "Employee Engagement Programs",
+            "desc": "Coordinate hands-on volunteer activities, tree plantation campaigns, and community service days for staff."
+          },
+          {
+            "title": "Sponsorship Partnership",
+            "desc": "Directly sponsor existing educational kits, clean energy packs, and emergency healthcare drives."
+          }
+        ],
+        "complianceHub": {
+          "docs": [
+            "CSR-1 Registration Number",
+            "12A Certificate",
+            "80G Certificate",
+            "PAN Card",
+            "Annual Reports",
+            "Audited Financial Statements"
+          ],
+          "downloads": [
+            {
+              "name": "CSR Brochure (PDF)",
+              "size": "4.2 MB"
+            },
+            {
+              "name": "Annual Report 2024-25",
+              "size": "6.8 MB"
+            },
+            {
+              "name": "Financial Audit Statements",
+              "size": "3.1 MB"
+            },
+            {
+              "name": "Impact Statistics summary",
+              "size": "1.9 MB"
+            }
+          ]
+        },
+        "caseStudies": [
+          {
+            "title": "Vidya: Digital Classrooms in Javadhu Hills",
+            "problem": "Over 85% of tribal students in Javadhu hills lacked access to basic computer literacy and internet connectivity, leading to high school dropout rates.",
+            "solution": "Established 5 fully-equipped digital learning centers with solar power backups, hardware systems, and local coordinators.",
+            "results": "94% drop in school dropouts, and over 1,200 tribal children trained in basic computer skills.",
+            "beneficiaries": "1,200+ Students",
+            "quote": "This center has opened a new world for our children. They now look forward to school every single day.",
+            "author": "M. Raman, Village Head"
+          },
+          {
+            "title": "Prakriti: Water Conservation in Salem District",
+            "problem": "Severe seasonal water scarcity in agricultural villages caused crop failures and community migration during dry summer months.",
+            "solution": "Constructed 3 check dams and desilted 5 community temple tanks to recharge the local groundwater table.",
+            "results": "40% increase in seasonal crop yield and reliable groundwater access for 4 adjacent villages.",
+            "beneficiaries": "3,500+ Villagers",
+            "quote": "We did not have water to drink in May. Now our wells are full, and we are harvesting double crops.",
+            "author": "K. Sidhan, Farmer Union Lead"
+          }
+        ],
+        "corporatePartners": [
+          {
+            "name": "ABC Company",
+            "duration": "Partner since 2024",
+            "collab": "Vidya School digitisation"
+          },
+          {
+            "name": "XYZ Corporation",
+            "duration": "Partner since 2025",
+            "collab": "Prakriti Tree Planting"
+          },
+          {
+            "name": "Dhara Tech Solutions",
+            "duration": "Partner since 2023",
+            "collab": "Rural Healthcare Drives"
+          },
+          {
+            "name": "Southern Enterprises",
+            "duration": "Partner since 2025",
+            "collab": "Community Water Desilting"
+          }
+        ],
+        "testimonial": {
+          "quote": "Dhara Foundations has been an excellent CSR implementation partner, delivering measurable impact and maintaining complete transparency.",
+          "author": "CSR Head, ABC Company"
+        }
+      },
+      "awardConfig": null,
+      "generalEnquiriesConfig": {
+        "email": "info@dharafoundations.in",
+        "phone": "044-22236641",
+        "address": "# 44A, 3rd Street, Judge Colony, Tambaram Sanatorium, Chennai – 600047",
+        "timings": "Monday - Saturday: 9:00 AM - 6:00 PM IST",
+        "presidentEmail": "president@dharafoundations.in",
+        "trusteeEmail": "trustee@dharafoundations.in",
+        "alternativeEmail": "dharafoundationsindia@gmail.com",
+        "facebook": "#",
+        "instagram": "#",
+        "youtube": "https://www.youtube.com/live/qOAbFfB22uI"
+      },
+      "razorpayConfig": null,
+      "flagshipEvent": {
+        "title": "Dhara Divine Awards 2025",
+        "description": "A prestigious convergence of spiritual leaders, selfless changemakers, and corporate CSR visionaries. Join us in cultivating harmony, empowering community growth, and acknowledging the quiet souls who serve humanity.",
+        "date": "January 24, 2025",
+        "location": "Chinmaya Heritage Centre, Chennai",
+        "image": "/images/Divine Awards 2026.jpg"
+      }
+    }
+  ],
+  "news": [
+    {
+      "id": "news-vid-1",
+      "title": "Dhara Divine Awards Highlight Video Coverage - Part 1",
+      "date": "20 Jul, 2026",
+      "type": "video",
+      "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.09 PM.mp4",
+      "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "summary": "Special video highlights from the Dhara Divine Awards grand celebration and award presentation ceremony."
+    },
+    {
+      "id": "news-vid-3",
+      "title": "Dhara Divine Awards Ceremony Highlight Video - Part 3",
+      "date": "20 Jul, 2026",
+      "type": "video",
+      "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.31 PM (1).mp4",
+      "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "summary": "Devotees and community leaders sharing their thoughts and prayers during the Dhara Divine Awards ceremony."
+    },
+    {
+      "id": "news-vid-4",
+      "title": "Dhara Divine Awards Ceremony Highlight Video - Part 4",
+      "date": "20 Jul, 2026",
+      "type": "video",
+      "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.32 PM.mp4",
+      "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "summary": "Cultural and traditional performances showcasing the rich heritage of Sanatana Dharma during the celebrations."
+    },
+    {
+      "id": "news-vid-5",
+      "title": "Dhara Divine Awards Ceremony Highlight Video - Part 5",
+      "date": "20 Jul, 2026",
+      "type": "video",
+      "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.34 PM.mp4",
+      "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "summary": "Presentation of the prestigious Divine Awards to silent seva sadhaks and outstanding grassroots organizations."
+    },
+    {
+      "id": "news-1",
+      "title": "Hon'ble Union Finance Minister Smt. Nirmala Sitharaman Invited as Chief Guest for Dhara Divine Awards",
+      "date": "24 Jan, 2025",
+      "type": "image",
+      "image": "/images/News/Hon'ble Union Finance Minister Smt. Nirmala Sitharaman Invited as Chief Guest for Dhara Divine Awards.jpg",
+      "link": "https://www.youtube.com/live/qOAbFfB22uI",
+      "summary": "Hon'ble Union Finance Minister Smt. Nirmala Sitharaman was formally invited as a Chief Guest and dignitary to the flagship Dhara Divine Awards Ceremony, recognizing unsung grassroots heroes and NGOs for exemplary humanitarian and cultural service inspired by spiritual values."
+    },
+    {
+      "id": "news-2",
+      "title": "Governor of Maharashtra Appreciates DHARA Divine Awards 2025",
+      "date": "26 Jan, 2025",
+      "type": "image",
+      "image": "/images/News/Governor of Maharashtra Appreciates DHARA Divine Awards 2025.png",
+      "summary": "The Hon'ble Governor of Maharashtra appreciated the Dhara Divine Awards 2025 and recognized its efforts in honoring the silent heroes of the community."
+    },
+    {
+      "id": "news-3",
+      "title": "Smt. Vanathi Srinivasan Graces Dhara Divine Awards Ceremony as Chief Guest",
+      "date": "25 Jan, 2025",
+      "type": "image",
+      "image": "/images/News/Smt. Vanathi Srinivasan Graces Dhara Divine Awards Ceremony as Chief Guest.jpg",
+      "summary": "BJP National President of Women's Wing Smt. Vanathi Srinivasan graced the Dhara Divine Awards ceremony as a chief guest, congratulating the awardees."
+    },
+    {
+      "id": "news-4",
+      "title": "Dhara Divine Awards 2026 Event Preparations & Vetting Desk",
+      "date": "20 Jul, 2026",
+      "type": "image",
+      "image": "/images/News/WhatsApp Image 2026-07-20 at 3.32.35 PM.jpeg",
+      "summary": "A glimpse of the organizing committee and vetting desk finalizing the nominations list and logistics preparations for the upcoming ceremony."
+    },
+    {
+      "id": "news-5",
+      "title": "Dhara Divine Awards Core Committee Press Release",
+      "date": "20 Jul, 2026",
+      "type": "image",
+      "image": "/images/News/WhatsApp Image 2026-07-20 at 3.32.36 PM.jpeg",
+      "summary": "Dhara Foundation core committee members releasing the official promo and invitation for the Divine Awards ceremony during a press meet."
+    }
+  ]
+}

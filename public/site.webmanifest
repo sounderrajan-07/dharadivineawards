@@ -1,0 +1,20 @@
+{
+  "name": "Dhara Foundations Divine Awards",
+  "short_name": "Dhara",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFBF8",
+  "theme_color": "#401C0C",
+  "icons": [
+    {
+      "src": "/logo-icon-only.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-icon-only.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
