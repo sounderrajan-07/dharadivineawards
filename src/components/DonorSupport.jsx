@@ -1,3 +1,4 @@
+// Dhara Foundations - Dual Payment Support Gateway (Razorpay & UPI QR Code)
 import React, { useState } from 'react';
 import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2, QrCode, Copy, Check, Upload, AlertTriangle } from 'lucide-react';
 import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, uploadImage } from '../utils/api';

@@ -1,3 +1,4 @@
+// Dhara Foundations - Event Pass Registration with Dual Payment Gateway
 import React, { useState } from 'react';
 import { Ticket, User, Mail, Phone, Building, ArrowRight, Award, CreditCard, Loader2, QrCode, Copy, Check, ShieldCheck, Upload, AlertTriangle } from 'lucide-react';
 import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, uploadImage } from '../utils/api';
