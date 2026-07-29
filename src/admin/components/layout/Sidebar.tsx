@@ -13,7 +13,6 @@ import {
   Settings,
   Ticket,
   Building2,
-  ShieldCheck
   ShieldCheck,
   MessageSquare
 } from 'lucide-react';
