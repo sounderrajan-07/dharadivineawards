@@ -15,7 +15,11 @@ export interface IDelegate extends Document {
   checkin_time?: string;
   seat_zone?: string;
   payment_status?: string;
+  payment_method?: string;
   payment_id?: string;
+  transaction_id?: string;
+  proof_image?: string;
+  verified?: boolean;
   order_id?: string;
   amount?: number;
   created_at: string;
@@ -36,7 +40,11 @@ const DelegateSchema: Schema = new Schema({
   checkin_time: { type: String },
   seat_zone: { type: String, default: 'Zone B - Seva Row 10' },
   payment_status: { type: String, default: 'PENDING' },
+  payment_method: { type: String, default: 'Razorpay' },
   payment_id: { type: String },
+  transaction_id: { type: String, default: '' },
+  proof_image: { type: String, default: '' },
+  verified: { type: Boolean, default: false },
   order_id: { type: String },
   amount: { type: Number },
   created_at: { type: String, default: () => new Date().toISOString() }

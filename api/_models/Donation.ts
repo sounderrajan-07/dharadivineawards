@@ -12,8 +12,12 @@ export interface IDonation extends Document {
   is_anonymous: boolean;
   sponsorship_tier?: string;
   receipt_sent: boolean;
-  payment_status: 'pending' | 'success' | 'failed';
+  payment_status: string;
+  payment_method?: string;
   payment_id?: string;
+  transaction_id?: string;
+  proof_image?: string;
+  verified?: boolean;
   order_id?: string;
   created_at: string;
 }
@@ -30,8 +34,12 @@ const DonationSchema: Schema = new Schema({
   is_anonymous: { type: Boolean, default: false },
   sponsorship_tier: { type: String },
   receipt_sent: { type: Boolean, default: false },
-  payment_status: { type: String, enum: ['pending', 'success', 'failed'], default: 'pending' },
+  payment_status: { type: String, default: 'pending' },
+  payment_method: { type: String, default: 'Razorpay' },
   payment_id: { type: String },
+  transaction_id: { type: String, default: '' },
+  proof_image: { type: String, default: '' },
+  verified: { type: Boolean, default: false },
   order_id: { type: String },
   created_at: { type: String, default: () => new Date().toISOString() }
 });

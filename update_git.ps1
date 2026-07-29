@@ -10,7 +10,7 @@ Write-Host "`n[1/3] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/3] Creating fresh commit..." -ForegroundColor Yellow
-git commit -m "Add Admin Trash delete button for old test records and update Vercel build"
+git commit -m "Update Mongoose schemas in Delegate.ts and Donation.ts to persist proof_image and payment fields in MongoDB Atlas"
 
 # 2. Pushing to target repos
 Write-Host "`n[3/3] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow
