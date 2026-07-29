@@ -38,7 +38,7 @@ export const UpiValidationWorkspace: React.FC = () => {
       tierOrDomain: `${(d.pass_tier || 'delegate').toUpperCase()} Pass (${d.pass_code || ''})`,
       amount: (d as any).amount || (d.pass_tier === 'patron' ? 5000 : d.pass_tier === 'premium delegate' ? 3000 : 1500),
       utr: d.transaction_id || d.payment_id || 'N/A',
-      proofImage: d.proof_image || '',
+      proofImage: d.proof_image || (d as any).proofImage || (d as any).paymentProof || (d as any).proofPreview || '',
       status: d.verified ? 'Approved' : (d.payment_status?.toLowerCase().includes('reject') || d.payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
       rawStatus: d.payment_status || 'Pending Verification',
       date: d.timestamp || d.created_at || 'Recent'
@@ -56,7 +56,7 @@ export const UpiValidationWorkspace: React.FC = () => {
       tierOrDomain: d.seva_domain || 'General Fund',
       amount: d.amount,
       utr: d.transaction_id || d.payment_id || 'N/A',
-      proofImage: d.proof_image || '',
+      proofImage: d.proof_image || (d as any).proofImage || (d as any).paymentProof || (d as any).proofPreview || '',
       status: d.verified ? 'Approved' : (d.payment_status?.toLowerCase().includes('reject') || d.payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
       rawStatus: d.payment_status || 'Pending Verification',
       date: d.created_at || 'Recent'

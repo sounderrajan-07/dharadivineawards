@@ -39,7 +39,11 @@ export default async function handler(req: any, res: any) {
         seat_zone: 'Zone B - Seva Row 10',
         payment_method: body.payment_method || 'Razorpay',
         payment_id: body.payment_id || body.transaction_id || '',
-        payment_status: body.payment_status || 'Confirmed'
+        transaction_id: body.transaction_id || body.payment_id || '',
+        proof_image: body.proof_image || body.paymentProof || body.proofPreview || '',
+        payment_status: body.payment_status || 'Confirmed',
+        verified: body.verified !== undefined ? body.verified : (body.payment_method !== 'UPI_QR'),
+        timestamp: timestamp
       };
       db.delegates.push(newEntry);
       activityType = 'checkin';
@@ -113,7 +117,10 @@ export default async function handler(req: any, res: any) {
         receipt_sent: false,
         payment_method: body.payment_method || 'Razorpay',
         payment_id: body.payment_id || body.transaction_id || '',
+        transaction_id: body.transaction_id || body.payment_id || '',
+        proof_image: body.proof_image || body.paymentProof || body.proofPreview || '',
         payment_status: body.payment_status || 'success',
+        verified: body.verified !== undefined ? body.verified : (body.payment_method !== 'UPI_QR'),
         created_at: timestamp
       };
       db.donations.push(newEntry);
