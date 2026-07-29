@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Ticket, User, Mail, Phone, Building, ArrowRight, Award, CreditCard, Loader2, QrCode, Copy, Check, ShieldCheck } from 'lucide-react';
-import { submitForm, createRazorpayOrder, verifyRazorpayPayment } from '../utils/api';
+import { Ticket, User, Mail, Phone, Building, ArrowRight, Award, CreditCard, Loader2, QrCode, Copy, Check, ShieldCheck, Upload, AlertTriangle } from 'lucide-react';
+import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, uploadImage } from '../utils/api';
 import { openRazorpayCheckout } from '../utils/razorpay';
 
 export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
   const [ticketType, setTicketType] = useState('premium');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentProof, setPaymentProof] = useState('');
+  const [proofPreview, setProofPreview] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,6 +75,22 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
     setTimeout(() => setCopiedUpi(false), 2000);
   };
 
+  const handleProofChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be under 5MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProofPreview(reader.result);
+        setPaymentProof(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
@@ -98,9 +116,13 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
       return;
     }
 
-    if (paymentMethod === 'qr' && !transactionId.trim()) {
-      alert('Please enter your UPI Transaction ID / UTR Number after completing the QR payment.');
-      return;
+    // Strict UPI UTR validation
+    if (paymentMethod === 'qr') {
+      const utrValidation = validateUpiUtr(transactionId);
+      if (!utrValidation.valid) {
+        alert(utrValidation.error);
+        return;
+      }
     }
 
     setIsProcessing(true);
@@ -108,16 +130,51 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
     // Path 1: Direct UPI QR Code Payment
     if (paymentMethod === 'qr') {
       try {
+        const utrValidation = validateUpiUtr(transactionId);
         const passCode = `DDA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        let uploadedProofUrl = '';
+        if (paymentProof) {
+          uploadedProofUrl = await uploadImage(paymentProof, `qr_proof_${Date.now()}.png`);
+        }
 
         await submitForm('Event Registration', {
           ...formData,
           ticketType: selectedTicket.name,
           amount: ticketPriceNumeric,
           payment_method: 'UPI_QR',
-          payment_id: transactionId.trim(),
-          transaction_id: transactionId.trim(),
-          payment_status: 'UPI QR Payment - Pending Verification',
+          payment_id: utrValidation.cleaned,
+          transaction_id: utrValidation.cleaned,
+          proof_image: uploadedProofUrl || paymentProof,
+          payment_status: 'Pending Admin Verification',
+          verified: false,
+          pass_code: passCode,
+          timestamp: new Date().toISOString()
+        });
+
+        setIsProcessing(false);
+
+        onSubmitSuccess({
+          title: 'Registration Submitted (Pending UPI Verification)',
+          message: `Namaste, ${formData.name}. Your registration for ${selectedTicket.name} with UPI Transaction ID (${utrValidation.cleaned}) has been received. Your Pass Code is ${passCode}. It will be activated upon verification of your transaction by our Seva finance desk.`,
+          details: [
+            { label: 'Attendee', value: formData.name },
+            { label: 'Pass Type', value: selectedTicket.name },
+            { label: 'Entry Pass Code', value: passCode },
+            { label: 'Payment Method', value: 'UPI / QR Code Scan' },
+            { label: 'UPI Transaction ID / UTR', value: utrValidation.cleaned },
+            { label: 'Verification Status', value: 'Pending Admin Verification' },
+            { label: 'Area of Interest', value: formData.interest }
+          ]
+        });
+        return;
+      } catch (err) {
+        console.error('UPI submission error:', err);
+        setIsProcessing(false);
+        alert('Could not record UPI registration. Please try again.');
+        return;
+      }
+    }
           pass_code: passCode,
           timestamp: new Date().toISOString()
         });
@@ -579,21 +636,62 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-amber-200/50">
-                  <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
-                    Enter UPI Transaction ID / UTR Number *
-                  </label>
-                  <input
-                    type="text"
-                    required={paymentMethod === 'qr'}
-                    placeholder="e.g. 423987123456 or Google Pay Ref No."
-                    value={transactionId}
-                    onChange={(e) => setTransactionId(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
-                  />
-                  <p className="text-[11px] text-neutral-500 mt-1 font-sans">
-                    After scanning and completing payment in your UPI app, paste the 12-digit UTR/Ref number here.
-                  </p>
+                <div className="pt-2 border-t border-amber-200/50 space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
+                      Enter 12-Digit UPI UTR / Transaction Reference ID *
+                    </label>
+                    <input
+                      type="text"
+                      required={paymentMethod === 'qr'}
+                      placeholder="e.g. 423987123456 (Found on GPay / PhonePe receipt)"
+                      value={transactionId}
+                      onChange={(e) => setTransactionId(e.target.value)}
+                      maxLength={18}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
+                    />
+                    <p className="text-[11px] text-neutral-500 mt-1 font-sans">
+                      Paste the authentic 12-digit UTR/Ref number from your payment confirmation screen.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans flex items-center justify-between">
+                      <span>Upload Payment Screenshot (Optional for Instant Verification)</span>
+                      <span className="text-[10px] text-neutral-400 font-normal">PNG, JPG, WEBP (Max 5MB)</span>
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <label className="px-4 py-2.5 bg-white border border-neutral-300 rounded-xl hover:bg-neutral-50 transition-colors text-xs font-semibold text-forest-teal flex items-center gap-2 cursor-pointer shadow-sm">
+                        <Upload className="w-4 h-4 text-sun-gold" />
+                        <span>{proofPreview ? 'Change Screenshot' : 'Choose Screenshot Image'}</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleProofChange}
+                          className="hidden"
+                        />
+                      </label>
+                      {proofPreview && (
+                        <div className="flex items-center gap-2">
+                          <img src={proofPreview} alt="Payment Proof" className="w-10 h-10 object-cover rounded-lg border border-amber-200" />
+                          <span className="text-[11px] text-green-700 font-semibold flex items-center gap-1">
+                            <Check className="w-3.5 h-3.5" /> Attached
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Anti-misuse Warning Banner */}
+                  <div className="p-3 bg-amber-50 rounded-xl border border-amber-200/80 flex items-start space-x-2.5 text-[11px] text-amber-900 font-sans">
+                    <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold block">Manual Bank Statement Verification Notice</span>
+                      <span>
+                        All UPI QR payments are cross-verified by our finance desk against official bank statements. Submitting fake or invalid UTR numbers will result in rejection of the delegate pass.
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

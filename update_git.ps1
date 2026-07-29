@@ -10,17 +10,16 @@ Write-Host "`n[1/4] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/4] Creating commit..." -ForegroundColor Yellow
-git commit -m "Add Razorpay and UPI QR Code payment options for Event Registration and Donate pages"
+git commit -m "Add dual payment selector, strict UPI UTR validation, screenshot upload, and pending bank verification status"
 
-# 2. Pushing to Default Origin Remote
-Write-Host "`n[3/4] Pushing to default remote (origin)..." -ForegroundColor Yellow
-git push
+# 2. Pulling remote updates with rebase
+Write-Host "`n[3/4] Pulling remote updates..." -ForegroundColor Yellow
+git pull https://github.com/sounderrajan-07/dharadivineawards.git main --rebase
 
-# 3. Pushing to target repo 1: sounderrajan-07/dharadivineawards.git
-Write-Host "[4/4] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow
+# 3. Pushing to target repos
+Write-Host "`n[4/4] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow
 git push https://github.com/sounderrajan-07/dharadivineawards.git HEAD:main
 
-# 4. Pushing to target repo 2: projectsatriowings/dharadivineawards.git
 Write-Host "Pushing to https://github.com/projectsatriowings/dharadivineawards.git..." -ForegroundColor Yellow
 git push https://github.com/projectsatriowings/dharadivineawards.git HEAD:main
 

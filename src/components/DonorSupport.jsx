@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2, QrCode, Copy, Check } from 'lucide-react';
-import { submitForm, createRazorpayOrder, verifyRazorpayPayment } from '../utils/api';
+import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2, QrCode, Copy, Check, Upload, AlertTriangle } from 'lucide-react';
+import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, uploadImage } from '../utils/api';
 import { openRazorpayCheckout } from '../utils/razorpay';
 
 export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
@@ -11,6 +11,8 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
   const [paymentMethod, setPaymentMethod] = useState('razorpay');
   const [transactionId, setTransactionId] = useState('');
   const [copiedUpi, setCopiedUpi] = useState(false);
+  const [paymentProof, setPaymentProof] = useState('');
+  const [proofPreview, setProofPreview] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -69,6 +71,22 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
     setTimeout(() => setCopiedUpi(false), 2000);
   };
 
+  const handleProofChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be under 5MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProofPreview(reader.result);
+        setPaymentProof(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleTextChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -117,9 +135,13 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
       }
     }
 
-    if (paymentMethod === 'qr' && !transactionId.trim()) {
-      alert('Please enter your UPI Transaction ID / UTR Number after completing the QR payment.');
-      return;
+    // Strict UPI UTR validation
+    if (paymentMethod === 'qr') {
+      const utrValidation = validateUpiUtr(transactionId);
+      if (!utrValidation.valid) {
+        alert(utrValidation.error);
+        return;
+      }
     }
 
     setIsProcessing(true);
@@ -137,16 +159,24 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
     // Path 1: Direct UPI QR Payment
     if (paymentMethod === 'qr') {
       try {
+        const utrValidation = validateUpiUtr(transactionId);
         const receiptId = `REC-80G-${Date.now().toString().slice(-6)}`;
+
+        let uploadedProofUrl = '';
+        if (paymentProof) {
+          uploadedProofUrl = await uploadImage(paymentProof, `donor_qr_proof_${Date.now()}.png`);
+        }
 
         await submitForm('Donor Support', {
           module: 'Donor Support',
           amount: donationValue,
           isAnonymous: formData.anonymous,
           payment_method: 'UPI_QR',
-          payment_id: transactionId.trim(),
-          transaction_id: transactionId.trim(),
-          payment_status: 'UPI QR Payment - Pending Verification',
+          payment_id: utrValidation.cleaned,
+          transaction_id: utrValidation.cleaned,
+          proof_image: uploadedProofUrl || paymentProof,
+          payment_status: 'Pending Admin Verification',
+          verified: false,
           receiptNo: receiptId,
           ...formData,
           sevaDomain: sevaDomain,
@@ -156,13 +186,14 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
         setIsProcessing(false);
 
         onSubmitSuccess({
-          title: 'Contribution Received (UPI Payment Submitted)',
-          message: `Namaste, ${displayName}. Thank you for your generous offering of ₹${donationValue.toLocaleString('en-IN')}. Your UPI transaction reference ID ${transactionId.trim()} has been recorded. Your 80G receipt number is ${receiptId}. May the blessings of service follow you always.`,
+          title: 'Contribution Received (Pending Verification)',
+          message: `Namaste, ${displayName}. Thank you for your generous offering of ₹${donationValue.toLocaleString('en-IN')}. Your UPI transaction reference ID (${utrValidation.cleaned}) has been recorded. Your 80G receipt number is ${receiptId} and will be issued upon manual verification with our bank statement.`,
           details: [
             { label: 'Donor', value: displayName },
             { label: 'Contribution Amount', value: `₹${donationValue.toLocaleString('en-IN')}` },
             { label: 'Payment Method', value: 'UPI / QR Code Scan' },
-            { label: 'UPI UTR / Transaction ID', value: transactionId.trim() },
+            { label: 'UPI UTR / Transaction ID', value: utrValidation.cleaned },
+            { label: 'Verification Status', value: 'Pending Admin Verification' },
             { label: '80G Receipt No', value: receiptId },
             { label: 'Tax Benefit Status', value: formData.pan ? '80G Eligible' : 'Standard Contribution' }
           ]
@@ -557,21 +588,62 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-amber-200/50">
-                      <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
-                        Enter UPI Transaction ID / UTR Number *
-                      </label>
-                      <input
-                        type="text"
-                        required={paymentMethod === 'qr'}
-                        placeholder="e.g. 423987123456 or GPay Ref No."
-                        value={transactionId}
-                        onChange={(e) => setTransactionId(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
-                      />
-                      <p className="text-[10px] text-neutral-500 mt-1 font-sans">
-                        Enter the 12-digit UPI UTR number from your payment confirmation screen.
-                      </p>
+                    <div className="pt-2 border-t border-amber-200/50 space-y-3">
+                      <div>
+                        <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
+                          Enter 12-Digit UPI UTR / Transaction Reference ID *
+                        </label>
+                        <input
+                          type="text"
+                          required={paymentMethod === 'qr'}
+                          placeholder="e.g. 423987123456 (Found on GPay / PhonePe receipt)"
+                          value={transactionId}
+                          onChange={(e) => setTransactionId(e.target.value)}
+                          maxLength={18}
+                          className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
+                        />
+                        <p className="text-[10px] text-neutral-500 mt-1 font-sans">
+                          Paste the authentic 12-digit UTR/Ref number from your payment confirmation screen.
+                        </p>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans flex items-center justify-between">
+                          <span>Upload Payment Screenshot (Optional for Instant Verification)</span>
+                          <span className="text-[10px] text-neutral-400 font-normal">PNG, JPG, WEBP (Max 5MB)</span>
+                        </label>
+                        <div className="flex items-center gap-3">
+                          <label className="px-3 py-2 bg-white border border-neutral-300 rounded-xl hover:bg-neutral-50 transition-colors text-xs font-semibold text-forest-teal flex items-center gap-1.5 cursor-pointer shadow-sm">
+                            <Upload className="w-4 h-4 text-sun-gold" />
+                            <span>{proofPreview ? 'Change Screenshot' : 'Choose Screenshot Image'}</span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={handleProofChange}
+                              className="hidden"
+                            />
+                          </label>
+                          {proofPreview && (
+                            <div className="flex items-center gap-2">
+                              <img src={proofPreview} alt="Payment Proof" className="w-9 h-9 object-cover rounded-lg border border-amber-200" />
+                              <span className="text-[10px] text-green-700 font-semibold flex items-center gap-1">
+                                <Check className="w-3.5 h-3.5" /> Attached
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Anti-misuse Warning Banner */}
+                      <div className="p-3 bg-amber-50 rounded-xl border border-amber-200/80 flex items-start space-x-2.5 text-[10px] text-amber-900 font-sans">
+                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-bold block">Manual Bank Statement Verification Notice</span>
+                          <span>
+                            All UPI contributions are manually verified against bank statements by our Seva finance desk. 80G tax receipts for UPI payments are issued after manual verification.
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}

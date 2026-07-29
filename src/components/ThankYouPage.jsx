@@ -89,6 +89,18 @@ export default function ThankYouPage({ siteConfig }) {
           <div className="w-16 h-0.5 bg-[#C9A646]/50 mx-auto mt-2 rounded-full print:hidden"></div>
         </div>
 
+        {/* Verification Status Banner for UPI QR Payments */}
+        {successData.details?.some(d => d.value?.toLowerCase().includes('pending')) && (
+          <div className="mb-6 p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-900 text-xs font-sans space-y-1 text-center shadow-sm">
+            <span className="font-bold text-amber-800 uppercase tracking-wider text-[11px] block">
+              ⏳ Status: Pending Manual Bank Statement Verification
+            </span>
+            <p className="text-[11px] text-amber-900/90 leading-relaxed">
+              Your UPI payment details (UTR ID) have been recorded under unverified status. Our finance desk team will verify the transaction with our bank statement before final activation.
+            </p>
+          </div>
+        )}
+
         {/* 1. DYNAMIC RENDER BLOCK: DONATION CERTIFICATE */}
         {isDonation && (
           <div className="relative border-4 border-double border-[#C9A646]/60 bg-[#FDFBF8] rounded-2xl p-6 md:p-8 space-y-6 text-center shadow-inner print:border-2 print:shadow-none">

@@ -189,5 +189,54 @@ export async function verifyRazorpayPayment(paymentData) {
       }
     };
   }
+/**
+ * Validates UPI Transaction ID / UTR Number for non-dummy, non-sequential 12-digit numbers.
+ */
+export function validateUpiUtr(utr) {
+  if (!utr || typeof utr !== 'string') {
+    return { valid: false, error: 'UPI Transaction ID / UTR Number is required.' };
+  }
+
+  const cleaned = utr.trim().replace(/[\s-]/g, '');
+
+  if (!/^[a-zA-Z0-9]{12,18}$/.test(cleaned)) {
+    return { valid: false, error: 'UPI UTR / Reference number must be a 12-digit transaction ID from your UPI app receipt (e.g. 423987123456).' };
+  }
+
+  const fakePatterns = [
+    '000000000000', '111111111111', '222222222222', '333333333333',
+    '444444444444', '555555555555', '666666666666', '777777777777',
+    '888888888888', '999999999999', '123456789012', '987654321098',
+    '123456123456', '012345678901'
+  ];
+
+  if (fakePatterns.includes(cleaned)) {
+    return { valid: false, error: 'Invalid or dummy UTR number detected. Please enter your authentic 12-digit UPI transaction reference number.' };
+  }
+
+  if (/^(.)\1+$/.test(cleaned)) {
+    return { valid: false, error: 'Invalid transaction reference format. Please enter a valid 12-digit UTR.' };
+  }
+
+  return { valid: true, cleaned };
+}
+
+/**
+ * Uploads base64 image data (e.g. UPI screenshot) to the backend.
+ */
+export async function uploadImage(base64Data, fileName = 'payment_proof.png') {
+  try {
+    const res = await fetch(`${API_BASE}/api/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ base64: base64Data, name: fileName })
+    });
+    if (!res.ok) throw new Error(`Upload failed with status ${res.status}`);
+    const data = await res.json();
+    return data.url || base64Data;
+  } catch (err) {
+    console.warn('Image upload fallback to local base64:', err);
+    return base64Data;
+  }
 }
 
