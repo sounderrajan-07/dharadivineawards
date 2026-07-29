@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ticket, User, Mail, Phone, Building, ArrowRight, Award, CreditCard, Loader2 } from 'lucide-react';
+import { Ticket, User, Mail, Phone, Building, ArrowRight, Award, CreditCard, Loader2, QrCode, Copy, Check, ShieldCheck } from 'lucide-react';
 import { submitForm, createRazorpayOrder, verifyRazorpayPayment } from '../utils/api';
 import { openRazorpayCheckout } from '../utils/razorpay';
 
@@ -53,6 +53,26 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
+  const [paymentMethod, setPaymentMethod] = useState('razorpay');
+  const [transactionId, setTransactionId] = useState('');
+  const [copiedUpi, setCopiedUpi] = useState(false);
+
+  const bankDetails = siteConfig?.donorConfig?.bankDetails || siteConfig?.bankDetails || {
+    bankName: 'HDFC Bank',
+    accountName: 'Dhara Foundations',
+    accountNumber: '50200012345678',
+    ifsc: 'HDFC0001234',
+    branch: 'Chennai Main Branch',
+    upiId: 'dharafoundations@hdfcbank',
+    qrImage: '/images/upi_qr_code.svg'
+  };
+
+  const handleCopyUpi = () => {
+    navigator.clipboard.writeText(bankDetails.upiId);
+    setCopiedUpi(true);
+    setTimeout(() => setCopiedUpi(false), 2000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone) {
@@ -78,8 +98,54 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
       return;
     }
 
+    if (paymentMethod === 'qr' && !transactionId.trim()) {
+      alert('Please enter your UPI Transaction ID / UTR Number after completing the QR payment.');
+      return;
+    }
+
     setIsProcessing(true);
 
+    // Path 1: Direct UPI QR Code Payment
+    if (paymentMethod === 'qr') {
+      try {
+        const passCode = `DDA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        await submitForm('Event Registration', {
+          ...formData,
+          ticketType: selectedTicket.name,
+          amount: ticketPriceNumeric,
+          payment_method: 'UPI_QR',
+          payment_id: transactionId.trim(),
+          transaction_id: transactionId.trim(),
+          payment_status: 'UPI QR Payment - Pending Verification',
+          pass_code: passCode,
+          timestamp: new Date().toISOString()
+        });
+
+        setIsProcessing(false);
+
+        onSubmitSuccess({
+          title: 'Registration & Pass Confirmed (UPI Payment Submitted)',
+          message: `Namaste, ${formData.name}. Your registration for the Divine Awards ${eventYear} (${selectedTicket.name}) has been received with UPI Transaction ID: ${transactionId.trim()}. Your Pass Code is ${passCode}.`,
+          details: [
+            { label: 'Attendee', value: formData.name },
+            { label: 'Pass Type', value: selectedTicket.name },
+            { label: 'Entry Pass Code', value: passCode },
+            { label: 'Payment Method', value: 'UPI / QR Code Scan' },
+            { label: 'UPI UTR / Transaction ID', value: transactionId.trim() },
+            { label: 'Area of Interest', value: formData.interest }
+          ]
+        });
+        return;
+      } catch (err) {
+        console.error('UPI submission error:', err);
+        setIsProcessing(false);
+        alert('Could not record UPI registration. Please try again.');
+        return;
+      }
+    }
+
+    // Path 2: Razorpay Gateway Payment
     try {
       // Step 1: Create Razorpay Order for Ticket Price
       const orderRes = await createRazorpayOrder({
@@ -129,7 +195,8 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
             ticketType: selectedTicket.name,
             organization: formData.organization,
             interest: formData.interest,
-            specialNotes: formData.specialNotes
+            specialNotes: formData.specialNotes,
+            payment_method: 'Razorpay'
           });
 
           // Backup submission
@@ -137,6 +204,7 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
             ...formData,
             ticketType: selectedTicket.name,
             amount: ticketPriceNumeric,
+            payment_method: 'Razorpay',
             payment_id: razorpayResponse.razorpay_payment_id,
             order_id: razorpayResponse.razorpay_order_id,
             timestamp: new Date().toISOString()
@@ -153,6 +221,7 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
               { label: 'Attendee', value: formData.name },
               { label: 'Pass Type', value: selectedTicket.name },
               { label: 'Entry Pass Code', value: passCode },
+              { label: 'Payment Method', value: 'Razorpay Online' },
               { label: 'Payment ID', value: razorpayResponse.razorpay_payment_id || orderRes.order_id },
               { label: 'Area of Interest', value: formData.interest }
             ]
@@ -401,6 +470,135 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
             </label>
           </div>
 
+          {/* Payment Method Selector */}
+          <div className="pt-4 border-t border-neutral-100 space-y-4">
+            <h4 className="text-sm font-bold text-forest-teal-dark font-sans flex items-center">
+              <CreditCard className="w-4 h-4 text-sun-gold mr-2" />
+              Select Payment Method
+            </h4>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('razorpay')}
+                className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                  paymentMethod === 'razorpay'
+                    ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
+                    : 'border-neutral-200 bg-white hover:border-neutral-300'
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="pmethod"
+                  checked={paymentMethod === 'razorpay'}
+                  onChange={() => setPaymentMethod('razorpay')}
+                  className="mt-1 text-forest-teal focus:ring-forest-teal"
+                />
+                <div>
+                  <div className="font-bold text-sm text-forest-teal-dark flex items-center">
+                    <CreditCard className="w-4 h-4 mr-1.5 text-forest-teal" />
+                    Razorpay Online Gateway
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-1">Cards, Netbanking, UPI, Wallets</p>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPaymentMethod('qr')}
+                className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                  paymentMethod === 'qr'
+                    ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
+                    : 'border-neutral-200 bg-white hover:border-neutral-300'
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="pmethod"
+                  checked={paymentMethod === 'qr'}
+                  onChange={() => setPaymentMethod('qr')}
+                  className="mt-1 text-forest-teal focus:ring-forest-teal"
+                />
+                <div>
+                  <div className="font-bold text-sm text-forest-teal-dark flex items-center">
+                    <QrCode className="w-4 h-4 mr-1.5 text-forest-teal" />
+                    UPI / QR Code Scan & Pay
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-1">GPay, PhonePe, Paytm, BHIM QR Scan</p>
+                </div>
+              </button>
+            </div>
+
+            {/* UPI QR Display Card when 'qr' is selected */}
+            {paymentMethod === 'qr' && (
+              <div className="bg-[#FFFDF9] border-2 border-sun-gold/50 rounded-2xl p-6 shadow-sm space-y-4">
+                <div className="text-center space-y-2">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-sun-gold font-bold bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                    Official Seva Payment QR
+                  </span>
+                  <h5 className="text-lg font-serif font-bold text-forest-teal-dark">Scan QR Code to Pay {selectedTicket.price}</h5>
+                  <p className="text-xs text-neutral-600">Scan using any UPI App (Google Pay, PhonePe, Paytm, BHIM, CRED)</p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 py-2">
+                  <div className="bg-white p-3 rounded-2xl border-2 border-amber-200 shadow-md text-center">
+                    <img 
+                      src={bankDetails.qrImage || "/images/upi_qr_code.svg"} 
+                      alt="UPI Payment QR Code" 
+                      className="w-44 h-44 object-contain mx-auto rounded-lg"
+                    />
+                    <span className="text-[10px] text-neutral-500 font-mono block mt-1">Dhara Foundations Official QR</span>
+                  </div>
+
+                  <div className="space-y-3 text-xs text-neutral-700 w-full sm:w-auto">
+                    <div className="bg-white p-3 rounded-xl border border-neutral-200 space-y-1">
+                      <span className="text-[10px] text-neutral-400 uppercase font-mono block">UPI ID</span>
+                      <div className="flex items-center justify-between gap-2 font-bold text-forest-teal-dark">
+                        <span className="font-mono text-sm">{bankDetails.upiId}</span>
+                        <button
+                          type="button"
+                          onClick={handleCopyUpi}
+                          className="px-2 py-1 bg-soft-sage text-forest-teal rounded hover:bg-forest-teal hover:text-white transition-colors text-[11px] flex items-center gap-1 cursor-pointer"
+                        >
+                          {copiedUpi ? <Check className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
+                          <span>{copiedUpi ? 'Copied' : 'Copy'}</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-3 rounded-xl border border-neutral-200 space-y-1">
+                      <span className="text-[10px] text-neutral-400 uppercase font-mono block">Account Name</span>
+                      <p className="font-bold text-forest-teal-dark">{bankDetails.accountName}</p>
+                      <p className="text-[11px] text-neutral-500">{bankDetails.bankName} • {bankDetails.ifsc}</p>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-forest-teal text-[11px]">
+                      <ShieldCheck className="w-4 h-4 text-sun-gold shrink-0" />
+                      <span>Direct trust account transfer for Divine Awards {eventYear}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-amber-200/50">
+                  <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
+                    Enter UPI Transaction ID / UTR Number *
+                  </label>
+                  <input
+                    type="text"
+                    required={paymentMethod === 'qr'}
+                    placeholder="e.g. 423987123456 or Google Pay Ref No."
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
+                  />
+                  <p className="text-[11px] text-neutral-500 mt-1 font-sans">
+                    After scanning and completing payment in your UPI app, paste the 12-digit UTR/Ref number here.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="pt-4">
             <button
               type="submit"
@@ -414,17 +612,22 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
               {isProcessing ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin text-[#281006]" />
-                  <span>Processing Razorpay Checkout...</span>
+                  <span>{paymentMethod === 'qr' ? 'Submitting Registration...' : 'Processing Razorpay Checkout...'}</span>
+                </>
+              ) : paymentMethod === 'qr' ? (
+                <>
+                  <QrCode className="w-5 h-5 text-[#281006]" />
+                  <span>Confirm UPI Payment & Submit ({selectedTicket.price})</span>
                 </>
               ) : (
                 <>
                   <CreditCard className="w-5 h-5 text-[#281006]" />
-                  <span>Pay Pass Fee & Book Pass ({selectedTicket.price})</span>
+                  <span>Pay via Razorpay: {selectedTicket.price}</span>
                 </>
               )}
             </button>
             <p className="text-center text-xs text-neutral-400 mt-3 font-sans">
-              Instant entry pass code will be issued immediately upon successful payment verification.
+              Instant entry pass code will be issued immediately upon payment submission.
             </p>
           </div>
         </form>

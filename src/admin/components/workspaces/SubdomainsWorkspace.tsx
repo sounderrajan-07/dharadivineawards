@@ -60,7 +60,8 @@ export const SubdomainsWorkspace: React.FC = () => {
     email: 'info@dharafoundations.in',
     phone: '+91 94440 12345',
     address: 'Dhara Foundations Trust Office, Chennai, Tamil Nadu',
-    timings: 'Monday - Saturday: 9:00 AM - 6:00 PM IST'
+    timings: 'Monday - Saturday: 9:00 AM - 6:00 PM IST',
+    otherEventsUrl: 'https://dhara-foundation.vercel.app/'
   });
 
   // 2. SPONSORSHIP CONFIG STATES
@@ -422,6 +423,7 @@ export const SubdomainsWorkspace: React.FC = () => {
         eventYear,
         tickets: parsedTickets
       },
+      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dhara-foundation.vercel.app/',
       generalEnquiriesConfig: contactInfo,
       sponsorshipConfig: {
         benefits: sponsorshipBenefits,
@@ -713,6 +715,16 @@ export const SubdomainsWorkspace: React.FC = () => {
                     type="text"
                     value={contactInfo.address}
                     onChange={(e) => setContactInfo(prev => ({ ...prev, address: e.target.value }))}
+                    className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-sm focus:outline-none"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-[#867463] dark:text-[#9CA3AF] mb-1">Other Events Portal Link URL (Navbar Link)</label>
+                  <input
+                    type="text"
+                    value={contactInfo.otherEventsUrl || ''}
+                    onChange={(e) => setContactInfo(prev => ({ ...prev, otherEventsUrl: e.target.value }))}
+                    placeholder="e.g. https://dhara-foundation.vercel.app/"
                     className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-sm focus:outline-none"
                   />
                 </div>

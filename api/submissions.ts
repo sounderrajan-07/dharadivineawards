@@ -25,7 +25,7 @@ export default async function handler(req: any, res: any) {
     const { module } = body;
 
     if (module === 'Event Registration') {
-      const passCode = `DDA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      const passCode = body.pass_code || `DDA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
       newEntry = {
         id: `del-${Date.now()}`,
         delegate_name: body.name || 'Anonymous',
@@ -36,11 +36,14 @@ export default async function handler(req: any, res: any) {
         pass_code: passCode,
         checked_in: false,
         checkin_time: null,
-        seat_zone: 'Zone B - Seva Row 10'
+        seat_zone: 'Zone B - Seva Row 10',
+        payment_method: body.payment_method || 'Razorpay',
+        payment_id: body.payment_id || body.transaction_id || '',
+        payment_status: body.payment_status || 'Confirmed'
       };
       db.delegates.push(newEntry);
       activityType = 'checkin';
-      activityMessage = `New Delegate pass registered for "${newEntry.delegate_name}" (Pass: ${passCode})`;
+      activityMessage = `New Delegate pass registered for "${newEntry.delegate_name}" (Pass: ${passCode}) via ${newEntry.payment_method}`;
     } 
     else if (module === 'Award Nominations') {
       newEntry = {
@@ -108,12 +111,14 @@ export default async function handler(req: any, res: any) {
         is_anonymous: Boolean(body.isAnonymous),
         sponsorship_tier: body.sponsorshipTier || undefined,
         receipt_sent: false,
-        payment_status: 'success',
+        payment_method: body.payment_method || 'Razorpay',
+        payment_id: body.payment_id || body.transaction_id || '',
+        payment_status: body.payment_status || 'success',
         created_at: timestamp
       };
       db.donations.push(newEntry);
       activityType = 'donation';
-      activityMessage = `Donation of ₹${newEntry.amount.toLocaleString()} received from ${newEntry.is_anonymous ? 'Anonymous' : newEntry.name} (${newEntry.seva_domain})`;
+      activityMessage = `Donation of ₹${newEntry.amount.toLocaleString()} received from ${newEntry.is_anonymous ? 'Anonymous' : newEntry.name} (${newEntry.seva_domain}) via ${newEntry.payment_method}`;
     } 
     else {
       newEntry = { id: `raw-${Date.now()}`, ...body, timestamp };

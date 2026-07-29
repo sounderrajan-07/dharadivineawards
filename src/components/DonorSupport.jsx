@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2 } from 'lucide-react';
+import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2, QrCode, Copy, Check } from 'lucide-react';
 import { submitForm, createRazorpayOrder, verifyRazorpayPayment } from '../utils/api';
 import { openRazorpayCheckout } from '../utils/razorpay';
 
@@ -8,6 +8,9 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
   const [selectedPreset, setSelectedPreset] = useState('1008');
   const [customAmount, setCustomAmount] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('razorpay');
+  const [transactionId, setTransactionId] = useState('');
+  const [copiedUpi, setCopiedUpi] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -56,7 +59,14 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
     accountNumber: '50200012345678',
     ifsc: 'HDFC0001234',
     branch: 'Chennai Main Branch',
-    upiId: 'dharafoundations@hdfcbank'
+    upiId: 'dharafoundations@hdfcbank',
+    qrImage: '/images/upi_qr_code.svg'
+  };
+
+  const handleCopyUpi = () => {
+    navigator.clipboard.writeText(bankDetails.upiId);
+    setCopiedUpi(true);
+    setTimeout(() => setCopiedUpi(false), 2000);
   };
 
   const handleTextChange = (e) => {
@@ -107,6 +117,11 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
       }
     }
 
+    if (paymentMethod === 'qr' && !transactionId.trim()) {
+      alert('Please enter your UPI Transaction ID / UTR Number after completing the QR payment.');
+      return;
+    }
+
     setIsProcessing(true);
 
     let sevaDomain = 'General Fund';
@@ -117,6 +132,51 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
       }
     }
 
+    const displayName = formData.anonymous ? 'Anonymous Donor' : formData.name;
+
+    // Path 1: Direct UPI QR Payment
+    if (paymentMethod === 'qr') {
+      try {
+        const receiptId = `REC-80G-${Date.now().toString().slice(-6)}`;
+
+        await submitForm('Donor Support', {
+          module: 'Donor Support',
+          amount: donationValue,
+          isAnonymous: formData.anonymous,
+          payment_method: 'UPI_QR',
+          payment_id: transactionId.trim(),
+          transaction_id: transactionId.trim(),
+          payment_status: 'UPI QR Payment - Pending Verification',
+          receiptNo: receiptId,
+          ...formData,
+          sevaDomain: sevaDomain,
+          timestamp: new Date().toISOString()
+        });
+
+        setIsProcessing(false);
+
+        onSubmitSuccess({
+          title: 'Contribution Received (UPI Payment Submitted)',
+          message: `Namaste, ${displayName}. Thank you for your generous offering of ₹${donationValue.toLocaleString('en-IN')}. Your UPI transaction reference ID ${transactionId.trim()} has been recorded. Your 80G receipt number is ${receiptId}. May the blessings of service follow you always.`,
+          details: [
+            { label: 'Donor', value: displayName },
+            { label: 'Contribution Amount', value: `₹${donationValue.toLocaleString('en-IN')}` },
+            { label: 'Payment Method', value: 'UPI / QR Code Scan' },
+            { label: 'UPI UTR / Transaction ID', value: transactionId.trim() },
+            { label: '80G Receipt No', value: receiptId },
+            { label: 'Tax Benefit Status', value: formData.pan ? '80G Eligible' : 'Standard Contribution' }
+          ]
+        });
+        return;
+      } catch (err) {
+        console.error('UPI contribution error:', err);
+        setIsProcessing(false);
+        alert('Could not record UPI donation. Please try again.');
+        return;
+      }
+    }
+
+    // Path 2: Razorpay Online Payment Gateway
     try {
       // Step 1: Create Razorpay Order
       const orderRes = await createRazorpayOrder({
@@ -136,8 +196,6 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
       }
 
       // Step 2: Open Razorpay Checkout Modal
-      const displayName = formData.anonymous ? 'Anonymous Donor' : formData.name;
-
       const envKey = import.meta.env.VITE_RAZORPAY_KEY_ID || import.meta.env.RAZORPAY_KEY_ID || import.meta.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
       const activeKey = (envKey && envKey.trim())
         ? envKey.trim()
@@ -168,7 +226,8 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
             amount: donationValue,
             pan: formData.pan,
             isAnonymous: formData.anonymous,
-            sevaDomain: sevaDomain
+            sevaDomain: sevaDomain,
+            payment_method: 'Razorpay'
           });
 
           // Backup submission
@@ -176,6 +235,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
             module: 'Donor Support',
             amount: donationValue,
             isAnonymous: formData.anonymous,
+            payment_method: 'Razorpay',
             payment_id: razorpayResponse.razorpay_payment_id,
             order_id: razorpayResponse.razorpay_order_id,
             ...formData,
@@ -193,6 +253,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
             details: [
               { label: 'Donor', value: displayName },
               { label: 'Contribution Amount', value: `₹${donationValue.toLocaleString('en-IN')}` },
+              { label: 'Payment Method', value: 'Razorpay Online' },
               { label: 'Payment ID', value: razorpayResponse.razorpay_payment_id || orderRes.order_id },
               { label: '80G Receipt No', value: receiptId },
               { label: 'Tax Benefit Status', value: formData.pan ? '80G Eligible' : 'Standard Contribution' }
@@ -385,6 +446,137 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                 </label>
               </div>
 
+              {/* Payment Method Selector */}
+              <div className="pt-4 border-t border-neutral-100 space-y-4">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-forest-teal font-sans flex items-center">
+                  <CreditCard className="w-4 h-4 text-sun-gold mr-2" />
+                  Select Payment Option
+                </h4>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('razorpay')}
+                    className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                      paymentMethod === 'razorpay'
+                        ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
+                        : 'border-neutral-200 bg-white hover:border-neutral-300'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="donor_pmethod"
+                      checked={paymentMethod === 'razorpay'}
+                      onChange={() => setPaymentMethod('razorpay')}
+                      className="mt-1 text-forest-teal focus:ring-forest-teal"
+                    />
+                    <div>
+                      <div className="font-bold text-xs text-forest-teal-dark flex items-center font-sans">
+                        <CreditCard className="w-3.5 h-3.5 mr-1.5 text-forest-teal" />
+                        Razorpay Gateway
+                      </div>
+                      <p className="text-[11px] text-neutral-500 mt-0.5 font-sans">Cards, Netbanking, UPI, Wallets</p>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('qr')}
+                    className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                      paymentMethod === 'qr'
+                        ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
+                        : 'border-neutral-200 bg-white hover:border-neutral-300'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="donor_pmethod"
+                      checked={paymentMethod === 'qr'}
+                      onChange={() => setPaymentMethod('qr')}
+                      className="mt-1 text-forest-teal focus:ring-forest-teal"
+                    />
+                    <div>
+                      <div className="font-bold text-xs text-forest-teal-dark flex items-center font-sans">
+                        <QrCode className="w-3.5 h-3.5 mr-1.5 text-forest-teal" />
+                        UPI / QR Code Scan
+                      </div>
+                      <p className="text-[11px] text-neutral-500 mt-0.5 font-sans">Scan with GPay, PhonePe, Paytm</p>
+                    </div>
+                  </button>
+                </div>
+
+                {/* UPI QR Display Card when 'qr' is selected */}
+                {paymentMethod === 'qr' && (
+                  <div className="bg-[#FFFDF9] border-2 border-sun-gold/50 rounded-2xl p-5 shadow-sm space-y-4">
+                    <div className="text-center space-y-1.5">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-sun-gold font-bold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+                        Official Trust Seva QR
+                      </span>
+                      <h5 className="text-base font-serif font-bold text-forest-teal-dark">
+                        Scan QR Code to Contribute ₹{parseFloat(getFinalAmount()).toLocaleString('en-IN')}
+                      </h5>
+                      <p className="text-xs text-neutral-600 font-sans">Scan using Google Pay, PhonePe, Paytm, BHIM, or any UPI App</p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-5 py-1">
+                      <div className="bg-white p-3 rounded-2xl border-2 border-amber-200 shadow-md text-center shrink-0">
+                        <img 
+                          src={bankDetails.qrImage || "/images/upi_qr_code.svg"} 
+                          alt="UPI Donation QR Code" 
+                          className="w-40 h-40 object-contain mx-auto rounded-lg"
+                        />
+                        <span className="text-[9px] text-neutral-500 font-mono block mt-1">Dhara Foundations Seva QR</span>
+                      </div>
+
+                      <div className="space-y-2.5 text-xs text-neutral-700 w-full sm:w-auto">
+                        <div className="bg-white p-2.5 rounded-xl border border-neutral-200 space-y-0.5">
+                          <span className="text-[9px] text-neutral-400 uppercase font-mono block">UPI ID</span>
+                          <div className="flex items-center justify-between gap-2 font-bold text-forest-teal-dark">
+                            <span className="font-mono text-xs">{bankDetails.upiId}</span>
+                            <button
+                              type="button"
+                              onClick={handleCopyUpi}
+                              className="px-2 py-0.5 bg-soft-sage text-forest-teal rounded hover:bg-forest-teal hover:text-white transition-colors text-[10px] flex items-center gap-1 cursor-pointer"
+                            >
+                              {copiedUpi ? <Check className="w-3 h-3 text-green-600" /> : <Copy className="w-3 h-3" />}
+                              <span>{copiedUpi ? 'Copied' : 'Copy'}</span>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="bg-white p-2.5 rounded-xl border border-neutral-200 space-y-0.5">
+                          <span className="text-[9px] text-neutral-400 uppercase font-mono block">Account Name</span>
+                          <p className="font-bold text-forest-teal-dark text-xs">{bankDetails.accountName}</p>
+                          <p className="text-[10px] text-neutral-500">{bankDetails.bankName} • {bankDetails.ifsc}</p>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 text-forest-teal text-[10px]">
+                          <ShieldCheck className="w-4 h-4 text-sun-gold shrink-0" />
+                          <span>80G Tax Deductible Direct Trust Account</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-amber-200/50">
+                      <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans">
+                        Enter UPI Transaction ID / UTR Number *
+                      </label>
+                      <input
+                        type="text"
+                        required={paymentMethod === 'qr'}
+                        placeholder="e.g. 423987123456 or GPay Ref No."
+                        value={transactionId}
+                        onChange={(e) => setTransactionId(e.target.value)}
+                        className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-forest-teal text-sm font-sans font-mono"
+                      />
+                      <p className="text-[10px] text-neutral-500 mt-1 font-sans">
+                        Enter the 12-digit UPI UTR number from your payment confirmation screen.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <div className="pt-4 border-t border-neutral-100">
                 <button
                   type="submit"
@@ -394,7 +586,12 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                   {isProcessing ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin text-[#281006]" />
-                      <span>Initiating Razorpay Gateway...</span>
+                      <span>{paymentMethod === 'qr' ? 'Recording Contribution...' : 'Initiating Razorpay Gateway...'}</span>
+                    </>
+                  ) : paymentMethod === 'qr' ? (
+                    <>
+                      <QrCode className="w-5 h-5 text-[#281006]" />
+                      <span>Confirm UPI Payment: ₹{parseFloat(getFinalAmount()).toLocaleString('en-IN')}</span>
                     </>
                   ) : (
                     <>
