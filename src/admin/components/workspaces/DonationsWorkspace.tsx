@@ -16,11 +16,12 @@ import {
   ShieldCheck,
   Sparkles,
   Eye,
-  XCircle
+  XCircle,
+  Trash2
 } from 'lucide-react';
 
 export const DonationsWorkspace: React.FC = () => {
-  const { donations, sendDonationReceipt, globalSearchQuery } = useApp();
+  const { donations, sendDonationReceipt, deleteUpiRecord, globalSearchQuery } = useApp();
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [previewReceipt, setPreviewReceipt] = useState<Donation | null>(null);
@@ -193,6 +194,17 @@ export const DonationsWorkspace: React.FC = () => {
                         <Send size={12} /> Email Receipt
                       </button>
                     )}
+                    <button
+                      onClick={() => {
+                        if (window.confirm(`Are you sure you want to delete the donation record for "${don.name}"?`)) {
+                          deleteUpiRecord(don.id, 'donations');
+                        }
+                      }}
+                      title="Delete Donation Record"
+                      className="p-2 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 hover:bg-rose-600 hover:text-white transition-all cursor-pointer inline-flex items-center"
+                    >
+                      <Trash2 size={13} />
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -15,11 +15,12 @@ import {
   Camera, 
   XCircle,
   Filter,
-  Check
+  Check,
+  Trash2
 } from 'lucide-react';
 
 export const DelegatesWorkspace: React.FC = () => {
-  const { delegates, checkInDelegate, globalSearchQuery, setGlobalSearchQuery } = useApp();
+  const { delegates, checkInDelegate, deleteUpiRecord, globalSearchQuery, setGlobalSearchQuery } = useApp();
   const [scanInput, setScanInput] = useState('');
   const [lastScanResult, setLastScanResult] = useState<{ success: boolean; message: string; delegate?: Delegate } | null>(null);
   const [selectedTier, setSelectedTier] = useState<string>('all');
@@ -277,6 +278,17 @@ export const DelegatesWorkspace: React.FC = () => {
                         Gate Verified ✓
                       </span>
                     )}
+                    <button
+                      onClick={() => {
+                        if (window.confirm(`Are you sure you want to delete the delegate pass for "${del.delegate_name}"?`)) {
+                          deleteUpiRecord(del.id, 'delegates');
+                        }
+                      }}
+                      title="Delete Delegate Record"
+                      className="p-2 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 hover:bg-rose-600 hover:text-white transition-all cursor-pointer inline-flex items-center"
+                    >
+                      <Trash2 size={13} />
+                    </button>
                   </td>
                 </tr>
               ))}

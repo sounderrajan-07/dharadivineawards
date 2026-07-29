@@ -195,6 +195,21 @@ export default async function handler(req: any, res: any) {
         break;
       }
 
+      case 'deleteVolunteer': {
+        const { id, user } = payload;
+        const index = db.volunteers.findIndex((v: any) => v.id === id);
+        if (index !== -1) {
+          const vol = db.volunteers[index];
+          db.volunteers.splice(index, 1);
+          logActivity('system', `Deleted volunteer record for "${vol.name}"`, user || 'Admin');
+          message = `Deleted volunteer record for ${vol.name}`;
+        } else {
+          success = false;
+          message = 'Volunteer record not found';
+        }
+        break;
+      }
+
       case 'deleteActivityLog': {
         const { id } = payload;
         const logIndex = db.activityLogs.findIndex((l: any) => l.id === id);

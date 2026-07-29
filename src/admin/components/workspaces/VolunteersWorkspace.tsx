@@ -13,11 +13,12 @@ import {
   ShieldCheck,
   Sparkles,
   Phone,
-  Mail
+  Mail,
+  Trash2
 } from 'lucide-react';
 
 export const VolunteersWorkspace: React.FC = () => {
-  const { volunteers, updateVolunteerStatus, globalSearchQuery } = useApp();
+  const { volunteers, updateVolunteerStatus, deleteVolunteer, globalSearchQuery } = useApp();
   const [selectedSkill, setSelectedSkill] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
 
@@ -145,16 +146,27 @@ export const VolunteersWorkspace: React.FC = () => {
                     </span>
                   </td>
                   <td className="py-4 px-4">{getStatusBadge(vol.status)}</td>
-                  <td className="py-4 px-6 text-right">
+                  <td className="py-4 px-6 text-right space-x-2">
                     <select
                       value={vol.status}
                       onChange={(e) => updateVolunteerStatus(vol.id, e.target.value as VolunteerStatus)}
-                      className="bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] text-xs font-semibold px-3 py-1.5 rounded-xl border border-[#E4E2DD] dark:border-[#30312E] focus:outline-none focus:border-[#401C0C] cursor-pointer"
+                      className="bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] text-xs font-semibold px-3 py-1.5 rounded-xl border border-[#E4E2DD] dark:border-[#30312E] focus:outline-none focus:border-[#401C0C] cursor-pointer inline-block"
                     >
                       <option value="active">Active Ready</option>
                       <option value="assigned">Shift Assigned</option>
                       <option value="on_hold">On Hold</option>
                     </select>
+                    <button
+                      onClick={() => {
+                        if (window.confirm(`Are you sure you want to delete volunteer record for "${vol.name}"?`)) {
+                          deleteVolunteer(vol.id);
+                        }
+                      }}
+                      title="Delete Volunteer Record"
+                      className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 hover:bg-rose-600 hover:text-white transition-all cursor-pointer inline-flex items-center align-middle"
+                    >
+                      <Trash2 size={13} />
+                    </button>
                   </td>
                 </tr>
               ))}
