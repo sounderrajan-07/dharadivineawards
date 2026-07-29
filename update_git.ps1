@@ -10,7 +10,7 @@ Write-Host "`n[1/3] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/3] Creating fresh commit..." -ForegroundColor Yellow
-git commit -m "Enforce mandatory payment screenshot upload for UPI QR payments and fix image persistence"
+git commit -m "Add client-side image compression and direct base64 image persistence for UPI validation"
 
 # 2. Pushing to target repos
 Write-Host "`n[3/3] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow

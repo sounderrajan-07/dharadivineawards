@@ -1,7 +1,7 @@
 // Dhara Foundations - Dual Payment Support Gateway (Razorpay & UPI QR Code)
 import React, { useState } from 'react';
 import { HeartHandshake, ShieldCheck, Mail, Phone, User, Landmark, Sparkles, Gift, CreditCard, Lock, Loader2, QrCode, Copy, Check, Upload, AlertTriangle } from 'lucide-react';
-import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, uploadImage } from '../utils/api';
+import { submitForm, createRazorpayOrder, verifyRazorpayPayment, validateUpiUtr, compressImage } from '../utils/api';
 import { openRazorpayCheckout } from '../utils/razorpay';
 
 export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
@@ -72,19 +72,20 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
     setTimeout(() => setCopiedUpi(false), 2000);
   };
 
-  const handleProofChange = (e) => {
+  const handleProofChange = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size must be under 5MB.');
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File size must be under 10MB.');
         return;
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProofPreview(reader.result);
-        setPaymentProof(reader.result);
-      };
-      reader.readAsDataURL(file);
+      try {
+        const compressedBase64 = await compressImage(file);
+        setProofPreview(compressedBase64);
+        setPaymentProof(compressedBase64);
+      } catch (err) {
+        console.error('Image compression error:', err);
+      }
     }
   };
 
@@ -167,11 +168,6 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
         const utrValidation = validateUpiUtr(transactionId);
         const receiptId = `REC-80G-${Date.now().toString().slice(-6)}`;
 
-        let uploadedProofUrl = '';
-        if (paymentProof) {
-          uploadedProofUrl = await uploadImage(paymentProof, `donor_qr_proof_${Date.now()}.png`);
-        }
-
         await submitForm('Donor Support', {
           module: 'Donor Support',
           amount: donationValue,
@@ -179,7 +175,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
           payment_method: 'UPI_QR',
           payment_id: utrValidation.cleaned,
           transaction_id: utrValidation.cleaned,
-          proof_image: uploadedProofUrl || paymentProof,
+          proof_image: paymentProof,
           payment_status: 'Pending Admin Verification',
           verified: false,
           receiptNo: receiptId,

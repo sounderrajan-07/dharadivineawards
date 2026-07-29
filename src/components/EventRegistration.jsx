@@ -76,19 +76,20 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
     setTimeout(() => setCopiedUpi(false), 2000);
   };
 
-  const handleProofChange = (e) => {
+  const handleProofChange = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size must be under 5MB.');
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File size must be under 10MB.');
         return;
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProofPreview(reader.result);
-        setPaymentProof(reader.result);
-      };
-      reader.readAsDataURL(file);
+      try {
+        const compressedBase64 = await compressImage(file);
+        setProofPreview(compressedBase64);
+        setPaymentProof(compressedBase64);
+      } catch (err) {
+        console.error('Image compression error:', err);
+      }
     }
   };
 
@@ -138,11 +139,6 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
         const utrValidation = validateUpiUtr(transactionId);
         const passCode = `DDA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
 
-        let uploadedProofUrl = '';
-        if (paymentProof) {
-          uploadedProofUrl = await uploadImage(paymentProof, `qr_proof_${Date.now()}.png`);
-        }
-
         await submitForm('Event Registration', {
           ...formData,
           ticketType: selectedTicket.name,
@@ -150,7 +146,7 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
           payment_method: 'UPI_QR',
           payment_id: utrValidation.cleaned,
           transaction_id: utrValidation.cleaned,
-          proof_image: uploadedProofUrl || paymentProof,
+          proof_image: paymentProof,
           payment_status: 'Pending Admin Verification',
           verified: false,
           pass_code: passCode,

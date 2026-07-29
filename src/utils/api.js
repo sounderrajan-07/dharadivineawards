@@ -224,21 +224,46 @@ export function validateUpiUtr(utr) {
 }
 
 /**
- * Uploads base64 image data (e.g. UPI screenshot) to the backend.
+ * Compresses an image file to max 1000px resolution & 70% quality JPEG base64
+ * for instant serverless uploads.
  */
-export async function uploadImage(base64Data, fileName = 'payment_proof.png') {
-  try {
-    const res = await fetch(`${API_BASE}/api/upload`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ base64: base64Data, name: fileName })
-    });
-    if (!res.ok) throw new Error(`Upload failed with status ${res.status}`);
-    const data = await res.json();
-    return data.url || base64Data;
-  } catch (err) {
-    console.warn('Image upload fallback to local base64:', err);
-    return base64Data;
-  }
+export function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality = 0.7) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target?.result;
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          resolve(compressedBase64);
+          return;
+        }
+        resolve(event.target?.result);
+      };
+      img.onerror = () => resolve(event.target?.result);
+    };
+    reader.onerror = () => resolve('');
+  });
 }
 
