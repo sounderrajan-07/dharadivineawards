@@ -175,32 +175,6 @@ export default function EventRegistration({ onSubmitSuccess, siteConfig }) {
         return;
       }
     }
-          pass_code: passCode,
-          timestamp: new Date().toISOString()
-        });
-
-        setIsProcessing(false);
-
-        onSubmitSuccess({
-          title: 'Registration & Pass Confirmed (UPI Payment Submitted)',
-          message: `Namaste, ${formData.name}. Your registration for the Divine Awards ${eventYear} (${selectedTicket.name}) has been received with UPI Transaction ID: ${transactionId.trim()}. Your Pass Code is ${passCode}.`,
-          details: [
-            { label: 'Attendee', value: formData.name },
-            { label: 'Pass Type', value: selectedTicket.name },
-            { label: 'Entry Pass Code', value: passCode },
-            { label: 'Payment Method', value: 'UPI / QR Code Scan' },
-            { label: 'UPI UTR / Transaction ID', value: transactionId.trim() },
-            { label: 'Area of Interest', value: formData.interest }
-          ]
-        });
-        return;
-      } catch (err) {
-        console.error('UPI submission error:', err);
-        setIsProcessing(false);
-        alert('Could not record UPI registration. Please try again.');
-        return;
-      }
-    }
 
     // Path 2: Razorpay Gateway Payment
     try {

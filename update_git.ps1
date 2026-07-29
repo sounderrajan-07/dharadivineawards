@@ -10,7 +10,7 @@ Write-Host "`n[1/4] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/4] Creating commit..." -ForegroundColor Yellow
-git commit -m "Add dual payment selector, strict UPI UTR validation, screenshot upload, and pending bank verification status"
+git commit -m "Fix syntax errors in api.js and EventRegistration.jsx for Vercel build"
 
 # 2. Pulling remote updates with rebase
 Write-Host "`n[3/4] Pulling remote updates..." -ForegroundColor Yellow

@@ -189,6 +189,8 @@ export async function verifyRazorpayPayment(paymentData) {
       }
     };
   }
+}
+
 /**
  * Validates UPI Transaction ID / UTR Number for non-dummy, non-sequential 12-digit numbers.
  */
