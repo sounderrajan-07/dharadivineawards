@@ -39,6 +39,7 @@ interface AppContextType {
   updateVolunteerStatus: (id: string, status: VolunteerStatus) => Promise<void>;
   updateEnquiryStatus: (id: string, status: EnquiryStatus) => Promise<void>;
   updateUpiVerificationStatus: (id: string, targetModule: 'delegates' | 'donations', status: 'Approved' | 'Rejected' | 'Pending') => Promise<void>;
+  deleteUpiRecord: (id: string, targetModule: 'delegates' | 'donations') => Promise<void>;
   logActivity: (type: ActivityLog['type'], message: string) => Promise<void>;
   deleteActivityLog: (id: string) => Promise<void>;
   
@@ -337,6 +338,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const deleteUpiRecord = async (id: string, targetModule: 'delegates' | 'donations') => {
+    try {
+      const res = await fetch('/api/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'deleteUpiRecord',
+          payload: { id, targetModule, user: currentUser.name }
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        if (targetModule === 'delegates') {
+          setDelegates(data.db.delegates || []);
+        } else {
+          setDonations(data.db.donations || []);
+        }
+        setActivityLogs(data.db.activityLogs || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Gallery actions
   const addGalleryImage = async (imgData: { src: string; category: string; caption: string }) => {
     try {
@@ -577,6 +602,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       updateVolunteerStatus,
       updateEnquiryStatus,
       updateUpiVerificationStatus,
+      deleteUpiRecord,
       logActivity,
       deleteActivityLog,
       addGalleryImage,

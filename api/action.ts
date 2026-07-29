@@ -167,6 +167,34 @@ export default async function handler(req: any, res: any) {
         break;
       }
 
+      case 'deleteUpiRecord': {
+        const { id, targetModule, user } = payload;
+        if (targetModule === 'delegates') {
+          const index = db.delegates.findIndex((d: any) => d.id === id);
+          if (index !== -1) {
+            const del = db.delegates[index];
+            db.delegates.splice(index, 1);
+            logActivity('checkin', `Deleted delegate record for "${del.delegate_name}" (UTR: ${del.payment_id || del.transaction_id})`, user || 'Admin');
+            message = `Deleted record for ${del.delegate_name}`;
+          } else {
+            success = false;
+            message = 'Delegate record not found';
+          }
+        } else {
+          const index = db.donations.findIndex((d: any) => d.id === id);
+          if (index !== -1) {
+            const don = db.donations[index];
+            db.donations.splice(index, 1);
+            logActivity('donation', `Deleted donation record for "${don.name}" (UTR: ${don.payment_id || don.transaction_id})`, user || 'Admin');
+            message = `Deleted record for ${don.name}`;
+          } else {
+            success = false;
+            message = 'Donation record not found';
+          }
+        }
+        break;
+      }
+
       case 'deleteActivityLog': {
         const { id } = payload;
         const logIndex = db.activityLogs.findIndex((l: any) => l.id === id);

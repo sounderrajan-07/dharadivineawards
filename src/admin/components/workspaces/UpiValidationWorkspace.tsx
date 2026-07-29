@@ -15,15 +15,22 @@ import {
   ExternalLink,
   AlertTriangle,
   Download,
-  X
+  X,
+  Trash2
 } from 'lucide-react';
 
 export const UpiValidationWorkspace: React.FC = () => {
-  const { delegates, donations, updateUpiVerificationStatus, globalSearchQuery, setGlobalSearchQuery } = useApp();
+  const { delegates, donations, updateUpiVerificationStatus, deleteUpiRecord, globalSearchQuery, setGlobalSearchQuery } = useApp();
   const [statusFilter, setStatusFilter] = useState<'pending' | 'all' | 'approved' | 'rejected'>('pending');
   const [moduleFilter, setModuleFilter] = useState<'all' | 'delegates' | 'donations'>('all');
   const [copiedUtr, setCopiedUtr] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string } | null>(null);
+
+  const handleDeleteRecord = async (id: string, moduleType: 'delegates' | 'donations', name: string) => {
+    if (window.confirm(`Delete the test payment record for "${name}" from database?`)) {
+      await deleteUpiRecord(id, moduleType);
+    }
+  };
 
   // Normalize delegate and donation entries into unified list
   const delegateUpiItems = delegates
@@ -364,6 +371,15 @@ export const UpiValidationWorkspace: React.FC = () => {
                             <span>Reject / Void</span>
                           </button>
                         )}
+
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteRecord(item.id, item.moduleType, item.name)}
+                          className="p-2 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-rose-100 text-neutral-400 hover:text-rose-600 transition-colors cursor-pointer"
+                          title="Delete Record"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>
