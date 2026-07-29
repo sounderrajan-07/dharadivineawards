@@ -9,6 +9,7 @@ import { NominationsWorkspace } from './components/workspaces/NominationsWorkspa
 import { DonationsWorkspace } from './components/workspaces/DonationsWorkspace';
 import { DelegatesWorkspace } from './components/workspaces/DelegatesWorkspace';
 import { VolunteersWorkspace } from './components/workspaces/VolunteersWorkspace';
+import { EnquiriesWorkspace } from './components/workspaces/EnquiriesWorkspace';
 import { YoutubeWorkspace } from './components/workspaces/YoutubeWorkspace';
 import { GalleryWorkspace } from './components/workspaces/GalleryWorkspace';
 import { SubdomainsWorkspace } from './components/workspaces/SubdomainsWorkspace';
@@ -28,6 +29,7 @@ const DashboardContent: React.FC = () => {
         {currentTab === 'donations' && <DonationsWorkspace />}
         {currentTab === 'delegates' && <DelegatesWorkspace />}
         {currentTab === 'volunteers' && <VolunteersWorkspace />}
+        {currentTab === 'enquiries' && <EnquiriesWorkspace />}
         {currentTab === 'youtube-highlights' && <YoutubeWorkspace />}
         {currentTab === 'gallery' && <GalleryWorkspace />}
         {currentTab === 'subdomains' && <SubdomainsWorkspace />}

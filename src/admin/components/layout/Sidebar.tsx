@@ -14,6 +14,8 @@ import {
   Ticket,
   Building2,
   ShieldCheck
+  ShieldCheck,
+  MessageSquare
 } from 'lucide-react';
 
 interface NavItem {
@@ -24,12 +26,13 @@ interface NavItem {
 }
 
 export const Sidebar: React.FC = () => {
-  const { currentTab, setCurrentTab, nominations, delegates, donations, sidebarOpen, setSidebarOpen } = useApp();
+  const { currentTab, setCurrentTab, nominations, delegates, donations, enquiries, sidebarOpen, setSidebarOpen } = useApp();
 
   const pendingNominations = nominations.filter(n => n.vetting_status === 'pending').length;
   const pendingUpiDelegates = delegates.filter(d => (d.payment_method === 'UPI_QR' || (d as any).transaction_id) && ((d as any).payment_status?.toLowerCase().includes('pending') || (d as any).verified === false)).length;
   const pendingUpiDonations = donations.filter(d => (d.payment_method === 'UPI_QR' || (d as any).transaction_id) && ((d as any).payment_status?.toLowerCase().includes('pending') || (d as any).verified === false)).length;
   const pendingUpiTotal = pendingUpiDelegates + pendingUpiDonations;
+  const newEnquiriesCount = enquiries.filter(e => e.status === 'new' || (e as any).status === 'New').length;
 
   const navItems: NavItem[] = [
     { id: 'overview', label: 'Overview', icon: <LayoutDashboard size={20} /> },
@@ -48,6 +51,12 @@ export const Sidebar: React.FC = () => {
     { id: 'donations', label: 'Donations & Sponsors', icon: <IndianRupee size={20} /> },
     { id: 'delegates', label: 'Event Registration', icon: <QrCode size={20} /> },
     { id: 'volunteers', label: 'Volunteer Seva', icon: <Users size={20} /> },
+    { 
+      id: 'enquiries', 
+      label: 'Contact & Enquiries', 
+      icon: <MessageSquare size={20} />,
+      badge: newEnquiriesCount > 0 ? newEnquiriesCount : undefined 
+    },
     { 
       id: 'youtube-highlights', 
       label: 'YouTube Video', 

@@ -10,7 +10,7 @@ Write-Host "`n[1/3] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/3] Creating fresh commit..." -ForegroundColor Yellow
-git commit -m "Add Trash Delete button across Donations, Event Delegates, and Volunteers workspaces in Admin Panel"
+git commit -m "Re-enable Contact & Enquiries workspace with full submission ledger, filters, view modal, and delete button"
 
 # 2. Pushing to target repos
 Write-Host "`n[3/3] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow

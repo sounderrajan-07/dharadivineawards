@@ -39,6 +39,7 @@ interface AppContextType {
   updateVolunteerStatus: (id: string, status: VolunteerStatus) => Promise<void>;
   deleteVolunteer: (id: string) => Promise<void>;
   updateEnquiryStatus: (id: string, status: EnquiryStatus) => Promise<void>;
+  deleteEnquiry: (id: string) => Promise<void>;
   updateUpiVerificationStatus: (id: string, targetModule: 'delegates' | 'donations', status: 'Approved' | 'Rejected' | 'Pending') => Promise<void>;
   deleteUpiRecord: (id: string, targetModule: 'delegates' | 'donations') => Promise<void>;
   logActivity: (type: ActivityLog['type'], message: string) => Promise<void>;
@@ -383,6 +384,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const deleteEnquiry = async (id: string) => {
+    try {
+      const res = await fetch('/api/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'deleteEnquiry',
+          payload: { id, user: currentUser.name }
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEnquiries(data.db.enquiries || []);
+        setActivityLogs(data.db.activityLogs || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Gallery actions
   const addGalleryImage = async (imgData: { src: string; category: string; caption: string }) => {
     try {
@@ -623,6 +644,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       updateVolunteerStatus,
       deleteVolunteer,
       updateEnquiryStatus,
+      deleteEnquiry,
       updateUpiVerificationStatus,
       deleteUpiRecord,
       logActivity,

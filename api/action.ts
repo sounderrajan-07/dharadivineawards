@@ -132,6 +132,21 @@ export default async function handler(req: any, res: any) {
         break;
       }
 
+      case 'deleteEnquiry': {
+        const { id, user } = payload;
+        const index = db.enquiries.findIndex((e: any) => e.id === id);
+        if (index !== -1) {
+          const enq = db.enquiries[index];
+          db.enquiries.splice(index, 1);
+          logActivity('system', `Deleted enquiry from "${enq.sender_name}"`, user || 'Admin');
+          message = `Deleted enquiry from ${enq.sender_name}`;
+        } else {
+          success = false;
+          message = 'Enquiry not found';
+        }
+        break;
+      }
+
       case 'logActivity': {
         const { type, message: logMsg, user } = payload;
         logActivity(type, logMsg, user || 'System');
