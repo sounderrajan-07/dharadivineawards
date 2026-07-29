@@ -267,3 +267,22 @@ export function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality =
   });
 }
 
+/**
+ * Uploads base64 image data to backend or returns base64 string.
+ */
+export async function uploadImage(base64Data, fileName = 'payment_proof.png') {
+  try {
+    const res = await fetch(`${API_BASE}/api/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ base64: base64Data, name: fileName })
+    });
+    if (!res.ok) throw new Error(`Upload failed with status ${res.status}`);
+    const data = await res.json();
+    return data.url || base64Data;
+  } catch (err) {
+    console.warn('Image upload fallback to base64:', err);
+    return base64Data;
+  }
+}
+
