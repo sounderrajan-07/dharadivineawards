@@ -35,7 +35,12 @@ export interface Donation {
   is_anonymous: boolean;
   sponsorship_tier?: SponsorshipTier;
   receipt_sent: boolean;
-  payment_status: PaymentStatus;
+  payment_status: string;
+  payment_method?: string;
+  payment_id?: string;
+  transaction_id?: string;
+  proof_image?: string;
+  verified?: boolean;
   created_at: string;
 }
 
@@ -52,6 +57,14 @@ export interface Delegate {
   checked_in: boolean;
   checkin_time: string | null;
   seat_zone?: string;
+  payment_method?: string;
+  payment_id?: string;
+  transaction_id?: string;
+  payment_status?: string;
+  proof_image?: string;
+  verified?: boolean;
+  timestamp?: string;
+  created_at?: string;
 }
 
 export type VolunteerSkill = 'Event Management' | 'Community Outreach' | 'Media & Photography' | 'Technical Support' | 'Hospitality Team' | 'Creative Team';

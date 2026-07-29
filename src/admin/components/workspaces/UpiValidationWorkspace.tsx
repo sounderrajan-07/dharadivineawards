@@ -35,13 +35,13 @@ export const UpiValidationWorkspace: React.FC = () => {
       name: d.delegate_name,
       email: d.email,
       phone: d.phone,
-      tierOrDomain: `${d.pass_tier.toUpperCase()} Pass (${d.pass_code})`,
+      tierOrDomain: `${(d.pass_tier || 'delegate').toUpperCase()} Pass (${d.pass_code || ''})`,
       amount: (d as any).amount || (d.pass_tier === 'patron' ? 5000 : d.pass_tier === 'premium delegate' ? 3000 : 1500),
-      utr: (d as any).transaction_id || (d as any).payment_id || 'N/A',
-      proofImage: (d as any).proof_image || '',
-      status: (d as any).verified ? 'Approved' : ((d as any).payment_status?.toLowerCase().includes('reject') || (d as any).payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
-      rawStatus: (d as any).payment_status || 'Pending Verification',
-      date: (d as any).timestamp || (d as any).created_at || 'Recent'
+      utr: d.transaction_id || d.payment_id || 'N/A',
+      proofImage: d.proof_image || '',
+      status: d.verified ? 'Approved' : (d.payment_status?.toLowerCase().includes('reject') || d.payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
+      rawStatus: d.payment_status || 'Pending Verification',
+      date: d.timestamp || d.created_at || 'Recent'
     }));
 
   const donationUpiItems = donations
@@ -55,10 +55,10 @@ export const UpiValidationWorkspace: React.FC = () => {
       phone: d.phone,
       tierOrDomain: d.seva_domain || 'General Fund',
       amount: d.amount,
-      utr: (d as any).transaction_id || (d as any).payment_id || 'N/A',
-      proofImage: (d as any).proof_image || '',
-      status: (d as any).verified ? 'Approved' : ((d as any).payment_status?.toLowerCase().includes('reject') || (d as any).payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
-      rawStatus: (d as any).payment_status || 'Pending Verification',
+      utr: d.transaction_id || d.payment_id || 'N/A',
+      proofImage: d.proof_image || '',
+      status: d.verified ? 'Approved' : (d.payment_status?.toLowerCase().includes('reject') || d.payment_status?.toLowerCase().includes('void')) ? 'Rejected' : 'Pending',
+      rawStatus: d.payment_status || 'Pending Verification',
       date: d.created_at || 'Recent'
     }));
 
