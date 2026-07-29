@@ -4,6 +4,7 @@ import { AppProvider, useApp } from './context/AppContext';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
 import { OverviewWorkspace } from './components/workspaces/OverviewWorkspace';
+import { UpiValidationWorkspace } from './components/workspaces/UpiValidationWorkspace';
 import { NominationsWorkspace } from './components/workspaces/NominationsWorkspace';
 import { DonationsWorkspace } from './components/workspaces/DonationsWorkspace';
 import { DelegatesWorkspace } from './components/workspaces/DelegatesWorkspace';
@@ -22,6 +23,7 @@ const DashboardContent: React.FC = () => {
       <Header />
       <div className="flex-1 p-4 sm:p-8 overflow-y-auto custom-scrollbar">
         {currentTab === 'overview' && <OverviewWorkspace />}
+        {currentTab === 'upi-validation' && <UpiValidationWorkspace />}
         {currentTab === 'nominations' && <NominationsWorkspace />}
         {currentTab === 'donations' && <DonationsWorkspace />}
         {currentTab === 'delegates' && <DelegatesWorkspace />}

@@ -10,7 +10,7 @@ Write-Host "`n[1/3] Staging files..." -ForegroundColor Yellow
 git add .
 
 Write-Host "[2/3] Creating fresh commit..." -ForegroundColor Yellow
-git commit -m "Deploy Dual Payment Gateway with Razorpay and UPI QR Code"
+git commit -m "Add dedicated Admin UPI Payment Validation workspace with screenshot preview modal and action handlers"
 
 # 2. Pushing to target repos
 Write-Host "`n[3/3] Pushing to https://github.com/sounderrajan-07/dharadivineawards.git..." -ForegroundColor Yellow

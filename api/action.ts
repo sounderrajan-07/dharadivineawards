@@ -139,6 +139,34 @@ export default async function handler(req: any, res: any) {
         break;
       }
 
+      case 'updateUpiVerificationStatus': {
+        const { id, targetModule, status, user } = payload;
+        if (targetModule === 'delegates') {
+          const del = db.delegates.find((d: any) => d.id === id);
+          if (del) {
+            del.payment_status = status === 'Approved' ? 'Confirmed' : status === 'Rejected' ? 'Rejected / Voided' : 'Pending Verification';
+            del.verified = status === 'Approved';
+            logActivity('checkin', `UPI Payment for delegate "${del.delegate_name}" (Pass: ${del.pass_code}, UTR: ${del.payment_id || del.transaction_id}) marked as ${status.toUpperCase()}`, user || 'Finance Desk');
+            message = `Delegate payment for ${del.delegate_name} marked as ${status}`;
+          } else {
+            success = false;
+            message = 'Delegate record not found';
+          }
+        } else {
+          const don = db.donations.find((d: any) => d.id === id);
+          if (don) {
+            don.payment_status = status === 'Approved' ? 'Approved' : status === 'Rejected' ? 'Rejected / Voided' : 'Pending Verification';
+            don.verified = status === 'Approved';
+            logActivity('donation', `UPI Donation of ₹${don.amount} from "${don.name}" (UTR: ${don.payment_id || don.transaction_id}) marked as ${status.toUpperCase()}`, user || 'Finance Desk');
+            message = `Donation payment from ${don.name} marked as ${status}`;
+          } else {
+            success = false;
+            message = 'Donation record not found';
+          }
+        }
+        break;
+      }
+
       case 'deleteActivityLog': {
         const { id } = payload;
         const logIndex = db.activityLogs.findIndex((l: any) => l.id === id);

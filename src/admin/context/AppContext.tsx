@@ -7,7 +7,7 @@ import {
   mockStaff
 } from '../data/mockData';
 
-export type TabType = 'overview' | 'nominations' | 'donations' | 'delegates' | 'volunteers' | 'youtube-highlights' | 'gallery' | 'events' | 'event-config' | 'subdomains' | 'settings';
+export type TabType = 'overview' | 'upi-validation' | 'nominations' | 'donations' | 'delegates' | 'volunteers' | 'youtube-highlights' | 'gallery' | 'events' | 'event-config' | 'subdomains' | 'settings';
 
 interface AppContextType {
   currentTab: TabType;
@@ -38,6 +38,7 @@ interface AppContextType {
   sendDonationReceipt: (id: string) => Promise<void>;
   updateVolunteerStatus: (id: string, status: VolunteerStatus) => Promise<void>;
   updateEnquiryStatus: (id: string, status: EnquiryStatus) => Promise<void>;
+  updateUpiVerificationStatus: (id: string, targetModule: 'delegates' | 'donations', status: 'Approved' | 'Rejected' | 'Pending') => Promise<void>;
   logActivity: (type: ActivityLog['type'], message: string) => Promise<void>;
   deleteActivityLog: (id: string) => Promise<void>;
   
@@ -312,6 +313,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const updateUpiVerificationStatus = async (id: string, targetModule: 'delegates' | 'donations', status: 'Approved' | 'Rejected' | 'Pending') => {
+    try {
+      const res = await fetch('/api/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updateUpiVerificationStatus',
+          payload: { id, targetModule, status, user: currentUser.name }
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        if (targetModule === 'delegates') {
+          setDelegates(data.db.delegates || []);
+        } else {
+          setDonations(data.db.donations || []);
+        }
+        setActivityLogs(data.db.activityLogs || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Gallery actions
   const addGalleryImage = async (imgData: { src: string; category: string; caption: string }) => {
     try {
@@ -551,6 +576,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       sendDonationReceipt,
       updateVolunteerStatus,
       updateEnquiryStatus,
+      updateUpiVerificationStatus,
       logActivity,
       deleteActivityLog,
       addGalleryImage,

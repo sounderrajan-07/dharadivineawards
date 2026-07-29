@@ -12,7 +12,8 @@ import {
   X,
   Settings,
   Ticket,
-  Building2
+  Building2,
+  ShieldCheck
 } from 'lucide-react';
 
 interface NavItem {
@@ -23,12 +24,21 @@ interface NavItem {
 }
 
 export const Sidebar: React.FC = () => {
-  const { currentTab, setCurrentTab, nominations, sidebarOpen, setSidebarOpen } = useApp();
+  const { currentTab, setCurrentTab, nominations, delegates, donations, sidebarOpen, setSidebarOpen } = useApp();
 
   const pendingNominations = nominations.filter(n => n.vetting_status === 'pending').length;
+  const pendingUpiDelegates = delegates.filter(d => (d.payment_method === 'UPI_QR' || (d as any).transaction_id) && ((d as any).payment_status?.toLowerCase().includes('pending') || (d as any).verified === false)).length;
+  const pendingUpiDonations = donations.filter(d => (d.payment_method === 'UPI_QR' || (d as any).transaction_id) && ((d as any).payment_status?.toLowerCase().includes('pending') || (d as any).verified === false)).length;
+  const pendingUpiTotal = pendingUpiDelegates + pendingUpiDonations;
 
   const navItems: NavItem[] = [
     { id: 'overview', label: 'Overview', icon: <LayoutDashboard size={20} /> },
+    { 
+      id: 'upi-validation', 
+      label: 'UPI Payment Validation', 
+      icon: <ShieldCheck size={20} />,
+      badge: pendingUpiTotal > 0 ? pendingUpiTotal : undefined 
+    },
     { 
       id: 'nominations', 
       label: 'Award Nominations', 
