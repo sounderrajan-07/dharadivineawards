@@ -136,11 +136,15 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
       }
     }
 
-    // Strict UPI UTR validation
+    // Strict UPI UTR validation & Mandatory Screenshot Proof
     if (paymentMethod === 'qr') {
       const utrValidation = validateUpiUtr(transactionId);
       if (!utrValidation.valid) {
         alert(utrValidation.error);
+        return;
+      }
+      if (!paymentProof) {
+        alert('Please upload a payment screenshot image of your UPI transaction before submitting.');
         return;
       }
     }
@@ -610,7 +614,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
 
                       <div>
                         <label className="block text-xs font-bold text-forest-teal-dark mb-1 font-sans flex items-center justify-between">
-                          <span>Upload Payment Screenshot (Optional for Instant Verification)</span>
+                          <span>Upload Payment Screenshot Image <span className="text-red-600 font-bold">* (Mandatory)</span></span>
                           <span className="text-[10px] text-neutral-400 font-normal">PNG, JPG, WEBP (Max 5MB)</span>
                         </label>
                         <div className="flex items-center gap-3">
