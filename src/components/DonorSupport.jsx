@@ -489,44 +489,27 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                   <button
                     type="button"
                     onClick={() => setPaymentMethod('razorpay')}
-                    className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                    className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex items-center justify-between ${
                       paymentMethod === 'razorpay'
-                        ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
-                        : 'border-neutral-200 bg-white hover:border-neutral-300'
+                        ? 'border-forest-teal bg-soft-sage/40'
+                        : 'border-neutral-200 hover:border-amber-300 bg-white'
                     }`}
                   >
-                    <input
-                      type="radio"
-                      name="donor_pmethod"
-                      checked={paymentMethod === 'razorpay'}
-                      onChange={() => setPaymentMethod('razorpay')}
-                      className="mt-1 text-forest-teal focus:ring-forest-teal"
-                    />
-                    <div>
-                      <div className="font-bold text-xs text-forest-teal-dark flex items-center font-sans">
-                        <CreditCard className="w-3.5 h-3.5 mr-1.5 text-forest-teal" />
-                        Razorpay Gateway
+                    <div className="flex items-center space-x-3">
+                      <CreditCard className="w-5 h-5 text-forest-teal shrink-0" />
+                      <div>
+                        <span className="font-bold text-xs text-forest-teal-dark block">Razorpay Online Checkout</span>
+                        <span className="text-[10px] text-neutral-500 block">Cards, Netbanking, UPI, Wallets</span>
                       </div>
-                      <p className="text-[11px] text-neutral-500 mt-0.5 font-sans">Cards, Netbanking, UPI, Wallets</p>
                     </div>
+                    {paymentMethod === 'razorpay' && <Check className="w-4 h-4 text-forest-teal" />}
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setPaymentMethod('qr')}
-                    className={`p-4 rounded-xl border-2 transition-all text-left flex items-start space-x-3 cursor-pointer ${
+                    className={`p-3.5 rounded-2xl border-2 text-left transition-all cursor-pointer flex items-center justify-between ${
                       paymentMethod === 'qr'
-                        ? 'border-sun-gold bg-[#FDFBF7] shadow-sm'
-                        : 'border-neutral-200 bg-white hover:border-neutral-300'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="donor_pmethod"
-                      checked={paymentMethod === 'qr'}
-                      onChange={() => setPaymentMethod('qr')}
-                      className="mt-1 text-forest-teal focus:ring-forest-teal"
-                    />
                         ? 'border-forest-teal bg-soft-sage/40'
                         : 'border-neutral-200 hover:border-amber-300 bg-white'
                     }`}
@@ -541,6 +524,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                     {paymentMethod === 'qr' && <Check className="w-4 h-4 text-forest-teal" />}
                   </button>
                 </div>
+
 
                 {/* QR Code / Direct Bank Details Container */}
                 {paymentMethod === 'qr' && (
