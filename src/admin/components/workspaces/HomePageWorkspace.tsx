@@ -1,55 +1,28 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Image as ImageIcon, Search, Plus, Trash2, X, Filter, Upload, CheckCircle2, Link as LinkIcon, Loader2, Cloud } from 'lucide-react';
-// defaultGalleryImages import removed
+import { Sparkles, Plus, Trash2, X, Upload, CheckCircle2, Link as LinkIcon, Loader2, Cloud, ArrowUpDown, Eye } from 'lucide-react';
 
-export const GalleryWorkspace: React.FC = () => {
+export const HomePageWorkspace: React.FC = () => {
   const { gallery, addGalleryImage, updateGalleryImage, deleteGalleryImage, globalSearchQuery } = useApp();
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [uploading, setUploading] = useState<boolean>(false);
 
   // Form states
-  const [category, setCategory] = useState<string>('1. Spiritual Pillars');
   const [caption, setCaption] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [priority, setPriority] = useState<number>(100);
-  const [featured, setFeatured] = useState<boolean>(true);
+  const [priority, setPriority] = useState<number>(10);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploadProvider, setUploadProvider] = useState<string>('');
   const [showUrlInput, setShowUrlInput] = useState<boolean>(false);
 
-  const standardCategories = [
-    'Highlights', 
-    '1. Spiritual Pillars', 
-    '2. Institutions and Organisations', 
-    '3. Individuals and Professionals', 
-    '4. Grass Route Eminents'
-  ];
-  const cleanCategory = (cat: string) => {
-    if (!cat) return 'Highlights';
-    if (cat === 'Guest Dignitaries') return 'Highlights';
-    if (cat === 'Spiritual Pillars' || cat === '1. Spiritual Piller') return '1. Spiritual Pillars';
-    if (cat === '2. Institution/Organizations' || cat === '2. Institutions and Organisation') return '2. Institutions and Organisations';
-    if (cat === '3. Individuals/Professionals') return '3. Individuals and Professionals';
-    return cat;
-  };
+  // Filter only home page images (where featured is true)
+  const homeImages = gallery
+    .filter(img => img.featured)
+    .sort((a, b) => (a.priority || 0) - (b.priority || 0));
 
-  const combinedGallery = gallery;
-
-  const uniqueCategories = standardCategories;
-  
-  const categories = ['All', ...uniqueCategories];
-  const modalCategories = uniqueCategories;
-
-  const filteredGallery = combinedGallery.filter(img => {
-    const imgCat = cleanCategory(img.category);
-    const matchesCategory = selectedCategory === 'All' || imgCat === selectedCategory;
+  const filteredHomeImages = homeImages.filter(img => {
     const searchStr = (globalSearchQuery || '').toLowerCase();
-    const matchesSearch = !searchStr || 
-      (img.caption || '').toLowerCase().includes(searchStr) ||
-      (imgCat || '').toLowerCase().includes(searchStr);
-    return matchesCategory && matchesSearch;
+    return !searchStr || (img.caption || '').toLowerCase().includes(searchStr);
   });
 
   const getImageUrl = (src: string) => {
@@ -104,9 +77,7 @@ export const GalleryWorkspace: React.FC = () => {
   const resetForm = () => {
     setCaption('');
     setImageUrl('');
-    setCategory('1. Spiritual Pillars');
-    setPriority(100);
-    setFeatured(false);
+    setPriority(10);
     setEditingId(null);
     setUploadProvider('');
     setShowUrlInput(false);
@@ -118,26 +89,20 @@ export const GalleryWorkspace: React.FC = () => {
       alert('Please upload an image or provide an image URL.');
       return;
     }
-    if (!caption) {
-      alert('Please enter a caption.');
-      return;
-    }
 
     const payload = {
       src: imageUrl,
-      category,
-      caption,
+      category: 'Home Page Highlight',
+      caption: caption || 'Home Page Feature',
       priority,
-      featured
+      featured: true
     };
 
     const currentEditingId = editingId;
 
-    // Close modal card immediately for instant response
     setShowAddModal(false);
     resetForm();
 
-    // Perform update/add in background
     if (currentEditingId) {
       updateGalleryImage(currentEditingId, payload);
     } else {
@@ -145,34 +110,31 @@ export const GalleryWorkspace: React.FC = () => {
     }
   };
 
-
   const handleEditClick = (img: any) => {
     setEditingId(img.id);
     setImageUrl(img.src);
-    setCategory(cleanCategory(img.category));
-    setCaption(img.caption);
-    setPriority(img.priority || 0);
-    setFeatured(img.featured !== undefined ? img.featured : true);
+    setCaption(img.caption || '');
+    setPriority(img.priority || 10);
     setUploadProvider(img.src?.includes('cloudinary') ? 'cloudinary' : '');
     setShowAddModal(true);
   };
 
   const handleDelete = async (id: string, captionStr: string) => {
-    if (window.confirm(`Are you sure you want to delete the image: "${captionStr}"?`)) {
+    if (window.confirm(`Are you sure you want to remove this image from the Home Page: "${captionStr}"?`)) {
       await deleteGalleryImage(id);
     }
   };
 
   return (
-    <div className="space-y-6 pb-12 animate-fade-in">
+    <div className="space-y-6 pb-12 animate-fade-in text-[#1B1C19] dark:text-[#F3F4F6]">
       {/* Header Panel */}
       <div className="p-6 rounded-3xl bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="font-serif text-2xl font-bold text-[#1B1C19] dark:text-[#F3F4F6] flex items-center gap-2">
-            <ImageIcon className="text-[#D9762E]" /> Photo Gallery Management
+            <Sparkles className="text-[#D9762E]" /> Home Page Showcase Images
           </h2>
           <p className="text-xs text-[#867463] dark:text-[#9CA3AF] mt-1">
-            Publish and manage high-quality photos for the promotional site gallery with Cloudinary support.
+            Manage, reorder, and upload images displayed exclusively on the Home Page banner & gallery section with Cloudinary integration.
           </p>
         </div>
         <button
@@ -180,40 +142,30 @@ export const GalleryWorkspace: React.FC = () => {
             resetForm();
             setShowAddModal(true);
           }}
-          className="bg-[#401C0C] hover:bg-[#5C2913] dark:bg-[#5C2913] dark:hover:bg-[#5C2913] text-white rounded-xl text-xs font-semibold px-4 py-2.5 flex items-center gap-1.5 cursor-pointer transition-all self-start sm:self-center shadow-sm"
+          className="bg-[#401C0C] hover:bg-[#5C2913] dark:bg-[#5C2913] text-white rounded-xl text-xs font-semibold px-5 py-2.5 flex items-center gap-2 cursor-pointer transition-all self-start sm:self-center shadow-sm"
         >
-          <Plus size={16} /> Add Gallery Image
+          <Plus size={16} /> Add Home Page Image
         </button>
       </div>
 
-      {/* Filter Bar */}
-      <div className="p-4 rounded-2xl bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] shadow-sm flex items-center gap-2 flex-wrap">
-        <span className="text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mr-2 flex items-center gap-1">
-          <Filter size={14} /> Filter Category:
+      {/* Info Stats Banner */}
+      <div className="p-4 rounded-2xl bg-[#FAF8F5] dark:bg-[#242622] border border-[#EAE8E3] dark:border-[#30312E] flex items-center justify-between text-xs text-[#867463] dark:text-[#9CA3AF]">
+        <span className="flex items-center gap-1.5 font-semibold text-[#401C0C] dark:text-[#FFD27F]">
+          <Eye size={15} /> Total Active Home Page Images: <b className="font-mono text-sm">{filteredHomeImages.length}</b>
         </span>
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
-              selectedCategory === cat
-                ? 'bg-[#401C0C] dark:bg-[#FFD27F] text-white dark:text-[#401C0C] font-bold shadow-sm'
-                : 'bg-[#F5F3EE] dark:bg-[#242622] text-[#534436] dark:text-[#D1D5DB] hover:bg-[#EAE8E3]'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
+        <span className="text-[11px] hidden sm:inline">
+          Lower priority numbers display first on the Home Page carousel
+        </span>
       </div>
 
       {/* Images Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredGallery.length === 0 ? (
+        {filteredHomeImages.length === 0 ? (
           <div className="col-span-full py-16 text-center bg-white dark:bg-[#1B1C19] rounded-3xl border border-dashed border-[#E4E2DD] dark:border-[#30312E] text-xs text-[#867463] italic">
-            No gallery images found matching the criteria.
+            No images configured for the Home Page. Click "Add Home Page Image" to upload one with Cloudinary.
           </div>
         ) : (
-          filteredGallery.map(img => (
+          filteredHomeImages.map(img => (
             <div
               key={img.id}
               className="bg-white dark:bg-[#1B1C19] rounded-3xl border border-[#EAE8E3] dark:border-[#30312E] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group relative"
@@ -223,17 +175,17 @@ export const GalleryWorkspace: React.FC = () => {
                 <img
                   src={getImageUrl(img.src)}
                   alt={img.caption}
-                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80';
                   }}
                 />
-                
-                <span className="absolute top-3 left-3 bg-[#401C0C] text-[#FFD27F] text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
-                  {cleanCategory(img.category)}
+
+                <span className="absolute top-3 left-3 bg-[#401C0C] text-[#FFD27F] text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                  <ArrowUpDown size={10} /> Priority: {img.priority || 0}
                 </span>
 
-                {img.src?.includes('cloudinary') && (
+                {(img.src?.includes('cloudinary') || img.src?.startsWith('http')) && (
                   <span className="absolute top-3 right-3 bg-sky-600/90 backdrop-blur-sm text-white text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
                     <Cloud size={10} /> Cloudinary
                   </span>
@@ -249,19 +201,17 @@ export const GalleryWorkspace: React.FC = () => {
                 </button>
               </div>
 
-              {/* Caption */}
-              <div className="p-4 flex-1 flex flex-col justify-between">
-                <p className="text-xs font-semibold text-[#1B1C19] dark:text-[#F3F4F6] line-clamp-3 leading-relaxed">
-                  {img.caption}
+              {/* Caption & Controls */}
+              <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                <p className="text-xs font-semibold text-[#1B1C19] dark:text-[#F3F4F6] line-clamp-2 leading-relaxed">
+                  {img.caption || 'Home Page Showcase'}
                 </p>
-                <div className="pt-2 flex justify-between items-center text-[10px] text-[#867463] font-mono">
-                  <span>Priority: {img.priority || 0}</span>
-                </div>
+
                 <button
                   onClick={() => handleEditClick(img)}
-                  className="mt-2 w-full py-1.5 text-xs text-center border border-[#EAE8E3] dark:border-[#30312E] rounded-lg hover:bg-neutral-50 dark:hover:bg-[#242622] transition-colors font-medium text-[#401C0C] dark:text-[#FFD27F]"
+                  className="w-full py-2 text-xs text-center border border-[#EAE8E3] dark:border-[#30312E] rounded-xl hover:bg-neutral-50 dark:hover:bg-[#242622] transition-colors font-medium text-[#401C0C] dark:text-[#FFD27F]"
                 >
-                  Edit Image
+                  Edit Details / Change Image
                 </button>
               </div>
             </div>
@@ -269,7 +219,7 @@ export const GalleryWorkspace: React.FC = () => {
         )}
       </div>
 
-      {/* Add / Edit Gallery Image Modal */}
+      {/* Add / Edit Home Page Image Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] rounded-3xl p-6 w-full max-w-md shadow-2xl relative animate-fade-in max-h-[90vh] overflow-y-auto">
@@ -281,43 +231,27 @@ export const GalleryWorkspace: React.FC = () => {
             </button>
 
             <h3 className="font-serif text-xl font-bold text-[#1B1C19] dark:text-[#F3F4F6] mb-6 flex items-center gap-2">
-              <ImageIcon className="text-[#D9762E]" size={20} /> {editingId ? 'Edit Gallery Image' : 'Add Image to Gallery'}
+              <Sparkles className="text-[#D9762E]" size={20} /> {editingId ? 'Edit Home Page Image' : 'Add Home Page Image'}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
-                  Category *
+                  Caption / Title
                 </label>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-sm focus:outline-none focus:border-[#401C0C] dark:focus:border-[#FFD27F] transition-all cursor-pointer"
-                >
-                  {modalCategories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
-                  Caption *
-                </label>
-                <textarea
-                  required
-                  rows={3}
+                <input
+                  type="text"
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
-                  placeholder="Shri S. Vinoth Ragavendran M.E. - Founder & President"
-                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#401C0C] dark:focus:border-[#FFD27F] transition-all resize-none"
+                  placeholder="Grand Assembly of Chief Guests & Dignitaries"
+                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#401C0C] dark:focus:border-[#FFD27F] transition-all"
                 />
               </div>
 
               {/* Upload Image Section (Cloudinary) */}
               <div>
                 <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
-                  Upload Image *
+                  Choose Image File (Stored on Cloudinary) *
                 </label>
 
                 {imageUrl ? (
@@ -326,7 +260,7 @@ export const GalleryWorkspace: React.FC = () => {
                     <img 
                       src={getImageUrl(imageUrl)} 
                       alt="Uploaded preview" 
-                      className="w-16 h-16 rounded-xl object-cover border border-[#EAE8E3] dark:border-[#30312E] shrink-0"
+                      className="w-20 h-16 rounded-xl object-cover border border-[#EAE8E3] dark:border-[#30312E] shrink-0"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80';
                       }}
@@ -382,10 +316,10 @@ export const GalleryWorkspace: React.FC = () => {
                           <Upload size={20} />
                         </div>
                         <span className="text-xs font-bold text-[#1B1C19] dark:text-[#F3F4F6]">
-                          Upload Image to Cloudinary
+                          Choose Image File
                         </span>
                         <span className="text-[11px] text-[#867463] dark:text-[#9CA3AF] mt-0.5">
-                          Drag & drop or click to select image file
+                          Stores automatically in Cloudinary
                         </span>
                       </div>
                     )}
@@ -419,21 +353,17 @@ export const GalleryWorkspace: React.FC = () => {
                 )}
               </div>
 
-              <div className="flex gap-4">
-                <div className="flex-1">
-                  <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
-                    Priority (Lower is first)
-                  </label>
-                  <input
-                    type="number"
-                    value={priority}
-                    onChange={(e) => setPriority(parseInt(e.target.value) || 0)}
-                    className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#401C0C] transition-all"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
+                  Display Priority (Lower is first)
+                </label>
+                <input
+                  type="number"
+                  value={priority}
+                  onChange={(e) => setPriority(parseInt(e.target.value) || 0)}
+                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#401C0C] transition-all font-mono"
+                />
               </div>
-
-
 
               <div className="pt-4 flex items-center justify-end gap-3 border-t border-[#F5F3EE] dark:border-[#2E302A]">
                 <button
@@ -453,7 +383,7 @@ export const GalleryWorkspace: React.FC = () => {
                       <Loader2 className="animate-spin" size={14} /> Uploading...
                     </>
                   ) : (
-                    'Save Image'
+                    'Save Home Image'
                   )}
                 </button>
               </div>
@@ -464,4 +394,3 @@ export const GalleryWorkspace: React.FC = () => {
     </div>
   );
 };
-

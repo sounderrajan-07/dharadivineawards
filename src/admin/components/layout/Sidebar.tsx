@@ -14,7 +14,8 @@ import {
   Ticket,
   Building2,
   ShieldCheck,
-  MessageSquare
+  MessageSquare,
+  Sparkles
 } from 'lucide-react';
 
 interface NavItem {
@@ -35,6 +36,7 @@ export const Sidebar: React.FC = () => {
 
   const navItems: NavItem[] = [
     { id: 'overview', label: 'Overview', icon: <LayoutDashboard size={20} /> },
+    { id: 'home-page-images', label: 'Home Page Images', icon: <Sparkles size={20} /> },
     { 
       id: 'upi-validation', 
       label: 'UPI Payment Validation', 

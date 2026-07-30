@@ -4,7 +4,7 @@ import {
   Settings, Save, Video, BarChart2, ShieldCheck, Plus, Trash2, 
   Image as ImageIcon, Users, ArrowUpDown, Home, Info, Building2, 
   CheckCircle2, Newspaper, Edit3, ExternalLink, X, Upload, Calendar, Trophy, HelpCircle, Award, Briefcase,
-  Mail, Phone, Share2
+  Mail, Phone, Share2, Loader2, Cloud
 } from 'lucide-react';
 
 const compressImage = (base64Str: string, maxWidth = 300, maxHeight = 300): Promise<string> => {
@@ -58,6 +58,7 @@ export const SettingsWorkspace: React.FC = () => {
   const [heroVideoPoster, setHeroVideoPoster] = useState('');
   const [heroImageUrl, setHeroImageUrl] = useState('');
   const [heroMediaOrder, setHeroMediaOrder] = useState<'video-first' | 'image-first'>('video-first');
+  const [uploadingHeroVideo, setUploadingHeroVideo] = useState(false);
 
   const [flagshipTitle, setFlagshipTitle] = useState('Dhara Divine Awards 2025');
   const [flagshipDesc, setFlagshipDesc] = useState('A prestigious convergence of spiritual leaders, selfless changemakers, and corporate CSR visionaries. Join us in cultivating harmony, empowering community growth, and acknowledging the quiet souls who serve humanity.');
@@ -922,17 +923,93 @@ export const SettingsWorkspace: React.FC = () => {
               </select>
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5">
-                Hero Video URL (MP4 / WebM / Link)
+            <div className="space-y-3">
+              <label className="block text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mb-1.5 flex items-center gap-1.5">
+                <Video size={14} className="text-[#D9762E]" /> Hero Video File / URL (MP4 / WebM / Cloudinary)
               </label>
-              <input
-                type="text"
-                value={heroVideoUrl}
-                onChange={(e) => setHeroVideoUrl(e.target.value)}
-                placeholder="e.g. /video/hero section video.mp4"
-                className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-sm focus:outline-none focus:border-[#401C0C]"
-              />
+
+              {/* Video Player Preview if URL is present */}
+              {heroVideoUrl ? (
+                <div className="relative rounded-2xl overflow-hidden border border-[#EAE8E3] dark:border-[#30312E] bg-black/90 max-w-md">
+                  <video 
+                    src={heroVideoUrl} 
+                    controls 
+                    className="w-full aspect-video object-cover" 
+                  />
+                  <div className="p-2 bg-[#FAF8F5] dark:bg-[#242622] flex items-center justify-between text-[11px] font-mono text-[#867463]">
+                    <span className="truncate max-w-[250px]">{heroVideoUrl}</span>
+                    {heroVideoUrl.includes('cloudinary') && (
+                      <span className="px-2 py-0.5 bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 rounded-full text-[9px] font-bold flex items-center gap-1">
+                        <Cloud size={10} /> Cloudinary
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 rounded-2xl bg-[#FAF8F5] dark:bg-[#242622] border border-dashed border-[#E4E2DD] dark:border-[#30312E] text-xs text-[#867463] text-center">
+                  No Hero Video uploaded yet. Choose a video file below to upload to Cloudinary.
+                </div>
+              )}
+
+              {/* Choose Video File Button */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <label className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#401C0C] hover:bg-[#5C2913] text-[#FFD27F] font-bold text-xs rounded-xl cursor-pointer transition-all border border-[#C9A646]/40 shadow-sm">
+                  {uploadingHeroVideo ? (
+                    <>
+                      <Loader2 className="animate-spin" size={14} /> Uploading Video to Cloudinary...
+                    </>
+                  ) : (
+                    <>
+                      <Upload size={14} /> Choose Video File
+                    </>
+                  )}
+                  <input
+                    type="file"
+                    accept="video/*,.mp4,.webm,.mov"
+                    disabled={uploadingHeroVideo}
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      setUploadingHeroVideo(true);
+                      const reader = new FileReader();
+                      reader.onload = async () => {
+                        try {
+                          const base64 = reader.result as string;
+                          const res = await fetch('/api/upload', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ base64, name: file.name })
+                          });
+                          const data = await res.json();
+                          if (data.success && data.url) {
+                            setHeroVideoUrl(data.url);
+                          } else {
+                            alert('Video upload failed: ' + (data.error || 'Unknown error'));
+                          }
+                        } catch (err) {
+                          console.error(err);
+                          alert('Failed to upload video file');
+                        } finally {
+                          setUploadingHeroVideo(false);
+                        }
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Or edit Video URL / Path directly</label>
+                <input
+                  type="text"
+                  value={heroVideoUrl}
+                  onChange={(e) => setHeroVideoUrl(e.target.value)}
+                  placeholder="e.g. /video/hero section video.mp4 or Cloudinary URL"
+                  className="w-full bg-[#F5F3EE] dark:bg-[#242622] text-[#1B1C19] dark:text-[#F3F4F6] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-3 text-xs focus:outline-none focus:border-[#401C0C] font-mono"
+                />
+              </div>
             </div>
 
             <div className="space-y-3">

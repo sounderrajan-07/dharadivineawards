@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { 
   Save, ShieldCheck, Plus, Trash2, Calendar, Building2, Trophy, Briefcase, 
-  HelpCircle, Users, ArrowUpDown, Newspaper, Star, Award, ShieldAlert, Heart, Sparkles, Upload
+  HelpCircle, Users, ArrowUpDown, Newspaper, Star, Award, ShieldAlert, Heart, Sparkles
 } from 'lucide-react';
 
 
@@ -22,13 +22,28 @@ export const SubdomainsWorkspace: React.FC = () => {
     { amount: '10008', label: '₹10,008', impact: 'Nominee Seva', desc: 'Sponsor a grassroots social worker nominee round-trip travel.' }
   ]);
 
-  const [bankDetails, setBankDetails] = useState({
+  const [bankDetails, setBankDetails] = useState<{
+    bankName: string;
+    accountName: string;
+    accountNumber: string;
+    ifsc: string;
+    branch: string;
+    upiId: string;
+    accountType?: string;
+    pan?: string;
+    deductionInfo?: string;
+    qrImage?: string;
+  }>({
     bankName: 'HDFC Bank',
     accountName: 'Dhara Foundations',
     accountNumber: '50200012345678',
     ifsc: 'HDFC0001234',
     branch: 'Chennai Main Branch',
-    upiId: 'dharafoundations@hdfcbank'
+    upiId: 'dharafoundations@hdfcbank',
+    accountType: 'SAVINGS',
+    pan: '',
+    deductionInfo: '',
+    qrImage: ''
   });
 
   const [taxExemptText, setTaxExemptText] = useState('All donations made to Dhara Foundations are eligible for 50% Tax Deduction under Section 80G of the Income Tax Act.');

@@ -27,6 +27,15 @@ if (isCloudinaryConfigured) {
   }
 }
 
+// Configure Vercel API body size limit for video uploads
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb'
+    }
+  }
+};
+
 export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -62,7 +71,7 @@ export default async function handler(req: any, res: any) {
 
       // 2. Fallback to local storage if Cloudinary wasn't used or failed
       if (!fileUrl) {
-        const base64Data = body.base64.replace(/^data:image\/\w+;base64,/, "");
+        const base64Data = body.base64.replace(/^data:[^;]+;base64,/, "");
         const buffer = Buffer.from(base64Data, 'base64');
         const filename = `${Date.now()}_${body.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
         const uploadDir = path.join(__dirname, '..', 'public', 'uploads');
@@ -79,7 +88,7 @@ export default async function handler(req: any, res: any) {
         }
       }
     } else {
-      return res.status(400).json({ error: 'Invalid payload. Expecting base64 image data.' });
+      return res.status(400).json({ error: 'Invalid payload. Expecting base64 image or video data.' });
     }
 
     return res.status(200).json({ success: true, url: fileUrl, provider });
