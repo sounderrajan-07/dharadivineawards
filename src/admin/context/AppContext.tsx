@@ -405,7 +405,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Gallery actions
-  const addGalleryImage = async (imgData: { src: string; category: string; caption: string }) => {
+  const addGalleryImage = async (imgData: { src: string; category: string; caption: string; priority?: number; featured?: boolean }) => {
+    // Optimistic update
+    const tempId = `gal-${Date.now()}`;
+    const optimisticImg = {
+      id: tempId,
+      src: imgData.src,
+      category: imgData.category || '1. Spiritual Pillars',
+      caption: imgData.caption || '',
+      priority: imgData.priority || 0,
+      featured: imgData.featured || false
+    };
+    setGallery(prev => [optimisticImg, ...prev]);
+
     try {
       const res = await fetch('/api/gallery', {
         method: 'POST',
@@ -415,9 +427,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setGallery(data.gallery || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to add gallery image:", err);
@@ -425,6 +435,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateGalleryImage = async (id: string, imgData: any) => {
+    // Optimistic update
+    setGallery(prev => prev.map(img => img.id === id ? { ...img, ...imgData } : img));
+
     try {
       const res = await fetch('/api/gallery', {
         method: 'PUT',
@@ -434,9 +447,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setGallery(data.gallery || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to update gallery image:", err);
@@ -444,6 +455,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const deleteGalleryImage = async (id: string) => {
+    // Optimistic update
+    setGallery(prev => prev.filter(img => img.id !== id));
+
     try {
       const res = await fetch('/api/gallery', {
         method: 'DELETE',
@@ -453,14 +467,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setGallery(data.gallery || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to delete gallery image:", err);
     }
   };
+
 
   // Events actions
   const addEvent = async (eventData: { type: string; category: string; title: string; image: string; description: string; youtubeId?: string; duration?: string; featured?: boolean; priority?: number }) => {

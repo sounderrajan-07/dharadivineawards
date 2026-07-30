@@ -93,7 +93,7 @@ export default async function handler(req: any, res: any) {
 
       await writeDb(db);
 
-      return res.status(200).json({ success: true, image: newImage, gallery: db.gallery });
+      return res.status(200).json({ success: true, image: newImage, gallery: db.gallery, activityLogs: db.activityLogs });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to add image to gallery' });
     }
@@ -124,7 +124,7 @@ export default async function handler(req: any, res: any) {
 
       await writeDb(db);
 
-      return res.status(200).json({ success: true, image: db.gallery[index], gallery: db.gallery });
+      return res.status(200).json({ success: true, image: db.gallery[index], gallery: db.gallery, activityLogs: db.activityLogs });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to update image in gallery' });
     }
@@ -150,7 +150,7 @@ export default async function handler(req: any, res: any) {
         });
 
         await writeDb(db);
-        return res.status(200).json({ success: true, gallery: db.gallery });
+        return res.status(200).json({ success: true, gallery: db.gallery, activityLogs: db.activityLogs });
       }
       
       return res.status(404).json({ error: 'Image not found' });
@@ -158,6 +158,7 @@ export default async function handler(req: any, res: any) {
       return res.status(500).json({ error: 'Failed to delete gallery image' });
     }
   }
+
 
   return res.status(405).json({ error: 'Method not allowed' });
 }
