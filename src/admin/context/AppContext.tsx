@@ -477,6 +477,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Events actions
   const addEvent = async (eventData: { type: string; category: string; title: string; image: string; description: string; youtubeId?: string; duration?: string; featured?: boolean; priority?: number }) => {
+    // Optimistic update
+    const tempId = `ev-${Date.now()}`;
+    const optimisticEvent = {
+      id: tempId,
+      ...eventData
+    };
+    setEvents(prev => [optimisticEvent, ...prev]);
+
     try {
       const res = await fetch('/api/events', {
         method: 'POST',
@@ -486,9 +494,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setEvents(data.events || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to add event:", err);
@@ -496,6 +502,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateEvent = async (id: string, eventData: any) => {
+    // Optimistic update
+    setEvents(prev => prev.map(ev => ev.id === id ? { ...ev, ...eventData } : ev));
+
     try {
       const res = await fetch('/api/events', {
         method: 'PUT',
@@ -505,9 +514,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setEvents(data.events || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to update event:", err);
@@ -515,6 +522,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const deleteEvent = async (id: string) => {
+    // Optimistic update
+    setEvents(prev => prev.filter(ev => ev.id !== id));
+
     try {
       const res = await fetch('/api/events', {
         method: 'DELETE',
@@ -524,9 +534,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const data = await res.json();
       if (data.success) {
         setEvents(data.events || []);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to delete event:", err);
@@ -612,6 +620,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateSiteConfig = async (configData: any) => {
+    // Optimistic update
+    setSiteConfig(configData);
+
     try {
       const res = await fetch('/api/config', {
         method: 'PUT',
@@ -620,15 +631,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       });
       const data = await res.json();
       if (data.success) {
-        setSiteConfig(data.config);
-        const dbRes = await fetch('/api/db');
-        const db = await dbRes.json();
-        setActivityLogs(db.activityLogs || []);
+        if (data.config) setSiteConfig(data.config);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
       }
     } catch (err) {
       console.error("Failed to update site config:", err);
     }
   };
+
 
   return (
     <AppContext.Provider value={{

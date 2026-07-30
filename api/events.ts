@@ -48,7 +48,7 @@ export default async function handler(req: any, res: any) {
 
       await writeDb(db);
 
-      return res.status(200).json({ success: true, event: newEvent, events: db.events });
+      return res.status(200).json({ success: true, event: newEvent, events: db.events, activityLogs: db.activityLogs });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to add event' });
     }
@@ -79,7 +79,7 @@ export default async function handler(req: any, res: any) {
 
       await writeDb(db);
 
-      return res.status(200).json({ success: true, event: db.events[index], events: db.events });
+      return res.status(200).json({ success: true, event: db.events[index], events: db.events, activityLogs: db.activityLogs });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to update event' });
     }
@@ -105,8 +105,9 @@ export default async function handler(req: any, res: any) {
         });
 
         await writeDb(db);
-        return res.status(200).json({ success: true, events: db.events });
+        return res.status(200).json({ success: true, events: db.events, activityLogs: db.activityLogs });
       }
+
       
       return res.status(404).json({ error: 'Event not found' });
     } catch (error) {
