@@ -527,26 +527,29 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                       onChange={() => setPaymentMethod('qr')}
                       className="mt-1 text-forest-teal focus:ring-forest-teal"
                     />
-                    <div>
-                      <div className="font-bold text-xs text-forest-teal-dark flex items-center font-sans">
-                        <QrCode className="w-3.5 h-3.5 mr-1.5 text-forest-teal" />
-                        UPI / QR Code Scan
+                        ? 'border-forest-teal bg-soft-sage/40'
+                        : 'border-neutral-200 hover:border-amber-300 bg-white'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <QrCode className="w-5 h-5 text-amber-700 shrink-0" />
+                      <div>
+                        <span className="font-bold text-xs text-forest-teal-dark block">UPI QR Code / Direct Transfer</span>
+                        <span className="text-[10px] text-neutral-500 block">Scan GPay / PhonePe / Paytm</span>
                       </div>
-                      <p className="text-[11px] text-neutral-500 mt-0.5 font-sans">Scan with GPay, PhonePe, Paytm</p>
                     </div>
+                    {paymentMethod === 'qr' && <Check className="w-4 h-4 text-forest-teal" />}
                   </button>
                 </div>
 
-                {/* UPI QR Display Card when 'qr' is selected */}
+                {/* QR Code / Direct Bank Details Container */}
                 {paymentMethod === 'qr' && (
                   <div className="bg-[#FFFDF9] border-2 border-sun-gold/50 rounded-2xl p-5 shadow-sm space-y-4">
-                    <div className="text-center space-y-1.5">
+                    <div className="text-center space-y-1">
                       <span className="text-[10px] font-mono uppercase tracking-wider text-sun-gold font-bold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                        Official Trust Seva QR
+                        Official Seva Payment QR Code
                       </span>
-                      <h5 className="text-base font-serif font-bold text-forest-teal-dark">
-                        Scan QR Code to Contribute ₹{parseFloat(getFinalAmount()).toLocaleString('en-IN')}
-                      </h5>
+                      <h5 className="text-base font-serif font-bold text-forest-teal-dark">Scan to Pay Seva Offering</h5>
                       <p className="text-xs text-neutral-600 font-sans">Scan using Google Pay, PhonePe, Paytm, BHIM, or any UPI App</p>
                     </div>
 
@@ -557,7 +560,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                           alt="UPI Donation QR Code" 
                           className="w-40 h-40 object-contain mx-auto rounded-lg"
                         />
-                        <span className="text-[9px] text-neutral-500 font-mono block mt-1">Dhara Foundations Seva QR</span>
+                        <span className="text-[9px] text-neutral-500 font-mono block mt-1">Dhara Foundations Official QR</span>
                       </div>
 
                       <div className="space-y-2.5 text-xs text-neutral-700 w-full sm:w-auto">
@@ -576,10 +579,31 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                           </div>
                         </div>
 
-                        <div className="bg-white p-2.5 rounded-xl border border-neutral-200 space-y-0.5">
-                          <span className="text-[9px] text-neutral-400 uppercase font-mono block">Account Name</span>
-                          <p className="font-bold text-forest-teal-dark text-xs">{bankDetails.accountName}</p>
-                          <p className="text-[10px] text-neutral-500">{bankDetails.bankName} • {bankDetails.ifsc}</p>
+                        <div className="bg-white p-2.5 rounded-xl border border-neutral-200 space-y-1 text-xs">
+                          <div>
+                            <span className="text-[9px] text-neutral-400 uppercase font-mono block">Account Name</span>
+                            <p className="font-bold text-forest-teal-dark text-xs">{bankDetails.accountName}</p>
+                          </div>
+                          <div>
+                            <span className="text-[9px] text-neutral-400 uppercase font-mono block">Bank & Branch</span>
+                            <p className="text-[10px] text-neutral-600 font-semibold">{bankDetails.bankName} • {bankDetails.branch}</p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 pt-1 border-t border-neutral-100 font-mono text-[10px]">
+                            <div>
+                              <span className="text-neutral-400 block text-[8px] uppercase">Account No ({bankDetails.accountType || 'SAVINGS'})</span>
+                              <span className="font-bold text-neutral-800">{bankDetails.accountNumber}</span>
+                            </div>
+                            <div>
+                              <span className="text-neutral-400 block text-[8px] uppercase">IFSC Code</span>
+                              <span className="font-bold text-neutral-800">{bankDetails.ifsc}</span>
+                            </div>
+                          </div>
+                          {bankDetails.pan && (
+                            <div className="pt-1 border-t border-neutral-100 text-[9.5px]">
+                              <span className="text-neutral-400">PAN: </span>
+                              <span className="font-mono font-bold text-neutral-800">{bankDetails.pan}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="flex items-center gap-1.5 text-forest-teal text-[10px]">
@@ -641,7 +665,7 @@ export default function DonorSupport({ onSubmitSuccess, siteConfig }) {
                         <div>
                           <span className="font-bold block">Manual Bank Statement Verification Notice</span>
                           <span>
-                            All UPI contributions are manually verified against bank statements by our Seva finance desk. 80G tax receipts for UPI payments are issued after manual verification.
+                            {bankDetails.deductionInfo || "All UPI contributions are manually verified against bank statements by our Seva finance desk. 80G tax receipts for UPI payments are issued after manual verification."}
                           </span>
                         </div>
                       </div>

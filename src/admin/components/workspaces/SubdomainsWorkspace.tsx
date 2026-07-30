@@ -540,10 +540,94 @@ export const SubdomainsWorkspace: React.FC = () => {
               </div>
             </div>
 
+            {/* Pre-set Seva Amounts (Dynamic Options) Settings */}
+            <div className="p-6 rounded-3xl bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] shadow-sm space-y-5">
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <h3 className="font-serif text-lg font-bold flex items-center gap-2 text-[#401C0C] dark:text-[#F3F4F6]">
+                    <Sparkles className="text-[#D9762E]" size={20} /> Pre-set Seva Contribution Amounts
+                  </h3>
+                  <p className="text-xs text-[#867463] dark:text-[#9CA3AF] mt-0.5">
+                    Customize preset donation amounts, impact titles, and descriptions shown on the Donate page.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={addDonorPreset}
+                  className="px-3.5 py-2 bg-[#401C0C] hover:bg-[#5C2913] text-[#FFD27F] font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer transition-all shadow-sm"
+                >
+                  <Plus size={15} /> Add Seva Preset
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {donorPresets.map((preset, index) => (
+                  <div key={index} className="p-4 bg-[#F9F8F6] dark:bg-[#242622] border border-[#EAE8E3] dark:border-[#30312E] rounded-2xl space-y-3 relative group">
+                    <div className="flex justify-between items-center border-b border-[#EAE8E3] dark:border-[#30312E] pb-2">
+                      <span className="text-xs font-bold font-mono text-[#D9762E]">Preset #{index + 1}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeDonorPreset(index)}
+                        className="p-1 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-lg transition-colors cursor-pointer"
+                        title="Delete Preset"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Amount (₹)</label>
+                        <input
+                          type="text"
+                          value={preset.amount}
+                          onChange={(e) => handleDonorPresetChange(index, 'amount', e.target.value)}
+                          placeholder="e.g. 1008"
+                          className="w-full bg-white dark:bg-[#1B1C19] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2 text-xs font-mono font-bold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Display Label</label>
+                        <input
+                          type="text"
+                          value={preset.label}
+                          onChange={(e) => handleDonorPresetChange(index, 'label', e.target.value)}
+                          placeholder="e.g. ₹1,008"
+                          className="w-full bg-white dark:bg-[#1B1C19] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2 text-xs font-bold text-[#401C0C] dark:text-[#FFD27F]"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Impact Tag / Badge</label>
+                      <input
+                        type="text"
+                        value={preset.impact}
+                        onChange={(e) => handleDonorPresetChange(index, 'impact', e.target.value)}
+                        placeholder="e.g. Sevak Support"
+                        className="w-full bg-white dark:bg-[#1B1C19] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2 text-xs font-semibold"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Description</label>
+                      <textarea
+                        value={preset.desc}
+                        onChange={(e) => handleDonorPresetChange(index, 'desc', e.target.value)}
+                        rows={2}
+                        placeholder="Short explanation of impact..."
+                        className="w-full bg-white dark:bg-[#1B1C19] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2 text-xs resize-none"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Offline Bank Details Settings */}
             <div className="p-6 rounded-3xl bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] shadow-sm space-y-5">
               <h3 className="font-serif text-lg font-bold flex items-center gap-2 text-[#401C0C] dark:text-[#F3F4F6]">
-                <Heart className="text-[#D9762E]" size={20} /> Bank Transfer / Offline Manual Seva Details
+                <Heart className="text-[#D9762E]" size={20} /> Bank Transfer / Offline Manual Seva & UPI QR Details
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -577,14 +661,48 @@ export const SubdomainsWorkspace: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Account Number</label>
-                    <input
-                      type="text"
-                      value={bankDetails.accountNumber}
-                      onChange={(e) => setBankDetails(prev => ({ ...prev, accountNumber: e.target.value }))}
-                      className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-mono font-bold"
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Account Number</label>
+                      <input
+                        type="text"
+                        value={bankDetails.accountNumber}
+                        onChange={(e) => setBankDetails(prev => ({ ...prev, accountNumber: e.target.value }))}
+                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-mono font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Account Type</label>
+                      <input
+                        type="text"
+                        value={bankDetails.accountType || 'SAVINGS'}
+                        onChange={(e) => setBankDetails(prev => ({ ...prev, accountType: e.target.value }))}
+                        placeholder="SAVINGS / CURRENT"
+                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-mono uppercase font-bold"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Branch Location</label>
+                      <input
+                        type="text"
+                        value={bankDetails.branch}
+                        onChange={(e) => setBankDetails(prev => ({ ...prev, branch: e.target.value }))}
+                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-medium"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">PAN Number</label>
+                      <input
+                        type="text"
+                        value={bankDetails.pan || ''}
+                        onChange={(e) => setBankDetails(prev => ({ ...prev, pan: e.target.value }))}
+                        placeholder="AAETD8857A"
+                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-mono uppercase font-bold"
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -594,33 +712,94 @@ export const SubdomainsWorkspace: React.FC = () => {
                     <textarea
                       value={taxExemptText}
                       onChange={(e) => setTaxExemptText(e.target.value)}
-                      rows={3}
+                      rows={2}
                       className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs focus:outline-none"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">Branch</label>
-                      <input
-                        type="text"
-                        value={bankDetails.branch}
-                        onChange={(e) => setBankDetails(prev => ({ ...prev, branch: e.target.value }))}
-                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-medium"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">UPI ID</label>
-                      <input
-                        type="text"
-                        value={bankDetails.upiId}
-                        onChange={(e) => setBankDetails(prev => ({ ...prev, upiId: e.target.value }))}
-                        className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-medium"
-                      />
+
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">80G Order Deduction Reference Info</label>
+                    <input
+                      type="text"
+                      value={bankDetails.deductionInfo || ''}
+                      onChange={(e) => setBankDetails(prev => ({ ...prev, deductionInfo: e.target.value }))}
+                      placeholder="QUALIFY DEDUCTION U/S 80G..."
+                      className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">UPI ID</label>
+                    <input
+                      type="text"
+                      value={bankDetails.upiId}
+                      onChange={(e) => setBankDetails(prev => ({ ...prev, upiId: e.target.value }))}
+                      className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-xl p-2.5 text-xs font-mono font-bold"
+                    />
+                  </div>
+
+                  {/* UPI QR Code Image Uploader */}
+                  <div>
+                    <label className="block text-[10px] uppercase font-bold text-[#867463] mb-1">UPI QR Code Image</label>
+                    <div className="flex items-center gap-3">
+                      <div className="w-16 h-16 rounded-xl bg-white border border-[#EAE8E3] dark:border-[#30312E] p-1 shrink-0 flex items-center justify-center overflow-hidden">
+                        <img 
+                          src={bankDetails.qrImage || "/images/upi_qr_code.svg"} 
+                          alt="QR Code Preview" 
+                          className="w-full h-full object-contain" 
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/images/upi_qr_code.svg';
+                          }}
+                        />
+                      </div>
+                      <div className="flex-1 space-y-1.5">
+                        <label className="inline-block px-3 py-1.5 bg-[#401C0C] hover:bg-[#5C2913] text-[#FFD27F] font-bold text-xs rounded-xl cursor-pointer transition-all border border-[#C9A646]/40">
+                          Upload New QR Code Image
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const reader = new FileReader();
+                              reader.onload = async () => {
+                                try {
+                                  const base64 = reader.result as string;
+                                  const res = await fetch('/api/upload', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ base64, name: file.name })
+                                  });
+                                  const data = await res.json();
+                                  if (data.success && data.url) {
+                                    setBankDetails(prev => ({ ...prev, qrImage: data.url }));
+                                  } else {
+                                    alert('Upload failed: ' + (data.error || 'Unknown error'));
+                                  }
+                                } catch (err) {
+                                  console.error(err);
+                                  alert('Upload failed');
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                            }}
+                            className="hidden"
+                          />
+                        </label>
+                        <input
+                          type="text"
+                          value={bankDetails.qrImage || ''}
+                          onChange={(e) => setBankDetails(prev => ({ ...prev, qrImage: e.target.value }))}
+                          placeholder="/images/upi_qr_code.svg or Cloudinary URL"
+                          className="w-full bg-[#F5F3EE] dark:bg-[#242622] border border-[#E4E2DD] dark:border-[#30312E] rounded-lg p-1.5 text-[11px] font-mono"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
 
             {/* Event Registration Ticket Passes Settings */}
             <div className="p-6 rounded-3xl bg-white dark:bg-[#1B1C19] border border-[#EAE8E3] dark:border-[#30312E] shadow-sm space-y-5">

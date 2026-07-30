@@ -94,13 +94,18 @@ export const SettingsWorkspace: React.FC = () => {
   ]);
 
   const [bankDetails, setBankDetails] = useState({
-    bankName: 'HDFC Bank',
-    accountName: 'Dhara Foundations',
-    accountNumber: '50200012345678',
-    ifsc: 'HDFC0001234',
-    branch: 'Chennai Main Branch',
-    upiId: 'dharafoundations@hdfcbank'
+    bankName: 'Indian Overseas Bank',
+    accountName: 'DHARA FOUNDATIONS',
+    accountNumber: '061201000000018',
+    accountType: 'SAVINGS',
+    ifsc: 'IOBA0000612',
+    branch: 'ADAMBAKKAM BRANCH, CHENNAI- 88',
+    upiId: 'dharafoundations@iob',
+    qrImage: '/images/upi_qr_code.svg',
+    pan: 'AAETD8857A',
+    deductionInfo: 'QUALIFY DEDUCTION U/S 80G OF I.T Act 1961 Vide AAETD8857AF20241 dated 11.12.2024'
   });
+
 
   const [taxExemptText, setTaxExemptText] = useState('All donations made to Dhara Foundations are eligible for 50% Tax Deduction under Section 80G of the Income Tax Act.');
 
