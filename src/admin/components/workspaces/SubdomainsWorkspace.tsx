@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { 
   Save, ShieldCheck, Plus, Trash2, Calendar, Building2, Trophy, Briefcase, 
-  HelpCircle, Users, ArrowUpDown, Newspaper, Star, Award, ShieldAlert, Heart
+  HelpCircle, Users, ArrowUpDown, Newspaper, Star, Award, ShieldAlert, Heart, Sparkles, Upload
 } from 'lucide-react';
+
 
 export const SubdomainsWorkspace: React.FC = () => {
   const { siteConfig, updateSiteConfig } = useApp();
