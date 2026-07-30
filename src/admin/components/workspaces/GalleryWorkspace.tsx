@@ -112,7 +112,7 @@ export const GalleryWorkspace: React.FC = () => {
     setShowUrlInput(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!imageUrl) {
       alert('Please upload an image or provide an image URL.');
@@ -123,27 +123,28 @@ export const GalleryWorkspace: React.FC = () => {
       return;
     }
 
-    if (editingId) {
-      await updateGalleryImage(editingId, {
-        src: imageUrl,
-        category,
-        caption,
-        priority,
-        featured
-      });
-    } else {
-      await addGalleryImage({
-        src: imageUrl,
-        category,
-        caption,
-        priority,
-        featured
-      });
-    }
+    const payload = {
+      src: imageUrl,
+      category,
+      caption,
+      priority,
+      featured
+    };
 
-    resetForm();
+    const currentEditingId = editingId;
+
+    // Close modal card immediately for instant response
     setShowAddModal(false);
+    resetForm();
+
+    // Perform update/add in background
+    if (currentEditingId) {
+      updateGalleryImage(currentEditingId, payload);
+    } else {
+      addGalleryImage(payload);
+    }
   };
+
 
   const handleEditClick = (img: any) => {
     setEditingId(img.id);
