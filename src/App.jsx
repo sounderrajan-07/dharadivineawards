@@ -158,7 +158,7 @@ export default function App() {
     (staticData.gallery || []).filter(img => img.featured).sort((a, b) => (b.priority || 0) - (a.priority || 0))
   );
   const [homeEvents, setHomeEvents] = useState(
-    (staticData.events || []).filter(ev => ev.featured && ev.type === 'video').sort((a, b) => (b.priority || 0) - (a.priority || 0))
+    (staticData.events || []).filter(ev => ev.featured && ev.type === 'video').sort((a, b) => (a.priority || 9999) - (b.priority || 9999))
   );
 
   useEffect(() => {
@@ -172,7 +172,7 @@ export default function App() {
     });
     fetchEvents().then(eventsData => {
       if (eventsData && eventsData.length) {
-        setHomeEvents(eventsData.filter(ev => ev.featured && ev.type === 'video').sort((a, b) => (b.priority || 0) - (a.priority || 0)));
+        setHomeEvents(eventsData.filter(ev => ev.featured && ev.type === 'video').sort((a, b) => (a.priority || 9999) - (b.priority || 9999)));
       }
     });
   }, []);

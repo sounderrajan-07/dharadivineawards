@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Search, Plus, Trash2, X, Edit3, Play, Star, Save, Award, Filter } from 'lucide-react';
+import { Search, Plus, Trash2, X, Edit3, Play, Star, Save, Award, Filter, ArrowUp, ArrowDown, GripVertical } from 'lucide-react';
 
 const Youtube: React.FC<React.SVGProps<SVGSVGElement> & { size?: number | string }> = ({ size = 24, ...props }) => (
   <svg
@@ -38,10 +38,11 @@ const normalizeCategory = (cat: string): string => {
 };
 
 export const YoutubeWorkspace: React.FC = () => {
-  const { events, addEvent, updateEvent, deleteEvent, globalSearchQuery, siteConfig, updateSiteConfig } = useApp();
+  const { events, addEvent, updateEvent, deleteEvent, reorderEvents, globalSearchQuery, siteConfig, updateSiteConfig } = useApp();
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [savingOrder, setSavingOrder] = useState(false);
 
   // Statistics editor states
   const [eventStats, setEventStats] = useState([
@@ -80,9 +81,10 @@ export const YoutubeWorkspace: React.FC = () => {
   const [description, setDescription] = useState<string>('');
   const [youtubeId, setYoutubeId] = useState<string>('');
   const [featured, setFeatured] = useState<boolean>(true);
+  const [priority, setPriority] = useState<number>(0);
 
   // Filter dynamic events of type 'video'
-  const youtubeVideos = events.filter(ev => ev.type === 'video');
+  const youtubeVideos = [...events.filter(ev => ev.type === 'video')].sort((a: any, b: any) => (a.priority || 9999) - (b.priority || 9999));
 
   const filteredVideos = youtubeVideos.filter(vid => {
     const searchStr = (globalSearchQuery || '').toLowerCase();
@@ -111,7 +113,8 @@ export const YoutubeWorkspace: React.FC = () => {
       description,
       youtubeId,
       image: `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`,
-      featured
+      featured,
+      priority
     };
 
     try {
@@ -135,6 +138,7 @@ export const YoutubeWorkspace: React.FC = () => {
     setDescription(vid.description || '');
     setYoutubeId(vid.youtubeId || '');
     setFeatured(vid.featured !== false);
+    setPriority(vid.priority || 0);
     setShowAddModal(true);
   };
 
@@ -145,6 +149,61 @@ export const YoutubeWorkspace: React.FC = () => {
     setDescription('');
     setYoutubeId('');
     setFeatured(true);
+    setPriority(0);
+  };
+
+  const handleMoveUp = (vid: any, categoryVideos: any[]) => {
+    const idx = categoryVideos.findIndex(v => v.id === vid.id);
+    if (idx <= 0) return;
+    const aboveVid = categoryVideos[idx - 1];
+    const currentPriority = vid.priority || 0;
+    const abovePriority = aboveVid.priority || 0;
+    if (currentPriority === abovePriority) {
+      reorderEvents([
+        { id: vid.id, priority: Math.max(1, currentPriority - 1) },
+        { id: aboveVid.id, priority: currentPriority + 1 }
+      ]);
+    } else {
+      reorderEvents([
+        { id: vid.id, priority: abovePriority },
+        { id: aboveVid.id, priority: currentPriority }
+      ]);
+    }
+  };
+
+  const handleMoveDown = (vid: any, categoryVideos: any[]) => {
+    const idx = categoryVideos.findIndex(v => v.id === vid.id);
+    if (idx === -1 || idx >= categoryVideos.length - 1) return;
+    const belowVid = categoryVideos[idx + 1];
+    const currentPriority = vid.priority || 0;
+    const belowPriority = belowVid.priority || 0;
+    if (currentPriority === belowPriority) {
+      reorderEvents([
+        { id: vid.id, priority: currentPriority + 1 },
+        { id: belowVid.id, priority: Math.max(1, currentPriority - 1) }
+      ]);
+    } else {
+      reorderEvents([
+        { id: vid.id, priority: belowPriority },
+        { id: belowVid.id, priority: currentPriority }
+      ]);
+    }
+  };
+
+  const handleSaveOrder = async () => {
+    setSavingOrder(true);
+    try {
+      const updates = youtubeVideos.map((vid: any, idx: number) => ({
+        id: vid.id,
+        priority: vid.priority || 0
+      }));
+      await reorderEvents(updates);
+      alert('Video display order saved successfully!');
+    } catch (err) {
+      alert('Failed to save display order.');
+    } finally {
+      setSavingOrder(false);
+    }
   };
 
   return (
@@ -162,15 +221,24 @@ export const YoutubeWorkspace: React.FC = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            resetForm();
-            setShowAddModal(true);
-          }}
-          className="px-4 py-2.5 rounded-xl bg-[#D9762E] hover:bg-[#b85e1b] text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer shrink-0 self-start md:self-auto"
-        >
-          <Plus size={16} /> Add YouTube Video
-        </button>
+        <div className="flex gap-2 shrink-0 self-start md:self-auto">
+          <button
+            onClick={handleSaveOrder}
+            disabled={savingOrder}
+            className="px-4 py-2.5 rounded-xl bg-[#401C0C] hover:bg-[#5C2913] text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
+          >
+            <Save size={16} /> {savingOrder ? 'Saving...' : 'Save Display Order'}
+          </button>
+          <button
+            onClick={() => {
+              resetForm();
+              setShowAddModal(true);
+            }}
+            className="px-4 py-2.5 rounded-xl bg-[#D9762E] hover:bg-[#b85e1b] text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all cursor-pointer"
+          >
+            <Plus size={16} /> Add YouTube Video
+          </button>
+        </div>
       </div>
 
       {/* Filter Bar */}
@@ -239,8 +307,10 @@ export const YoutubeWorkspace: React.FC = () => {
                             <Star size={10} fill="#401C0C" /> Featured
                           </div>
                         )}
-                        <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-[#FFD27F] text-[10px] font-mono px-2.5 py-1 rounded-lg border border-white/20">
-                          ID: {vid.youtubeId}
+                        <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                          <div className="bg-[#D9762E]/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-lg border border-white/20 flex items-center gap-1">
+                            <GripVertical size={10} /> #{vid.priority || 0}
+                          </div>
                         </div>
                       </div>
 
@@ -254,25 +324,44 @@ export const YoutubeWorkspace: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="p-5 pt-0 border-t border-[#F5F3EE] dark:border-[#2E302A] flex justify-end gap-2 bg-[#FDFBF8]/50 dark:bg-[#1C1D1A]/50">
-                      <button
-                        onClick={() => handleEditClick(vid)}
-                        className="p-2 rounded-xl text-[#867463] hover:text-[#C9A646] hover:bg-[#F5F3EE] dark:hover:bg-[#242622] transition-colors cursor-pointer"
-                        title="Edit Video Highlight"
-                      >
-                        <Edit3 size={15} />
-                      </button>
-                      <button
-                        onClick={async () => {
-                          if (confirm(`Are you sure you want to delete video "${vid.title}"?`)) {
-                            await deleteEvent(vid.id);
-                          }
-                        }}
-                        className="p-2 rounded-xl text-[#867463] hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors cursor-pointer"
-                        title="Delete Video Highlight"
-                      >
-                        <Trash2 size={15} />
-                      </button>
+                    <div className="p-5 pt-3 border-t border-[#F5F3EE] dark:border-[#2E302A] flex items-center justify-between bg-[#FDFBF8]/50 dark:bg-[#1C1D1A]/50">
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={() => handleMoveUp(vid, catVideos)}
+                          className="p-1.5 rounded-lg text-[#867463] hover:text-[#D9762E] hover:bg-[#F5F3EE] dark:hover:bg-[#242622] transition-colors cursor-pointer"
+                          title="Move Up (Higher Priority)"
+                        >
+                          <ArrowUp size={14} />
+                        </button>
+                        <button
+                          onClick={() => handleMoveDown(vid, catVideos)}
+                          className="p-1.5 rounded-lg text-[#867463] hover:text-[#D9762E] hover:bg-[#F5F3EE] dark:hover:bg-[#242622] transition-colors cursor-pointer"
+                          title="Move Down (Lower Priority)"
+                        >
+                          <ArrowDown size={14} />
+                        </button>
+                        <span className="text-[10px] text-[#867463] font-mono ml-1">P:{vid.priority || 0}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleEditClick(vid)}
+                          className="p-2 rounded-xl text-[#867463] hover:text-[#C9A646] hover:bg-[#F5F3EE] dark:hover:bg-[#242622] transition-colors cursor-pointer"
+                          title="Edit Video Highlight"
+                        >
+                          <Edit3 size={15} />
+                        </button>
+                        <button
+                          onClick={async () => {
+                            if (confirm(`Are you sure you want to delete video "${vid.title}"?`)) {
+                              await deleteEvent(vid.id);
+                            }
+                          }}
+                          className="p-2 rounded-xl text-[#867463] hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors cursor-pointer"
+                          title="Delete Video Highlight"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -370,17 +459,32 @@ export const YoutubeWorkspace: React.FC = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-2 py-2">
-                <input
-                  type="checkbox"
-                  id="featured-checkbox"
-                  checked={featured}
-                  onChange={(e) => setFeatured(e.target.checked)}
-                  className="text-[#D9762E] rounded border-[#E4E2DD] focus:ring-[#D9762E]"
-                />
-                <label htmlFor="featured-checkbox" className="text-xs font-bold text-[#534436] dark:text-[#D1D5DB] cursor-pointer">
-                  Feature this video on the home page (YouTube Broadcast)
-                </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center gap-2 py-2">
+                  <input
+                    type="checkbox"
+                    id="featured-checkbox"
+                    checked={featured}
+                    onChange={(e) => setFeatured(e.target.checked)}
+                    className="text-[#D9762E] rounded border-[#E4E2DD] focus:ring-[#D9762E]"
+                  />
+                  <label htmlFor="featured-checkbox" className="text-xs font-bold text-[#534436] dark:text-[#D1D5DB] cursor-pointer">
+                    Feature this video on the home page
+                  </label>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-[#534436] dark:text-[#D1D5DB] mb-1">
+                    Display Priority (higher = shown first)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={priority}
+                    onChange={(e) => setPriority(parseInt(e.target.value) || 0)}
+                    placeholder="0"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E4E2DD] dark:border-[#30312E] bg-[#FBF9F4] dark:bg-[#242622] text-sm text-[#1B1C19] dark:text-white focus:outline-none focus:border-[#D9762E]"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#F5F3EE] dark:border-[#2E302A]">

@@ -30,7 +30,6 @@ export interface DatabaseSchema {
 }
 
 const dbPath = path.join(__dirname, '..', 'data', 'db.json');
-let isConnected = false;
 
 async function connectMongo() {
   const uri = process.env.MONGODB_URI;
@@ -39,7 +38,7 @@ async function connectMongo() {
     return false;
   }
 
-  if (isConnected && mongoose.connection.readyState === 1) {
+  if (mongoose.connection.readyState === 1) {
     return true;
   }
 
@@ -47,7 +46,6 @@ async function connectMongo() {
     await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 5000,
     });
-    isConnected = true;
     console.log("Connected to MongoDB Atlas successfully");
     return true;
   } catch (error) {

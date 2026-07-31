@@ -52,6 +52,7 @@ interface AppContextType {
   addEvent: (ev: { type: string; category: string; title: string; image: string; description: string; youtubeId?: string; duration?: string; featured?: boolean; priority?: number }) => Promise<void>;
   updateEvent: (id: string, ev: any) => Promise<void>;
   deleteEvent: (id: string) => Promise<void>;
+  reorderEvents: (updates: { id: string; priority: number }[]) => Promise<void>;
   addNews: (item: { title: string; date?: string; image?: string; link?: string; summary?: string }) => Promise<void>;
   updateNews: (id: string, item: any) => Promise<void>;
   deleteNews: (id: string) => Promise<void>;
@@ -541,6 +542,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const reorderEvents = async (updates: { id: string; priority: number }[]) => {
+    try {
+      const res = await fetch('/api/events', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ updates, user: currentUser.name })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setEvents(data.events || []);
+        if (data.activityLogs) setActivityLogs(data.activityLogs);
+      }
+    } catch (err) {
+      console.error('Failed to reorder events:', err);
+    }
+  };
+
   const addNews = async (item: { title: string; date?: string; image?: string; link?: string; summary?: string }) => {
     const newItem = {
       id: `news-${Date.now()}`,
@@ -678,6 +696,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       addEvent,
       updateEvent,
       deleteEvent,
+      reorderEvents,
       addNews,
       updateNews,
       deleteNews,

@@ -33,7 +33,9 @@ export default async function handler(req: any, res: any) {
         youtubeId: body.youtubeId || undefined,
         duration: body.duration || undefined,
         featured: body.featured === true || body.featured === 'true',
-        priority: typeof body.priority === 'number' ? body.priority : (body.featured ? 100 : 0)
+        priority: typeof body.priority === 'number' 
+          ? body.priority 
+          : (db.events.filter((e: any) => e.type === 'video').reduce((max: number, e: any) => Math.max(max, e.priority || 0), 0) + 1)
       };
 
       db.events.unshift(newEvent);
@@ -112,6 +114,41 @@ export default async function handler(req: any, res: any) {
       return res.status(404).json({ error: 'Event not found' });
     } catch (error) {
       return res.status(500).json({ error: 'Failed to delete event' });
+    }
+  }
+
+  if (req.method === 'PATCH') {
+    try {
+      const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      const db = await readDb();
+      
+      // Bulk update priorities: body.updates = [{ id, priority }]
+      if (body.updates && Array.isArray(body.updates)) {
+        for (const update of body.updates) {
+          const idx = db.events.findIndex((ev: any) => ev.id === update.id);
+          if (idx !== -1) {
+            db.events[idx].priority = update.priority;
+          }
+        }
+
+        // Sort events by priority ascending (1 at top, lower numbers first)
+        db.events.sort((a: any, b: any) => (a.priority || 9999) - (b.priority || 9999));
+
+        db.activityLogs.unshift({
+          id: `log-${Date.now()}`,
+          timestamp: 'Just now',
+          type: 'system',
+          message: `Admin reordered ${body.updates.length} video(s) display priority`,
+          user: body.user || 'Super Admin'
+        });
+
+        await writeDb(db);
+        return res.status(200).json({ success: true, events: db.events, activityLogs: db.activityLogs });
+      }
+
+      return res.status(400).json({ error: 'Missing updates array' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Failed to reorder events' });
     }
   }
 
