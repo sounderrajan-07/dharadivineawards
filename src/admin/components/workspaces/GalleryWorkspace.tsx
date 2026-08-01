@@ -52,6 +52,8 @@ export const GalleryWorkspace: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const sortedFilteredGallery = [...filteredGallery].sort((a, b) => (a.priority || 9999) - (b.priority || 9999));
+
   const getImageUrl = (src: string) => {
     if (!src) return 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80';
     if (src.startsWith('http') || src.startsWith('/uploads') || src.startsWith('data:')) {
@@ -208,12 +210,12 @@ export const GalleryWorkspace: React.FC = () => {
 
       {/* Images Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredGallery.length === 0 ? (
+        {sortedFilteredGallery.length === 0 ? (
           <div className="col-span-full py-16 text-center bg-white dark:bg-[#1B1C19] rounded-3xl border border-dashed border-[#E4E2DD] dark:border-[#30312E] text-xs text-[#867463] italic">
             No gallery images found matching the criteria.
           </div>
         ) : (
-          filteredGallery.map(img => (
+          sortedFilteredGallery.map(img => (
             <div
               key={img.id}
               className="bg-white dark:bg-[#1B1C19] rounded-3xl border border-[#EAE8E3] dark:border-[#30312E] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group relative"

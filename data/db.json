@@ -167,6 +167,20 @@
   "enquiries": [],
   "activityLogs": [
     {
+      "id": "log-1785563735922",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated gallery image: \"2. Shri.Raju(alias) Lakshmana Bhattar (Bhattachariyar)\"",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
+      "id": "log-1785562185692",
+      "timestamp": "Just now",
+      "type": "system",
+      "message": "Admin updated gallery image: \"1. Shri.S. Ravi (Sivachariyar)\"",
+      "user": "S. Vinoth Ragavendran"
+    },
+    {
       "id": "log-1785494066884",
       "timestamp": "Just now",
       "type": "system",
@@ -1905,16 +1919,18 @@
       "src": "/images/Section 1/1.Shri.S. Ravi (Sivachariyar).jpg",
       "category": "1. Spiritual Pillars",
       "caption": "1. Shri.S. Ravi (Sivachariyar)",
-      "priority": 178,
-      "featured": false
+      "priority": 1,
+      "featured": false,
+      "user": "S. Vinoth Ragavendran"
     },
     {
       "id": "gal-sec-179-2189",
       "src": "/images/Section 1/2.Shri.Raju(alias) Lakshmana Bhattar (Bhattachariyar).jpg",
       "category": "1. Spiritual Pillars",
       "caption": "2. Shri.Raju(alias) Lakshmana Bhattar (Bhattachariyar)",
-      "priority": 179,
-      "featured": false
+      "priority": 2,
+      "featured": false,
+      "user": "S. Vinoth Ragavendran"
     },
     {
       "id": "gal-sec-180-21785",
