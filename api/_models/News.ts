@@ -10,6 +10,7 @@ export interface INews extends Document {
   link?: string;
   summary: string;
   rotate?: number;
+  seekTime?: number;
 }
 
 const NewsSchema: Schema = new Schema({
@@ -21,7 +22,8 @@ const NewsSchema: Schema = new Schema({
   image: { type: String, required: true },
   link: { type: String, default: '' },
   summary: { type: String, default: '' },
-  rotate: { type: Number, default: 0 }
+  rotate: { type: Number, default: 0 },
+  seekTime: { type: Number, default: 2 }
 });
 
 export default mongoose.models.News || mongoose.model<INews>('News', NewsSchema);
