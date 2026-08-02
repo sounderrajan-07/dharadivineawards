@@ -3551,6 +3551,7 @@
       "type": "video",
       "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.09 PM.mp4",
       "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "seekTime": 10,
       "summary": "Special video highlights from the Dhara Divine Awards grand celebration and award presentation ceremony."
     },
     {
@@ -3560,6 +3561,7 @@
       "type": "video",
       "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.31 PM (1).mp4",
       "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "seekTime": 2,
       "summary": "Devotees and community leaders sharing their thoughts and prayers during the Dhara Divine Awards ceremony."
     },
     {
@@ -3569,6 +3571,7 @@
       "type": "video",
       "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.32 PM.mp4",
       "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "seekTime": 2,
       "summary": "Cultural and traditional performances showcasing the rich heritage of Sanatana Dharma during the celebrations."
     },
     {
@@ -3578,6 +3581,7 @@
       "type": "video",
       "mediaUrl": "/images/News/WhatsApp Video 2026-07-20 at 3.32.34 PM.mp4",
       "image": "/images/News/DHARA Divine Awards Ceremony.jpg",
+      "seekTime": 2,
       "summary": "Presentation of the prestigious Divine Awards to silent seva sadhaks and outstanding grassroots organizations."
     },
     {

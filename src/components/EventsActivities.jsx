@@ -23,7 +23,7 @@ export default function EventsActivities() {
     },
     {
       icon: Users,
-      value: '2,500+',
+      value: '2,800+',
       label: 'Dignitaries & Attendees',
       desc: 'Gathering of Madras High Court Judge Justice GR Swaminathan, Adheenams, and eminent personalities.'
     },
@@ -74,7 +74,7 @@ export default function EventsActivities() {
     },
     {
       icon: Users,
-      value: '2,500+',
+      value: '2,800+',
       label: 'Dignitaries & Attendees',
       desc: 'Gathering of Madras High Court Judge Justice GR Swaminathan, Adheenams, and eminent personalities.'
     },
@@ -501,12 +501,6 @@ export default function EventsActivities() {
   });
 
   const sections = [
-    ...(dynamicSection.length > 0 ? [{
-      id: "sec-dynamic",
-      title: "Recent Updates & Events",
-      subtitle: "Latest videos and updates added via admin portal.",
-      videos: dynamicSection.map(mapToVideoFormat)
-    }] : []),
     {
       id: "sec-1",
       title: "Spiritual Pillars",
@@ -611,7 +605,6 @@ export default function EventsActivities() {
           <div className="flex flex-wrap gap-1.5 justify-center">
             {[
               'All Videos',
-              'Recent Updates & Events',
               'Spiritual Pillars',
               'Institutions and Organisations',
               'Individuals and Professionals',

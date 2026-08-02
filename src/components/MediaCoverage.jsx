@@ -187,7 +187,7 @@ export default function MediaCoverage({ onSubmitSuccess }) {
                     >
                       {art.mediaUrl ? (
                         <video
-                          src={getImageUrl(art.mediaUrl)}
+                          src={`${getImageUrl(art.mediaUrl)}#t=${art.seekTime || 2}`}
                           preload="metadata"
                           className="w-full h-full max-h-[360px] object-contain transition-transform duration-500 group-hover/img:scale-105"
                           muted

@@ -34,7 +34,7 @@ const normalizeCategory = (cat: string): string => {
   if (['Grass Route Eminents', 'Grassroots', 'Grassroots Volunteers', 'Grassroot', 'Temple Seva', 'Heritage Sports', 'Vedic Pathashala', 'Temple Priest Seva', 'Temple Architecture', 'Metal Iconography', 'Temple Carpentry', 'Sacred Art', 'Madapalli Seva', 'Pushpa Alankaram', 'Mahout Seva', 'Folk Theater Art'].includes(c)) {
     return 'Grass Route Eminents';
   }
-  return 'Recent Updates & Events';
+  return 'Spiritual Pillars';
 };
 
 export const YoutubeWorkspace: React.FC = () => {
@@ -47,7 +47,7 @@ export const YoutubeWorkspace: React.FC = () => {
   // Statistics editor states
   const [eventStats, setEventStats] = useState([
     { value: '63', label: 'Divine Awardees Honored', desc: 'Grassroot leaders, philanthropists, and silent seva sadhaks honored for Sanatana Dharma service.', icon: 'Award' },
-    { value: '2,500+', label: 'Dignitaries & Attendees', desc: 'Gathering of Madras High Court Judge Justice GR Swaminathan, Adheenams, and eminent personalities.', icon: 'Users' },
+    { value: '2,800+', label: 'Dignitaries & Attendees', desc: 'Gathering of Madras High Court Judge Justice GR Swaminathan, Adheenams, and eminent personalities.', icon: 'Users' },
     { value: 'Jan 2025', label: 'Flagship Assembly Date', desc: 'A grand devotional assembly hosted at the Chinmaya Heritage Centre in Chennai.', icon: 'Calendar' },
     { value: '100% Seva', label: 'Pure Selfless Platform', desc: 'Organized fully by volunteers to recognize quiet champions of socio-cultural revival.', icon: 'Trees' }
   ]);
@@ -77,7 +77,7 @@ export const YoutubeWorkspace: React.FC = () => {
 
   // Form states
   const [title, setTitle] = useState<string>('');
-  const [category, setCategory] = useState<string>('Recent Updates & Events');
+  const [category, setCategory] = useState<string>('Spiritual Pillars');
   const [description, setDescription] = useState<string>('');
   const [youtubeId, setYoutubeId] = useState<string>('');
   const [featured, setFeatured] = useState<boolean>(true);
@@ -145,7 +145,7 @@ export const YoutubeWorkspace: React.FC = () => {
   const resetForm = () => {
     setEditingId(null);
     setTitle('');
-    setCategory('Recent Updates & Events');
+    setCategory('Spiritual Pillars');
     setDescription('');
     setYoutubeId('');
     setFeatured(true);
@@ -246,7 +246,7 @@ export const YoutubeWorkspace: React.FC = () => {
         <span className="text-xs font-semibold text-[#867463] dark:text-[#9CA3AF] mr-2 flex items-center gap-1">
           <Filter size={14} /> Filter Category:
         </span>
-        {['All', 'Recent Updates & Events', 'Spiritual Pillars', 'Institutions and Organisations', 'Individuals and Professionals', 'Grass Route Eminents'].map(cat => (
+        {['All', 'Spiritual Pillars', 'Institutions and Organisations', 'Individuals and Professionals', 'Grass Route Eminents'].map(cat => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
@@ -265,7 +265,6 @@ export const YoutubeWorkspace: React.FC = () => {
       <div className="space-y-10">
         {(selectedCategory === 'All'
           ? [
-              'Recent Updates & Events',
               'Spiritual Pillars',
               'Institutions and Organisations',
               'Individuals and Professionals',
@@ -437,7 +436,6 @@ export const YoutubeWorkspace: React.FC = () => {
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#E4E2DD] dark:border-[#30312E] bg-[#FBF9F4] dark:bg-[#242622] text-sm text-[#1B1C19] dark:text-white focus:outline-none focus:border-[#D9762E]"
                   >
-                    <option value="Recent Updates & Events">Recent Updates & Events</option>
                     <option value="Spiritual Pillars">Spiritual Pillars</option>
                     <option value="Institutions and Organisations">Institutions and Organisations</option>
                     <option value="Individuals and Professionals">Individuals and Professionals</option>
