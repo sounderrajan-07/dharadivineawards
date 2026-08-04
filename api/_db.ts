@@ -138,8 +138,11 @@ export async function readDb(): Promise<DatabaseSchema> {
         siteConfig,
         news: finalNews
       };
-    } catch (err) {
-      console.error("Failed to read from MongoDB, trying local file fallback:", err);
+    } catch (err: any) {
+      console.error("Failed to read from MongoDB, throwing error to prevent stale fallback:", err);
+      if (process.env.MONGODB_URI) {
+        throw err;
+      }
     }
   }
 
@@ -257,8 +260,11 @@ export async function writeDb(data: DatabaseSchema): Promise<void> {
         ...news.map(item => (News as any).findOneAndUpdate({ id: item.id }, stripId(item), { upsert: true }))
       ]);
       return;
-    } catch (err) {
-      console.error("Failed to write to MongoDB:", err);
+    } catch (err: any) {
+      console.error("Failed to write to MongoDB, throwing error to prevent local file overwrite:", err);
+      if (process.env.MONGODB_URI) {
+        throw err;
+      }
     }
   }
 
