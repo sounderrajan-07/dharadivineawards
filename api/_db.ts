@@ -42,9 +42,11 @@ async function connectMongo() {
     return true;
   }
 
+  const isWin = process.platform === 'win32';
   try {
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 5000,
+      serverSelectionTimeoutMS: isWin ? 2000 : 5000,
+      bufferCommands: !isWin
     });
     console.log("Connected to MongoDB Atlas successfully");
     return true;
@@ -139,8 +141,8 @@ export async function readDb(): Promise<DatabaseSchema> {
         news: finalNews
       };
     } catch (err: any) {
-      console.error("Failed to read from MongoDB, throwing error to prevent stale fallback:", err);
-      if (process.env.MONGODB_URI) {
+      console.error("Failed to read from MongoDB, trying local fallback:", err);
+      if (process.env.MONGODB_URI && process.platform !== 'win32') {
         throw err;
       }
     }
@@ -261,8 +263,8 @@ export async function writeDb(data: DatabaseSchema): Promise<void> {
       ]);
       return;
     } catch (err: any) {
-      console.error("Failed to write to MongoDB, throwing error to prevent local file overwrite:", err);
-      if (process.env.MONGODB_URI) {
+      console.error("Failed to write to MongoDB, trying local fallback:", err);
+      if (process.env.MONGODB_URI && process.platform !== 'win32') {
         throw err;
       }
     }

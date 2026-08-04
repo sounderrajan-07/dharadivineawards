@@ -559,6 +559,20 @@ export default function EventsActivities() {
         <p className="text-sm text-[var(--ink-soft)] leading-relaxed pt-2">
           Glimpses from the sacred ceremonies, honoring grassroots champions of heritage and selflessness.
         </p>
+        
+        {/* Watch Live Video Button */}
+        <div className="pt-2 flex justify-center">
+          <a 
+            href="https://www.youtube.com/live/qOAbFfB22uI?si=uo_jlYOkJNHIlLtE" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary sparkle-shimmer-btn inline-flex items-center gap-2"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+          >
+            <Play className="w-4.5 h-4.5" fill="currentColor" />
+            <span>Explore Dhara Divine Awards 2025 on YouTube</span>
+          </a>
+        </div>
       </div>
 
       {/* Impact Stats */}
