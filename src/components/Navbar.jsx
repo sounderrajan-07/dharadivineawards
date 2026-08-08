@@ -23,10 +23,10 @@ export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMob
               <span className="value-phone">044-22236641</span>
             </a>
             <span className="separator" style={{ color: 'rgba(64, 28, 12, 0.15)' }}>|</span>
-            <a href="mailto:info@dharafoundations.in" className="topbar-link" style={{ gap: '6px' }}>
+            <a href="mailto:info@dharafoundations.com" className="topbar-link" style={{ gap: '6px' }}>
               <Mail className="w-3.5 h-3.5" style={{ color: '#3F8C4A' }} />
               <span className="label-email">Email</span>
-              <span className="value-email">info@dharafoundations.in</span>
+              <span className="value-email">info@dharafoundations.com</span>
             </a>
           </div>
         </div>

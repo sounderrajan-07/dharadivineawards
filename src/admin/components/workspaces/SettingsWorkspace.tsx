@@ -135,7 +135,7 @@ export const SettingsWorkspace: React.FC = () => {
   ]);
 
   const [contactInfo, setContactInfo] = useState({
-    email: 'info@dharafoundations.in',
+    email: 'info@dharafoundations.com',
     phone: '044-22236641',
     address: '# 44A, 3rd Street, Judge Colony, Tambaram Sanatorium, Chennai – 600047',
     timings: 'Monday - Saturday: 9:00 AM - 6:00 PM IST',

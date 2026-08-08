@@ -73,7 +73,7 @@ export const SubdomainsWorkspace: React.FC = () => {
   ]);
 
   const [contactInfo, setContactInfo] = useState({
-    email: 'info@dharafoundations.in',
+    email: 'info@dharafoundations.com',
     phone: '+91 94440 12345',
     address: 'Dhara Foundations Trust Office, Chennai, Tamil Nadu',
     timings: 'Monday - Saturday: 9:00 AM - 6:00 PM IST',

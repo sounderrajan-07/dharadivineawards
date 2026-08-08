@@ -5,7 +5,7 @@ export default function Footer({ setActiveTab, handleNavClick, siteConfig }) {
 
   const contact = siteConfig?.generalEnquiriesConfig || {};
   const address = contact.address || '# 44A, 3rd Street, Judge Colony, Tambaram Sanatorium, Chennai – 600047';
-  const email = contact.email || 'info@dharafoundations.in';
+  const email = contact.email || 'info@dharafoundations.com';
   const phone = contact.phone || '044-22236641';
   const presidentEmail = contact.presidentEmail || 'president@dharafoundations.in';
   const trusteeEmail = contact.trusteeEmail || 'trustee@dharafoundations.in';

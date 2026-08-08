@@ -4,7 +4,7 @@ import { submitForm } from '../utils/api';
 
 export default function GeneralEnquiries({ onSubmitSuccess, siteConfig }) {
   const contactConfig = siteConfig?.generalEnquiriesConfig;
-  const contactEmail = contactConfig?.email || 'info@dharafoundations.in';
+  const contactEmail = contactConfig?.email || 'info@dharafoundations.com';
   const contactPhone = contactConfig?.phone || '044-22236641';
   const contactAddress = contactConfig?.address || 'Dhara Foundations HQ, # 44A, 3rd Street, Judge Colony, Tambaram Sanatorium, Chennai, Tamil Nadu - 600047';
   const presidentEmail = contactConfig?.presidentEmail || 'president@dharafoundations.in';
