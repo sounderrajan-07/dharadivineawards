@@ -1,4 +1,5 @@
 import { readDb, writeDb } from '../_db.js';
+import { dispatchEmails } from '../_lib/mail.js';
 import crypto from 'crypto';
 
 export default async function handler(req: any, res: any) {
@@ -117,6 +118,12 @@ export default async function handler(req: any, res: any) {
     });
 
     await writeDb(db);
+
+    if (email) {
+      dispatchEmails(module || 'Event Registration', email, newEntry).catch(err => {
+        console.error('Verify payment dispatchEmails error:', err);
+      });
+    }
 
     return res.status(200).json({
       success: true,

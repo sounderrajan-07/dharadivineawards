@@ -1,4 +1,5 @@
 import { readDb, writeDb } from './_db.js';
+import { dispatchEmails } from './_lib/mail.js';
 
 export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -59,6 +60,7 @@ export default async function handler(req: any, res: any) {
         supporting_links: (body.supportingLinks || body.references) ? (body.supportingLinks || body.references).split(',').map((s: string) => s.trim()) : [],
         nominator_name: body.nominatorName || 'Anonymous',
         nominator_phone: body.nominatorPhone || '',
+        nominator_email: body.nominatorEmail || body.email || '',
         vetting_status: 'pending',
         created_at: timestamp,
         avatar_url: body.avatarUrl || '',
@@ -88,7 +90,7 @@ export default async function handler(req: any, res: any) {
     else if (module === 'General Enquiries') {
       newEntry = {
         id: `enq-${Date.now()}`,
-        sender_name: body.senderName || 'Anonymous',
+        sender_name: body.senderName || body.name || 'Anonymous',
         email: body.email || '',
         phone: body.phone || '',
         subject: body.subject || 'General Inquiry',
@@ -142,6 +144,12 @@ export default async function handler(req: any, res: any) {
     });
 
     await writeDb(db);
+
+    // Dispatch email notifications asynchronously (user confirmation & admin alert)
+    const recipientEmail = newEntry.email || body.email || body.nominatorEmail || '';
+    dispatchEmails(module, recipientEmail, newEntry).catch(err => {
+      console.error('Asynchronous dispatchEmails error:', err);
+    });
 
     return res.status(200).json({ success: true, entry: newEntry });
   } catch (error) {

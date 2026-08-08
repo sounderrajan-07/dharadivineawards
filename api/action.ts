@@ -1,4 +1,5 @@
 import { readDb, writeDb } from './_db.js';
+import { sendMail } from './_lib/mail.js';
 
 export default async function handler(req: any, res: any) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -97,6 +98,25 @@ export default async function handler(req: any, res: any) {
           don.receipt_sent = true;
           logActivity('donation', `Generated & emailed 80G Seva Patr PDF Receipt to ${don.name} (${don.email})`, user || 'Auditor');
           message = `Receipt generated and sent to ${don.name}`;
+
+          if (don.email) {
+            const receiptHtml = `
+              <p style="font-size: 15px; color: #334155;">Namaste <strong>${don.name}</strong>,</p>
+              <p style="font-size: 15px; color: #334155;">Thank you for your noble contribution of <strong>₹${Number(don.amount || 0).toLocaleString('en-IN')}</strong> to Dhara Foundations.</p>
+              <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 16px; margin: 20px 0; border-radius: 6px;">
+                <p style="margin: 0 0 8px 0; font-weight: bold; color: #401C0C;">80G Tax Exemption Receipt Details:</p>
+                <p style="margin: 4px 0;"><strong>Receipt No:</strong> REC-80G-${don.id || Date.now().toString().slice(-6)}</p>
+                <p style="margin: 4px 0;"><strong>Donor Name:</strong> ${don.name}</p>
+                <p style="margin: 4px 0;"><strong>Amount:</strong> ₹${Number(don.amount || 0).toLocaleString('en-IN')}</p>
+                <p style="margin: 4px 0;"><strong>Seva Domain:</strong> ${don.seva_domain || 'General Fund'}</p>
+                ${don.pan ? `<p style="margin: 4px 0;"><strong>PAN:</strong> ${don.pan.toUpperCase()}</p>` : ''}
+              </div>
+              <p style="font-size: 14px; color: #64748b;">This receipt qualifies for tax deduction under Section 80G of the Income Tax Act.</p>
+            `;
+            sendMail(don.email, `Official 80G Receipt - Dhara Foundations`, receiptHtml).catch(err => {
+              console.error('Failed to send receipt email:', err);
+            });
+          }
         } else {
           success = false;
           message = 'Donation not found';
