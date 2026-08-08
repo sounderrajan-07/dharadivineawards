@@ -9,7 +9,7 @@ export default function Navbar({ activeTab, setActiveTab, mobileMenuOpen, setMob
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobilePortalsOpen, setMobilePortalsOpen] = useState(false);
 
-  const otherEventsUrl = siteConfig?.otherEventsUrl || "https://dhara-foundation.vercel.app/";
+  const otherEventsUrl = siteConfig?.otherEventsUrl || siteConfig?.generalEnquiriesConfig?.otherEventsUrl || "https://dharafoundations.in/";
 
   return (
     <>

@@ -142,7 +142,7 @@ export const SettingsWorkspace: React.FC = () => {
     presidentEmail: 'president@dharafoundations.in',
     trusteeEmail: 'trustee@dharafoundations.in',
     alternativeEmail: 'dharafoundationsindia@gmail.com',
-    otherEventsUrl: 'https://dhara-foundation.vercel.app/',
+    otherEventsUrl: 'https://dharafoundations.in/',
     facebook: '#',
     instagram: '#',
     youtube: 'https://www.youtube.com/live/qOAbFfB22uI'
@@ -715,7 +715,7 @@ export const SettingsWorkspace: React.FC = () => {
       heroVideoPoster,
       heroImageUrl,
       heroMediaOrder,
-      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dhara-foundation.vercel.app/',
+      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dharafoundations.in/',
       homeStats,
       aboutStats,
       founders,

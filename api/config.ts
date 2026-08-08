@@ -58,6 +58,7 @@ export default async function handler(req: any, res: any) {
         volunteerConfig: body.volunteerConfig ?? existing.volunteerConfig ?? null,
         csrConfig: body.csrConfig ?? existing.csrConfig ?? null,
         awardConfig: body.awardConfig ?? existing.awardConfig ?? null,
+        otherEventsUrl: body.otherEventsUrl ?? body.generalEnquiriesConfig?.otherEventsUrl ?? existing.otherEventsUrl ?? 'https://dharafoundations.in/',
         generalEnquiriesConfig: body.generalEnquiriesConfig ?? existing.generalEnquiriesConfig ?? null,
         razorpayConfig: body.razorpayConfig ?? existing.razorpayConfig ?? null,
         flagshipEvent: body.flagshipEvent ?? existing.flagshipEvent ?? null,

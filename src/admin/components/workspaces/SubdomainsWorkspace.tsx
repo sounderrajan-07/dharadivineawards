@@ -77,7 +77,7 @@ export const SubdomainsWorkspace: React.FC = () => {
     phone: '+91 94440 12345',
     address: 'Dhara Foundations Trust Office, Chennai, Tamil Nadu',
     timings: 'Monday - Saturday: 9:00 AM - 6:00 PM IST',
-    otherEventsUrl: 'https://dhara-foundation.vercel.app/'
+    otherEventsUrl: 'https://dharafoundations.in/'
   });
 
   // 2. SPONSORSHIP CONFIG STATES
@@ -439,7 +439,7 @@ export const SubdomainsWorkspace: React.FC = () => {
         eventYear,
         tickets: parsedTickets
       },
-      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dhara-foundation.vercel.app/',
+      otherEventsUrl: contactInfo.otherEventsUrl || 'https://dharafoundations.in/',
       generalEnquiriesConfig: contactInfo,
       sponsorshipConfig: {
         benefits: sponsorshipBenefits,

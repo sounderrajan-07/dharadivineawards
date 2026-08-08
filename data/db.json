@@ -3111,6 +3111,7 @@
   "siteConfig": [
     {
       "id": "global-config",
+      "otherEventsUrl": "https://dharafoundations.in/",
       "heroVideoUrl": "",
       "heroVideoPoster": "",
       "eventYear": "2026",
